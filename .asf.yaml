@@ -1,0 +1,34 @@
+# https://cwiki.apache.org/confluence/display/INFRA/.asf.yaml+features+for+git+repositories
+
+github:
+  description: "Example projects building Reactive Integrations using Apache Pekko Connectors"
+  homepage: https://pekko.apache.org/
+  labels:
+    - pekko
+    - pekko-streams
+    - pekko-connnectors
+    - integration
+    - reactive
+    - reactive-streams
+  
+  features:
+    # Enable wiki for documentation
+    wiki: false
+    # Enable issue management
+    issues: true
+    # Enable projects for project management boards
+    projects: false
+
+  enabled_merge_buttons:
+    squash:  true
+    merge:   false
+    rebase:  true
+
+  protected_branches:
+    main: { }
+
+notifications:
+  commits:              commits@pekko.apache.org
+  issues:               notifications@pekko.apache.org
+  pullrequests:         notifications@pekko.apache.org
+  discussions:          notifications@pekko.apache.org
