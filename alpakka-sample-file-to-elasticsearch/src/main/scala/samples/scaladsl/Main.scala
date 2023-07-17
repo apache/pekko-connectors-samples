@@ -5,15 +5,16 @@
 package samples.scaladsl
 
 import java.nio.file._
-import org.apache.pekko.NotUsed
-import org.apache.pekko.actor.typed.ActorSystem
-import org.apache.pekko.actor.typed.scaladsl.Behaviors
-import org.apache.pekko.stream.connectors.elasticsearch._
-import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.{ElasticsearchFlow, ElasticsearchSource}
-import org.apache.pekko.stream.connectors.file.DirectoryChange
-import org.apache.pekko.stream.connectors.file.scaladsl.{DirectoryChangesSource, FileTailSource}
-import org.apache.pekko.stream.scaladsl.{Flow, Keep, RunnableGraph, Sink, Source}
-import org.apache.pekko.stream.{KillSwitches, Materializer, UniqueKillSwitch}
+import org.apache.pekko
+import pekko.NotUsed
+import pekko.actor.typed.ActorSystem
+import pekko.actor.typed.scaladsl.Behaviors
+import pekko.stream.connectors.elasticsearch._
+import pekko.stream.connectors.elasticsearch.scaladsl.{ElasticsearchFlow, ElasticsearchSource}
+import pekko.stream.connectors.file.DirectoryChange
+import pekko.stream.connectors.file.scaladsl.{DirectoryChangesSource, FileTailSource}
+import pekko.stream.scaladsl.{Flow, Keep, RunnableGraph, Sink, Source}
+import pekko.stream.{KillSwitches, Materializer, UniqueKillSwitch}
 import samples.common.DateTimeExtractor
 import samples.scaladsl.LogFileSummary.LogFileSummaries
 
