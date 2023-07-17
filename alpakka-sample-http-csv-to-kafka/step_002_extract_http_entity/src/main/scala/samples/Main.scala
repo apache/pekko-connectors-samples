@@ -4,16 +4,16 @@
 
 package samples
 
-import akka.Done
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.scaladsl.adapter._
-import akka.http.scaladsl._
-import akka.http.scaladsl.model.StatusCodes._
-import akka.http.scaladsl.model.headers.Accept
-import akka.http.scaladsl.model.{ HttpRequest, HttpResponse, MediaRanges }
-import akka.stream.scaladsl.{ Sink, Source }
-import akka.util.ByteString
+import org.apache.pekko.Done
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.actor.typed.scaladsl.adapter._
+import org.apache.pekko.http.scaladsl._
+import org.apache.pekko.http.scaladsl.model.StatusCodes._
+import org.apache.pekko.http.scaladsl.model.headers.Accept
+import org.apache.pekko.http.scaladsl.model.{ HttpRequest, HttpResponse, MediaRanges }
+import org.apache.pekko.stream.scaladsl.{ Sink, Source }
+import org.apache.pekko.util.ByteString
 
 import scala.concurrent.Future
 

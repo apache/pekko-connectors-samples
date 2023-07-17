@@ -4,14 +4,14 @@
 
 package samples.javadsl;
 
-import akka.Done;
-import akka.actor.ActorSystem;
-import akka.http.javadsl.Http;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.MediaRanges;
-import akka.http.javadsl.model.headers.Accept;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.ActorSystem;
+import org.apache.pekko.http.javadsl.Http;
+import org.apache.pekko.http.javadsl.model.HttpRequest;
+import org.apache.pekko.http.javadsl.model.MediaRanges;
+import org.apache.pekko.http.javadsl.model.headers.Accept;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
 
 import java.util.Collections;
 import java.util.concurrent.CompletionStage;

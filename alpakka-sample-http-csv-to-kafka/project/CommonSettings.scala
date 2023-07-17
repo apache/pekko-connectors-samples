@@ -16,9 +16,14 @@ object CommonSettings {
     ThisBuild / parallelExecution := false,
     GlobalScope / parallelExecution := false,
     Test / fork := true,
-    libraryDependencies ++= Dependencies.dependencies
+    libraryDependencies ++= Dependencies.dependencies,
+
+    // #TODO: Remove these lines ones Pekko Connectors have 1.0.0
+    resolvers += "Apache Snapshots" at "https://repository.apache.org/content/repositories/snapshots/",
+    libraryDependencySchemes += "org.apache.pekko" %% "pekko-stream" % VersionScheme.Always
   ) ++
     AdditionalSettings.initialCmdsConsole ++
     AdditionalSettings.initialCmdsTestConsole ++
     AdditionalSettings.cmdAliases
 }
+
