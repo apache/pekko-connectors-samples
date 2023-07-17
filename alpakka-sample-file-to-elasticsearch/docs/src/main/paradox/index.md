@@ -18,9 +18,9 @@ Dependencies (sbt notation)
 - Extract the date timestamp from the log line (9)
 - Create a `LogLine` record (10)
 - Create an ES index wrapper message for `LogLine` (11)
-- Use Alpakka Elasticsearch to create a new `LogLine` record. (12)
+- Use Pekko Connectors Elasticsearch to create a new `LogLine` record. (12)
 - Track statistics per log file (13)
-- Use Alpakka Elasticsearch to return all entries from the provided index (14)
+- Use Pekko Connectors Elasticsearch to return all entries from the provided index (14)
 - Compose stream together starting with the `DirectoryChangesSource` (15)
 - Run the graph and capture the materialized values (16)
 - Run a new graph to query all records from Elasticsearch and get the results (17)
@@ -90,9 +90,9 @@ Java
 Scala
 : @@snip [snip](/src/main/scala/samples/scaladsl/Main.scala) { #running-the-app }
 
-## All Alpakka samples
+## All Pekko Connectors samples
 
-Show [Alpakka samples listing](../index.html).
+Show [Pekko Connectors samples listing](../index.html).
 
 @@toc
 

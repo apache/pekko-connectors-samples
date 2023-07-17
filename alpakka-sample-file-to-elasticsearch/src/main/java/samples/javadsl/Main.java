@@ -110,7 +110,7 @@ public class Main {
         return Flow.<LogLine>create()
                 // create an ES index wrapper message for `LogLine` (11)
                 .map(WriteMessage::createIndexMessage)
-                // use Alporg.apache.pekko Elasticsearch to create a new `LogLine` record. (12)
+                // use Pekko Connectors Elasticsearch to create a new `LogLine` record. (12)
                 // takes `ObjectMapper` for `LogLine` for serialization
                 .via(ElasticsearchFlow.create(
                         ElasticsearchParams.V5(indexName, typeName),
@@ -155,7 +155,7 @@ public class Main {
 
     private CompletionStage<List<LogLine>> queryAllRecordsFromElasticsearch(String indexName) {
         CompletionStage<List<LogLine>> reading =
-                // use Alporg.apache.pekko Elasticsearch to return all entries from the provided index (14)
+                // use Pekko Connectors Elasticsearch to return all entries from the provided index (14)
                 ElasticsearchSource
                         .typed(
                                 ElasticsearchParams.V5(indexName, typeName),

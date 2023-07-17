@@ -63,6 +63,15 @@ HttpCsvToKafka / paradoxProperties ++= Map(
   "scaladoc.akka.http.base_url" -> s"https://doc.akka.io/api/akka-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}",
   "javadoc.akka.http.base_url" -> s"https://doc.akka.io/japi/akka-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}",
   "extref.akka-http.base_url" -> s"https://doc.akka.io/docs/akka-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}/%s",
+  // TODO: refactor this file for Pekko
+  // Pekko
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/current/%s",
+  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/current",
+  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/current/",
+  // Pekko Connectors
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/current/%s",
+  "scaladoc.pekko.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/current",
+  "javadoc.pekko.connectors.base_url" -> s"https://pekko.apache.org/japi/pekko-connectors/current/"
 )
 HttpCsvToKafka / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
