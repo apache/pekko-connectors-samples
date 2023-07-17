@@ -1,8 +1,8 @@
 import sbt.Keys._
 
-name := "alpakka-sample-file-to-elasticsearch"
+name := "pekko-connectors-sample-file-to-elasticsearch"
 organization := "samples"
-version := "1.3.0"
+version := "1.0.0"
 scalaVersion := Dependencies.scalaVer
 libraryDependencies ++= Dependencies.dependencies
 
