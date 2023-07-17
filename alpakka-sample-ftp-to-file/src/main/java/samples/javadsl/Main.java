@@ -1,14 +1,14 @@
 package samples.javadsl;
 
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.japi.Pair;
-import akka.stream.IOResult;
+ import org.apache.pekko.actor.typed.ActorSystem;
+ import org.apache.pekko.actor.typed.javadsl.Behaviors;
+ import org.apache.pekko.japi.Pair;
+ import org.apache.pekko.stream.IOResult;
 // #imports
-import akka.stream.alpakka.ftp.FtpSettings;
-import akka.stream.alpakka.ftp.javadsl.Ftp;
-import akka.stream.javadsl.FileIO;
-import akka.stream.javadsl.Sink;
+ import org.apache.pekko.stream.connectors.ftp.FtpSettings;
+ import org.apache.pekko.stream.connectors.ftp.javadsl.Ftp;
+ import org.apache.pekko.stream.javadsl.FileIO;
+ import org.apache.pekko.stream.javadsl.Sink;
 // #imports
 import org.apache.ftpserver.FtpServer;
 import org.apache.mina.util.AvailablePortFinder;

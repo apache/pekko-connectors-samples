@@ -3,13 +3,13 @@ package samples.scaladsl
 import java.net.InetAddress
 import java.nio.file.Paths
 
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
 // #imports
-import akka.stream.alpakka.ftp.FtpSettings
-import akka.stream.alpakka.ftp.scaladsl.Ftp
-import akka.stream.scaladsl.{FileIO, Sink}
-import akka.stream.IOResult
+import org.apache.pekko.stream.connectors.ftp.FtpSettings
+import org.apache.pekko.stream.connectors.ftp.scaladsl.Ftp
+import org.apache.pekko.stream.scaladsl.{FileIO, Sink}
+import org.apache.pekko.stream.IOResult
 // #imports
 import org.apache.mina.util.AvailablePortFinder
 import playground.FtpServerEmbedded
