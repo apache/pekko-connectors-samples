@@ -110,7 +110,7 @@ object Dependencies {
 
   object FileToElasticsearch {
     val versions = {
-      val source = IO.read(file(".") / ".." / "alpakka-sample-file-to-elasticsearch" / "project" / "Dependencies.scala")
+      val source = IO.read(file(".") / ".." / "pekko-connectors-sample-file-to-elasticsearch" / "project" / "Dependencies.scala")
       val tree = source.parse[Source].get
       tree.collect {
         case q"val ${v: Pat.Var} = ${s: Lit.String}" => v.name.value -> s.value
