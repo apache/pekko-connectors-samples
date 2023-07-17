@@ -1,19 +1,19 @@
 package samples.javadsl;
 
-import akka.Done;
-import akka.NotUsed;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.japi.Pair;
-import akka.stream.KillSwitches;
-import akka.stream.UniqueKillSwitch;
-import akka.stream.alpakka.elasticsearch.*;
-import akka.stream.alpakka.elasticsearch.javadsl.ElasticsearchFlow;
-import akka.stream.alpakka.elasticsearch.javadsl.ElasticsearchSource;
-import akka.stream.alpakka.file.DirectoryChange;
-import akka.stream.alpakka.file.javadsl.DirectoryChangesSource;
-import akka.stream.alpakka.file.javadsl.FileTailSource;
-import akka.stream.javadsl.*;
+import org.apache.pekko.Done;
+import org.apache.pekko.NotUsed;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.japi.Pair;
+import org.apache.pekko.stream.KillSwitches;
+import org.apache.pekko.stream.UniqueKillSwitch;
+import org.apache.pekko.stream.connectors.elasticsearch.*;
+import org.apache.pekko.stream.connectors.elasticsearch.javadsl.ElasticsearchFlow;
+import org.apache.pekko.stream.connectors.elasticsearch.javadsl.ElasticsearchSource;
+import org.apache.pekko.stream.connectors.file.DirectoryChange;
+import org.apache.pekko.stream.connectors.file.javadsl.DirectoryChangesSource;
+import org.apache.pekko.stream.connectors.file.javadsl.FileTailSource;
+import org.apache.pekko.stream.javadsl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import samples.common.DateTimeExtractor;
@@ -110,7 +110,7 @@ public class Main {
         return Flow.<LogLine>create()
                 // create an ES index wrapper message for `LogLine` (11)
                 .map(WriteMessage::createIndexMessage)
-                // use Alpakka Elasticsearch to create a new `LogLine` record. (12)
+                // use Alporg.apache.pekko Elasticsearch to create a new `LogLine` record. (12)
                 // takes `ObjectMapper` for `LogLine` for serialization
                 .via(ElasticsearchFlow.create(
                         ElasticsearchParams.V5(indexName, typeName),
@@ -155,7 +155,7 @@ public class Main {
 
     private CompletionStage<List<LogLine>> queryAllRecordsFromElasticsearch(String indexName) {
         CompletionStage<List<LogLine>> reading =
-                // use Alpakka Elasticsearch to return all entries from the provided index (14)
+                // use Alporg.apache.pekko Elasticsearch to return all entries from the provided index (14)
                 ElasticsearchSource
                         .typed(
                                 ElasticsearchParams.V5(indexName, typeName),
