@@ -1,5 +1,5 @@
 organization := "com.lightbend.alpakka.samples"
-name := "alpakka-samples-sqs-java"
+name := "pekko-connectors-samples-sqs-java"
 
 ThisBuild / scalaVersion := "2.13.7"
 

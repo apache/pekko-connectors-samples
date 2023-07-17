@@ -19,7 +19,7 @@ ParadoxPlugin.paradoxSettings(FtpToFile)
 ParadoxSitePlugin.paradoxSettings(FtpToFile)
 AkkaParadoxPlugin.akkaParadoxSettings(FtpToFile)
 FtpToFile / siteSubdirName := FtpToFile.name
-FtpToFile / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${FtpToFile.name}" / "docs" / "src" / "main" / "paradox"
+FtpToFile / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${FtpToFile.name}" / "docs" / "src" / "main" / "paradox"
 FtpToFile / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${FtpToFile.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${FtpToFile.name}",
@@ -41,7 +41,7 @@ ParadoxPlugin.paradoxSettings(HttpCsvToKafka)
 ParadoxSitePlugin.paradoxSettings(HttpCsvToKafka)
 AkkaParadoxPlugin.akkaParadoxSettings(HttpCsvToKafka)
 HttpCsvToKafka / siteSubdirName := HttpCsvToKafka.name
-HttpCsvToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${HttpCsvToKafka.name}" / "docs" / "src" / "main" / "paradox"
+HttpCsvToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${HttpCsvToKafka.name}" / "docs" / "src" / "main" / "paradox"
 HttpCsvToKafka / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${HttpCsvToKafka.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${HttpCsvToKafka.name}",
@@ -71,7 +71,7 @@ ParadoxPlugin.paradoxSettings(JdbcToElasticsearch)
 ParadoxSitePlugin.paradoxSettings(JdbcToElasticsearch)
 AkkaParadoxPlugin.akkaParadoxSettings(JdbcToElasticsearch)
 JdbcToElasticsearch / siteSubdirName := JdbcToElasticsearch.name
-JdbcToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${JdbcToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
+JdbcToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${JdbcToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
 JdbcToElasticsearch / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
@@ -93,7 +93,7 @@ ParadoxPlugin.paradoxSettings(Jms)
 ParadoxSitePlugin.paradoxSettings(Jms)
 AkkaParadoxPlugin.akkaParadoxSettings(Jms)
 Jms / siteSubdirName := Jms.name
-Jms / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${Jms.name}" / "docs" / "src" / "main" / "paradox"
+Jms / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${Jms.name}" / "docs" / "src" / "main" / "paradox"
 Jms / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${Jms.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${Jms.name}",
@@ -120,7 +120,7 @@ ParadoxPlugin.paradoxSettings(KafkaToElasticsearch)
 ParadoxSitePlugin.paradoxSettings(KafkaToElasticsearch)
 AkkaParadoxPlugin.akkaParadoxSettings(KafkaToElasticsearch)
 KafkaToElasticsearch / siteSubdirName := KafkaToElasticsearch.name
-KafkaToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${KafkaToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
+KafkaToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${KafkaToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
 KafkaToElasticsearch / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${KafkaToElasticsearch.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${KafkaToElasticsearch.name}",
@@ -146,7 +146,7 @@ ParadoxPlugin.paradoxSettings(KafkaToWebsocketClients)
 ParadoxSitePlugin.paradoxSettings(KafkaToWebsocketClients)
 AkkaParadoxPlugin.akkaParadoxSettings(KafkaToWebsocketClients)
 KafkaToWebsocketClients / siteSubdirName := KafkaToWebsocketClients.name
-KafkaToWebsocketClients / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${KafkaToWebsocketClients.name}" / "docs" / "src" / "main" / "paradox"
+KafkaToWebsocketClients / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${KafkaToWebsocketClients.name}" / "docs" / "src" / "main" / "paradox"
 KafkaToWebsocketClients / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${KafkaToWebsocketClients.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${KafkaToWebsocketClients.name}",
@@ -176,7 +176,7 @@ ParadoxPlugin.paradoxSettings(MqttToKafka)
 ParadoxSitePlugin.paradoxSettings(MqttToKafka)
 AkkaParadoxPlugin.akkaParadoxSettings(MqttToKafka)
 MqttToKafka / siteSubdirName := MqttToKafka.name
-MqttToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${MqttToKafka.name}" / "docs" / "src" / "main" / "paradox"
+MqttToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${MqttToKafka.name}" / "docs" / "src" / "main" / "paradox"
 MqttToKafka / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${MqttToKafka.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${MqttToKafka.name}",
@@ -203,7 +203,7 @@ ParadoxPlugin.paradoxSettings(FileToElasticsearch)
 ParadoxSitePlugin.paradoxSettings(FileToElasticsearch)
 AkkaParadoxPlugin.akkaParadoxSettings(FileToElasticsearch)
 FileToElasticsearch / siteSubdirName := FileToElasticsearch.name
-FileToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${FileToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
+FileToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${FileToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
 FileToElasticsearch / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${FileToElasticsearch.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${FileToElasticsearch.name}",
@@ -225,7 +225,7 @@ ParadoxPlugin.paradoxSettings(RotateLogsToFtp)
 ParadoxSitePlugin.paradoxSettings(RotateLogsToFtp)
 AkkaParadoxPlugin.akkaParadoxSettings(RotateLogsToFtp)
 RotateLogsToFtp / siteSubdirName := RotateLogsToFtp.name
-RotateLogsToFtp / paradox / sourceDirectory := baseDirectory.value / ".." / s"alpakka-sample-${RotateLogsToFtp.name}" / "docs" / "src" / "main" / "paradox"
+RotateLogsToFtp / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${RotateLogsToFtp.name}" / "docs" / "src" / "main" / "paradox"
 RotateLogsToFtp / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${RotateLogsToFtp.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${RotateLogsToFtp.name}",
