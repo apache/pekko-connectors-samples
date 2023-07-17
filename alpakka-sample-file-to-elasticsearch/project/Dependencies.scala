@@ -16,8 +16,8 @@ object Dependencies {
     // for JSON in Scala
     "io.spray" %% "spray-json" % "1.3.6",
     // for JSON in Java
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.13.4",
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.13.4",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.14.3",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.14.3",
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.2.11",
