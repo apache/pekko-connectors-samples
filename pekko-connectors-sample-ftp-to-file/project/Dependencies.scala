@@ -4,7 +4,7 @@ object Dependencies {
   val scalaVer = "2.13.7"
   // #deps
   val PekkoVersion = "1.0.0"
-  val PekkoConnectorsVersion = "0.0.0+129-1853d802-SNAPSHOT" // #TODO: Change to release version
+  val PekkoConnectorsVersion = "0.0.0+131-79ec6fa6-SNAPSHOT" // #TODO: Change to release version
 
   // #deps
 
