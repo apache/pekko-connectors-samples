@@ -69,4 +69,4 @@ jobs:
       - name: ${{ matrix.directory }}
         env:
           DIRECTORY: ${{ matrix.directory }}
-        run: cd alpakka-sample-${DIRECTORY} && sbt compile
+        run: cd pekko-connectors-sample-${DIRECTORY} && sbt compile
