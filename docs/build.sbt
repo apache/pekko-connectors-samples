@@ -25,14 +25,14 @@ FtpToFile / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${FtpToFile.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${FtpToFile.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  // Alpakka
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.Jms.AlpakkaVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.FtpToFile.AlpakkaVersion}/%s",
-  // Akka
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.FtpToFile.AkkaVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.FtpToFile.AkkaVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.FtpToFile.AkkaVersion}/%s",
+  // Pekko Connectors
+  "scaladoc.pekko.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.FtpToFile.PekkoConnectorsVersion}/org/apache", // TODO: TBC
+  "javadoc.pekko.connectors.base_url" -> s"https://pekko.apache.org/japi/pekko-connectors/${Dependencies.FtpToFile.PekkoConnectorsVersion}/org/apache", // TODO: TBC
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.FtpToFile.PekkoConnectorsVersion}/%s",
+  // Pekko
+  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.FtpToFile.PekkoVersion}/org/apache",
+  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.FtpToFile.PekkoVersion}/org/apache",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.FtpToFile.PekkoVersion}/%s",
 )
 FtpToFile / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
