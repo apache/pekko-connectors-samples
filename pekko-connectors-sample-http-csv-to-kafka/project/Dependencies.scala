@@ -18,10 +18,10 @@ object Dependencies {
     // Used from Scala
     "org.apache.pekko" %% "pekko-http-spray-json" % PekkoHttpVersion,
     // Used from Java
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.11.4",
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.11.4",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.14.3",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.14.3",
 
-    "org.testcontainers" % "kafka" % "1.14.3",
+    "org.testcontainers" % "kafka" % "1.18.3",
     
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.2.3"
