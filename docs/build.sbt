@@ -3,11 +3,11 @@ ThisBuild / scalaVersion := "2.13.2"
 
 enablePlugins(AkkaParadoxPlugin, ParadoxSitePlugin, PublishRsyncPlugin)
 
-name := "Alpakka Samples"
+name := "Pekko Connectors Samples"
 previewFixedPort := Some(8085)
-scmInfo := Some(ScmInfo(url("https://github.com/akka/alpakka-samples"), "git@github.com:akka/alpakka-samples.git"))
+scmInfo := Some(ScmInfo(url("https://github.com/apache/incubator-pekko-connectors-samples"), "git@github.com:apache/incubator-pekko-connectors-samples.git"))
 homepage := Some(url("https://akka.io/alpakka-samples"))
-description := "Example solutions for Enterprise Integrations using Alpakka and Reactive Streams."
+description := "Example solutions for Enterprise Integrations using Pekko Connectors and Reactive Streams."
 version := {
   val time = java.time.LocalDateTime.now().withSecond(0).withNano(0)
   java.time.format.DateTimeFormatter.ISO_DATE.format(time) + " " + java.time.format.DateTimeFormatter.ISO_TIME.format(time)
@@ -23,7 +23,7 @@ FtpToFile / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-co
 FtpToFile / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${FtpToFile.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${FtpToFile.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${FtpToFile.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${FtpToFile.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.Jms.AlpakkaVersion}",
@@ -45,7 +45,7 @@ HttpCsvToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"pek
 HttpCsvToKafka / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${HttpCsvToKafka.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${HttpCsvToKafka.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${HttpCsvToKafka.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${HttpCsvToKafka.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.HttpCsvToKafka.AlpakkaVersion}",
@@ -75,7 +75,7 @@ JdbcToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / 
 JdbcToElasticsearch / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${JdbcToElasticsearch.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${JdbcToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.JdbcToElasticsearch.AlpakkaVersion}",
@@ -97,7 +97,7 @@ Jms / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connecto
 Jms / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${Jms.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${Jms.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${Jms.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${Jms.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.Jms.AlpakkaVersion}",
@@ -124,7 +124,7 @@ KafkaToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." /
 KafkaToElasticsearch / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${KafkaToElasticsearch.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${KafkaToElasticsearch.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${KafkaToElasticsearch.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${KafkaToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.KafkaToElasticsearch.AlpakkaVersion}",
@@ -150,7 +150,7 @@ KafkaToWebsocketClients / paradox / sourceDirectory := baseDirectory.value / "..
 KafkaToWebsocketClients / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${KafkaToWebsocketClients.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${KafkaToWebsocketClients.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${KafkaToWebsocketClients.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${KafkaToWebsocketClients.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
 //  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.KafkaToWebsocketClients.AlpakkaVersion}",
@@ -180,7 +180,7 @@ MqttToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-
 MqttToKafka / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${MqttToKafka.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${MqttToKafka.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${MqttToKafka.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${MqttToKafka.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.MqttToKafka.AlpakkaVersion}",
@@ -207,7 +207,7 @@ FileToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / 
 FileToElasticsearch / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${FileToElasticsearch.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${FileToElasticsearch.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${FileToElasticsearch.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${FileToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.FileToElasticsearch.AlpakkaVersion}",
@@ -229,7 +229,7 @@ RotateLogsToFtp / paradox / sourceDirectory := baseDirectory.value / ".." / s"pe
 RotateLogsToFtp / paradoxProperties ++= Map(
   "project.url" -> s"${homepage.value.get}/${RotateLogsToFtp.name}",
   "canonical.base_url" -> s"${homepage.value.get}/${RotateLogsToFtp.name}",
-  "snip.build.base_dir" -> s"${baseDirectory.value}/../alpakka-sample-${RotateLogsToFtp.name}",
+  "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${RotateLogsToFtp.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
   "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.RotateLogsToFtp.AlpakkaVersion}",
@@ -257,6 +257,8 @@ paradoxProperties ++= Map(
   "extref.mqtt-to-kafka.base_url" -> s"${(MqttToKafka / siteSubdirName).value}/",
   "extref.file-to-elasticsearch.base_url" -> s"${(FileToElasticsearch / siteSubdirName).value}/",
   "extref.rotate-logs-to-ftp.base_url" -> s"${(RotateLogsToFtp / siteSubdirName).value}/",
+  "extref.pekko.base_url" -> "https://pekko.apache.org/docs/pekko/current/",
+  "extref.pekko-connectors.base_url" -> "https://pekko.apache.org/docs/pekko-connectors/current/",
 )
 
 resolvers += Resolver.jcenterRepo
