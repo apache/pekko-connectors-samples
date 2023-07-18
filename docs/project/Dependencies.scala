@@ -28,10 +28,10 @@ object Dependencies {
 
     val ScalaVersion = versions("scalaVer")
     val ScalaTestVersion = versions("ScalaTestVersion")
-    val AkkaVersion = versions("AkkaVersion")
-    val AkkaHttpVersion = versions("AkkaHttpVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
-    val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoHttpVersion = versions("PekkoHttpVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
+    val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
 
   object JdbcToElasticsearch {

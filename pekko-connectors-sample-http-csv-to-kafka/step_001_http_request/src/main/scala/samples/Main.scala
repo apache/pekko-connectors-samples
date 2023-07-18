@@ -18,7 +18,7 @@ import scala.concurrent.Future
 
 object Main extends App {
 
-  implicit val actorSystem = ActorSystem("alpakka-samples")
+  implicit val actorSystem = ActorSystem("pekko-connectors-samples")
 
   import actorSystem.dispatcher
 

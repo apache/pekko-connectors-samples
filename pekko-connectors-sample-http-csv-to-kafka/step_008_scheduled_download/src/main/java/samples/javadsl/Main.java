@@ -100,7 +100,7 @@ public class Main {
         kafkaBroker.start();
         final String bootstrapServers = kafkaBroker.getBootstrapServers();
 
-        ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "alpakka-samples");
+        ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "pekko-connectors-samples");
         Http http = Http.get(toClassic(system));
 
         ProducerSettings<String, String> kafkaProducerSettings =

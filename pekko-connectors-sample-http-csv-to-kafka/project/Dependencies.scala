@@ -6,7 +6,7 @@ object Dependencies {
   val ScalaTestVersion = "3.1.4"
   val PekkoVersion = "1.0.0"
   val PekkoHttpVersion = "0.0.0+4469-fb6a5426-SNAPSHOT" // #TODO: Change to release version
-  val PekkoConnectorsVersion = "0.0.0+129-1853d802-SNAPSHOT" // #TODO: Change to release version
+  val PekkoConnectorsVersion = "0.0.0+131-79ec6fa6-SNAPSHOT" // #TODO: Change to release version
   val PekkoConnectorsKafkaVersion = "0.0.0+1761-2291eac2-SNAPSHOT" // #TODO: Change to release version
 
   val dependencies = List(

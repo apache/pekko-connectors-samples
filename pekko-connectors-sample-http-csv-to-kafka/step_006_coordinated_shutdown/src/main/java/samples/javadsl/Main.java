@@ -80,7 +80,7 @@ public class Main {
     }
 
     private void run() throws Exception {
-        ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "alpakka-samples");
+        ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "pekko-connectors-samples");
         Http http = Http.get(toClassic(system));
 
         CompletionStage<Done> completion =
