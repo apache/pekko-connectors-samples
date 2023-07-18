@@ -218,14 +218,14 @@ FileToElasticsearch / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${FileToElasticsearch.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${FileToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  // Alpakka
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.FileToElasticsearch.AlpakkaVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.FileToElasticsearch.AlpakkaVersion}/%s",
-  // Akka
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.FileToElasticsearch.AkkaVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.FileToElasticsearch.AkkaVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.FileToElasticsearch.AkkaVersion}/%s",
+  // Pekko Connectors
+  "scaladoc.pekko.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.FileToElasticsearch.PekkoConnectorsVersion}/org/apache", // TODO: TBC
+  "javadoc.pekko.connectors.base_url" -> s"https://pekko.apache.org/japi/pekko-connectors/${Dependencies.FileToElasticsearch.PekkoConnectorsVersion}/org/apache", // TODO: TBC
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.FileToElasticsearch.PekkoConnectorsVersion}/%s",
+  // Pekko
+  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.FileToElasticsearch.PekkoVersion}/org/apache",
+  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.FileToElasticsearch.PekkoVersion}/org/apache",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.FileToElasticsearch.PekkoVersion}/%s",
 )
 FileToElasticsearch / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
