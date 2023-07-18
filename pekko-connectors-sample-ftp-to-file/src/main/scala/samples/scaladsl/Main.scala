@@ -2,14 +2,14 @@ package samples.scaladsl
 
 import java.net.InetAddress
 import java.nio.file.Paths
-
-import org.apache.pekko.actor.typed.ActorSystem
-import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko
+import pekko.actor.typed.ActorSystem
+import pekko.actor.typed.scaladsl.Behaviors
 // #imports
-import org.apache.pekko.stream.connectors.ftp.FtpSettings
-import org.apache.pekko.stream.connectors.ftp.scaladsl.Ftp
-import org.apache.pekko.stream.scaladsl.{FileIO, Sink}
-import org.apache.pekko.stream.IOResult
+import pekko.stream.connectors.ftp.FtpSettings
+import pekko.stream.connectors.ftp.scaladsl.Ftp
+import pekko.stream.scaladsl.{FileIO, Sink}
+import pekko.stream.IOResult
 // #imports
 import org.apache.mina.util.AvailablePortFinder
 import playground.FtpServerEmbedded
