@@ -1,3 +1,3 @@
-# Alpakka samples
+# Pekko Connectors samples
 
-[Alpakka documentation](https://docs.akka.io/docs/alpakka/)
+Samples for [Pekko Connectors](https://pekko.apache.org/docs/pekko-connectors/current/).
