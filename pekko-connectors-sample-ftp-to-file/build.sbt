@@ -1,4 +1,4 @@
-organization := "com.lightbend.akka.samples"
+organization := "org.apache.pekko"
 name := "pekko-connectors-sample-ftp-to-file"
 version := "0.0.1"
 scalaVersion := Dependencies.scalaVer

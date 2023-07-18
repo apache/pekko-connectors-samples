@@ -29,9 +29,9 @@ Java
 Scala
 : @@snip [snip](/src/main/scala/samples/scaladsl/Main.scala) { #sample }
 
-### All Alpakka samples
+### All Pekko Connectors samples
 
-Show [Alpakka samples listing](../index.html).
+Show [Pekko Connectors samples listing](../index.html).
 
 @@toc
 
