@@ -97,7 +97,7 @@ object Main extends App {
     Flow[LogLine]
       // create an ES index wrapper message for `LogLine` (11)
       .map(WriteMessage.createIndexMessage[LogLine])
-      // use stream.connectors Elasticsearch to create a new `LogLine` record. (12)
+      // use Pekko Connectors Elasticsearch to create a new `LogLine` record. (12)
       // implicitly takes `JsonFormat` for `LogLine` for serialization
       .via(ElasticsearchFlow.create(ElasticsearchParams.V5(indexName, typeName),
         ElasticsearchWriteSettings.create(connectionSettings).withApiVersion(ApiVersion.V5)))
@@ -131,7 +131,7 @@ object Main extends App {
 
   def queryAllRecordsFromElasticsearch(indexName: String): Future[immutable.Seq[LogLine]] = {
     val reading = ElasticsearchSource
-      // use stream.connectors Elasticsearch to return all entries from the provided index (14)
+      // use Pekko Connectors Elasticsearch to return all entries from the provided index (14)
       .typed[LogLine](ElasticsearchParams.V5(indexName, typeName), """{"match_all": {}}""",
         ElasticsearchSourceSettings.create(connectionSettings).withApiVersion(ApiVersion.V5))
       .map(_.source)
