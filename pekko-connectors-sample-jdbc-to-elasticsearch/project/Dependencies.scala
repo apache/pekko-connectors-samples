@@ -28,7 +28,7 @@ object Dependencies {
     "io.spray" %% "spray-json" % "1.3.6",
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % pekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.4.7",
+    "ch.qos.logback" % "logback-classic" % "1.2.11",
     // #deps
     "com.h2database" % "h2" % "2.1.214",
     "org.testcontainers" % "elasticsearch" % "1.17.6",
