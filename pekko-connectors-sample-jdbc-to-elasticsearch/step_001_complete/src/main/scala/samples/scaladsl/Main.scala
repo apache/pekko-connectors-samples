@@ -5,21 +5,18 @@
 package samples.scaladsl
 
 // #imports
-import akka.Done
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.stream.alpakka.elasticsearch.ElasticsearchConnectionSettings
-import akka.stream.alpakka.elasticsearch.ElasticsearchParams
-import akka.stream.alpakka.elasticsearch.ElasticsearchWriteSettings
-import akka.stream.alpakka.elasticsearch.WriteMessage
-import akka.stream.alpakka.elasticsearch.scaladsl.ElasticsearchSink
-import akka.stream.alpakka.slick.javadsl.SlickSession
-import akka.stream.alpakka.slick.scaladsl.Slick
-import spray.json.DefaultJsonProtocol.{jsonFormat4, _}
+
+import org.apache.pekko.Done
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.stream.connectors.elasticsearch._
+import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.ElasticsearchSink
+import org.apache.pekko.stream.connectors.slick.scaladsl.{ Slick, SlickSession }
+import spray.json.DefaultJsonProtocol.{ jsonFormat4, _ }
 import spray.json.JsonFormat
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{ Await, ExecutionContext, Future }
 
 // #imports
 
@@ -36,11 +33,11 @@ object Main extends App with Helper {
 
   // #slick-setup
 
-  implicit val session = SlickSession.forConfig("slick-h2-mem")                         // (1)
+  implicit val session = SlickSession.forConfig("slick-h2-mem") // (1)
   actorSystem.whenTerminated.map(_ => session.close())
 
   import session.profile.api._
-  class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") {   // (2)
+  class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") { // (2)
     def id = column[Int]("ID")
     def title = column[String]("TITLE")
     def genre = column[String]("GENRE")
@@ -50,7 +47,6 @@ object Main extends App with Helper {
   }
   // #slick-setup
   Await.result(Helper.populateDataForTable(), 2.seconds)
-
 
   // #data-class
   case class Movie(id: Int, title: String, genre: String, gross: Double)

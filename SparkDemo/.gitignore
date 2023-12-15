@@ -1,0 +1,8 @@
+### AL template
+### AL ###
+#Template for AL projects for Dynamics 365 Business Central
+#launch.json folder
+.vscode/
+.bsp/
+.idea/
+target/
