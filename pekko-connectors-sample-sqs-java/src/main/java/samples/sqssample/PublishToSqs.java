@@ -1,20 +1,20 @@
-package alpakka.sample.sqssample;
+package samples.sqssample;
 
-import akka.Done;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.stream.alpakka.sqs.SqsPublishSettings;
-import akka.stream.alpakka.sqs.javadsl.SqsPublishFlow;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import com.github.matsluni.akkahttpspi.AkkaHttpClient;
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.stream.connectors.sqs.SqsPublishSettings;
+import org.apache.pekko.stream.connectors.sqs.javadsl.SqsPublishFlow;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
+import com.github.pjfanning.pekkohttpspi.PekkoHttpClient;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsAsyncClient;
+import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 
 import java.net.URI;
 import java.util.concurrent.CompletionStage;
@@ -44,11 +44,11 @@ public class PublishToSqs {
                                 StaticCredentialsProvider.create(AwsBasicCredentials.create("x", "x")))
                         .endpointOverride(URI.create(sqsEndpoint))
                         .region(Region.EU_CENTRAL_1)
-                        .httpClient(AkkaHttpClient.builder().withActorSystem(system.classicSystem()).build())
+                        .httpClient(PekkoHttpClient.builder().withActorSystem(system.classicSystem()).build())
                         .build();
         system.getWhenTerminated().thenAccept((notUsed) -> sqsClient.close());
 
-        publishMessageToSourceTopic(sqsClient, "{\"id\":423,\"name\":\"Alpakka\"}")
+        publishMessageToSourceTopic(sqsClient, "{\"id\":423,\"name\":\"Pekko-Connectors\"}")
                 .thenAccept(done -> system.terminate());
     }
 

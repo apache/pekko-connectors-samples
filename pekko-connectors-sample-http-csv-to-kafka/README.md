@@ -1,4 +1,4 @@
-# Alpakka sample
+# Apache Pekko Connectors sample
 
 ## Fetch CSV via Akka HTTP and publish the data as JSON to Kafka
 

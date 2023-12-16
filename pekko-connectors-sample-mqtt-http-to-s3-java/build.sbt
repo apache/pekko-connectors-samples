@@ -1,7 +1,7 @@
 organization := "com.lightbend.akka.samples"
 name := "pekko-connectors-samples-mqtt-http-to-s3-java"
 
-ThisBuild / scalaVersion := "2.13.7"
+ThisBuild / scalaVersion := "2.13.12"
 
 val AkkaVersion = "2.6.19"
 val AkkaHttpVersion = "10.1.12"

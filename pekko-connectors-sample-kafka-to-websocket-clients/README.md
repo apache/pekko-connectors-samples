@@ -1,4 +1,4 @@
-# Alpakka sample
+# Apache Pekko Connectors sample
 
 ## Read from a Kafka topic and push the data to connected websocket clients
 

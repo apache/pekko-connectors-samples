@@ -90,9 +90,9 @@ Java
 Scala
 : @@snip [snip](/src/main/scala/samples/scaladsl/Main.scala) { #running-the-app }
 
-## All Alpakka samples
+## All Apache Pekko Connectors samples
 
-Show [Alpakka samples listing](../index.html).
+Show [Apache Pekko Connectors samples listing](../index.html).
 
 @@toc
 

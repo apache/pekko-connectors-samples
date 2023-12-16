@@ -1,4 +1,4 @@
-# Apeche Pekko Connectors sample
+# Apache Pekko Connectors sample
 
 ## Receive JMS messages
 

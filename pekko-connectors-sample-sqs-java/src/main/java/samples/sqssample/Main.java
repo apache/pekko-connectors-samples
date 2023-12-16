@@ -1,21 +1,21 @@
-package alpakka.sample.sqssample;
+package samples.sqssample;
 
-import akka.Done;
-import akka.NotUsed;
-import akka.actor.typed.ActorRef;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.AskPattern;
-import akka.stream.alpakka.sqs.*;
-import akka.stream.alpakka.sqs.javadsl.SqsAckSink;
-import akka.stream.alpakka.sqs.javadsl.SqsPublishFlow;
-import akka.stream.alpakka.sqs.javadsl.SqsSource;
-import akka.stream.javadsl.Flow;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
+import org.apache.pekko.Done;
+import org.apache.pekko.NotUsed;
+import org.apache.pekko.actor.typed.ActorRef;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.AskPattern;
+import org.apache.pekko.stream.connectors.sqs.*;
+import org.apache.pekko.stream.connectors.sqs.javadsl.SqsAckSink;
+import org.apache.pekko.stream.connectors.sqs.javadsl.SqsPublishFlow;
+import org.apache.pekko.stream.connectors.sqs.javadsl.SqsSource;
+import org.apache.pekko.stream.javadsl.Flow;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.github.matsluni.akkahttpspi.AkkaHttpClient;
+import com.github.pjfanning.pekkohttpspi.PekkoHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
@@ -31,7 +31,7 @@ import java.net.URI;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 
-import static akka.pattern.Patterns.ask;
+import static org.apache.pekko.pattern.Patterns.ask;
 
 public class Main {
 
@@ -62,7 +62,7 @@ public class Main {
                                 StaticCredentialsProvider.create(AwsBasicCredentials.create("x", "x")))
                         .endpointOverride(URI.create(sqsEndpoint))
                         .region(Region.EU_CENTRAL_1)
-                        .httpClient(AkkaHttpClient.builder().withActorSystem(system.classicSystem()).build())
+                        .httpClient(PekkoHttpClient.builder().withActorSystem(system.classicSystem()).build())
                         .build();
         system.getWhenTerminated().thenAccept(notUsed -> sqsClient.close());
 
