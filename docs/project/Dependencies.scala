@@ -13,8 +13,8 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
   }
 
   object HttpCsvToKafka {
@@ -28,9 +28,9 @@ object Dependencies {
 
     val ScalaVersion = versions("scalaVer")
     val ScalaTestVersion = versions("ScalaTestVersion")
-    val AkkaVersion = versions("AkkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
     val AkkaHttpVersion = versions("AkkaHttpVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
     val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
   }
 
@@ -73,8 +73,8 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
     val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
   }
   
@@ -88,7 +88,7 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
     val AkkaHttpVersion = versions("AkkaHttpVersion")
     val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
   }
@@ -103,8 +103,8 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
     val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
   }
 
@@ -118,8 +118,8 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
   }
 
   object RotateLogsToFtp {
@@ -132,8 +132,8 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
   }
 
 }

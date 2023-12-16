@@ -5,7 +5,7 @@ import sbtstudent.AdditionalSettings
 object CommonSettings {
   lazy val commonSettings = Seq(
     organization := "com.lightbend.training",
-    version := "1.3.0",
+    version := "1.0.0",
     scalaVersion := Dependencies.scalaVer,
     scalacOptions ++= CompileOptions.compileOptions,
     Compile / unmanagedSourceDirectories := List((Compile / scalaSource).value, (Compile / javaSource).value),
