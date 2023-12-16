@@ -1,5 +1,5 @@
 
-ThisBuild / scalaVersion := "2.13.2"
+ThisBuild / scalaVersion := "2.13.12"
 
 enablePlugins(AkkaParadoxPlugin, ParadoxSitePlugin, PublishRsyncPlugin)
 
@@ -77,14 +77,13 @@ JdbcToElasticsearch / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${JdbcToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  // Alpakka
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.JdbcToElasticsearch.AlpakkaVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.JdbcToElasticsearch.AlpakkaVersion}/%s",
+  "scaladoc.akka.stream.alpakka.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}",
+  "javadoc.pekko.base_url" -> "",
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}/%s",
   // Akka
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.JdbcToElasticsearch.AkkaVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.JdbcToElasticsearch.AkkaVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.JdbcToElasticsearch.AkkaVersion}/%s",
+  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
+  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}/%s",
 )
 JdbcToElasticsearch / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
@@ -260,8 +259,6 @@ paradoxProperties ++= Map(
   "extref.pekko.base_url" -> "https://pekko.apache.org/docs/pekko/current/",
   "extref.pekko-connectors.base_url" -> "https://pekko.apache.org/docs/pekko-connectors/current/",
 )
-
-resolvers += Resolver.jcenterRepo
 
 publishRsyncArtifacts += makeSite.value -> "akka.io/alpakka-samples/"
 publishRsyncHost := "akkarepo@gustav.akka.io"

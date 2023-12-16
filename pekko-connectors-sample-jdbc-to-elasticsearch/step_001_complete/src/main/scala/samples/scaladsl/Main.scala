@@ -5,38 +5,35 @@
 package samples.scaladsl
 
 // #imports
-import akka.Done
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.stream.alpakka.elasticsearch.ElasticsearchConnectionSettings
-import akka.stream.alpakka.elasticsearch.ElasticsearchParams
-import akka.stream.alpakka.elasticsearch.ElasticsearchWriteSettings
-import akka.stream.alpakka.elasticsearch.WriteMessage
-import akka.stream.alpakka.elasticsearch.scaladsl.ElasticsearchSink
-import akka.stream.alpakka.slick.javadsl.SlickSession
-import akka.stream.alpakka.slick.scaladsl.Slick
-import spray.json.DefaultJsonProtocol.{jsonFormat4, _}
+
+import org.apache.pekko.Done
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.stream.connectors.elasticsearch._
+import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.ElasticsearchSink
+import org.apache.pekko.stream.connectors.slick.scaladsl.{ Slick, SlickSession }
+import spray.json.DefaultJsonProtocol.{ jsonFormat4, _ }
 import spray.json.JsonFormat
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{ Await, ExecutionContext, Future }
 
 // #imports
 
 object Main extends App with Helper {
-  implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "alpakka-sample")
+  implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "pekko-es-jdbc-sample")
   implicit val executionContext: ExecutionContext = actorSystem.executionContext
 
-  def wait(duration: FiniteDuration): Unit = Thread.sleep(duration.toMillis)
+  private def wait(duration: FiniteDuration): Unit = Thread.sleep(duration.toMillis)
 
-  def terminateActorSystem(): Unit = {
+  private def terminateActorSystem(): Unit = {
     actorSystem.terminate()
     Await.result(actorSystem.whenTerminated, 1.seconds)
   }
 
   // #slick-setup
 
-  implicit val session = SlickSession.forConfig("slick-h2-mem")                         // (1)
+  implicit val session: SlickSession = SlickSession.forConfig("slick-h2-mem") // (1)
   actorSystem.whenTerminated.map(_ => session.close())
 
   import session.profile.api._

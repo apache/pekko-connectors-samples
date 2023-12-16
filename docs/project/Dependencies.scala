@@ -44,8 +44,8 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
   }
 
   object Jms {

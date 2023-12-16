@@ -3,8 +3,8 @@ import sbt._
 
 object CommonSettings {
   lazy val commonSettings = Seq(
-    organization := "com.lightbend.akka",
-    version := "1.3.0",
+    organization := "org.apache.pekko",
+    version := "1.0.1",
     scalaVersion := Dependencies.scalaVer,
     scalacOptions ++= CompileOptions.compileOptions,
     Compile / unmanagedSourceDirectories := List((Compile / scalaSource).value, (Compile / javaSource).value),
