@@ -18,7 +18,7 @@ import scala.jdk.FutureConverters._
  * To start an ActiveMQ broker be sure to include these dependencies:
  *
  *  "javax.jms" % "jms" % "1.1",
- *  "org.apache.activemq" % "activemq-all" % "5.14.4"
+ *  "org.apache.activemq" % "activemq-all" % "5.16.7"
  */
 class ActiveMqBroker {
 

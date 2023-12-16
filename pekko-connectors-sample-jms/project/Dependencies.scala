@@ -3,26 +3,26 @@ import sbt._
 object Dependencies {
   val scalaVer = "2.13.12"
   // #deps
-  val pekkoVersion = "1.0.1"
-  val pekkoHttpVersion = "1.0.0"
-  val pekkoConnectorVersion = "1.0.1"
+  val PekkoVersion = "1.0.2"
+  val PekkoHttpVersion = "1.0.0"
+  val PekkoConnectorsVersion = "1.0.1"
 
   // #deps
 
   val dependencies = List(
     // #deps
-    "org.apache.pekko" %% "pekko-connectors-jms" % pekkoConnectorVersion,
-    "org.apache.pekko" %% "pekko-http" % pekkoHttpVersion,
-    "org.apache.pekko" %% "pekko-stream" % pekkoVersion,
-    "org.apache.pekko" %% "pekko-actor-typed" % pekkoVersion,
-    "org.apache.pekko" %% "pekko-actor" % pekkoVersion,
+    "org.apache.pekko" %% "pekko-connectors-jms" % PekkoConnectorsVersion,
+    "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
+    "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
     // https://github.com/javaee/javax.jms
     "javax.jms" % "jms" % "1.1", // CDDL Version 1.1
     // Logging
-    "org.apache.pekko" %% "pekko-slf4j" % pekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.3",
+    "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
+    "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
     // http://activemq.apache.org/download.html
-    "org.apache.activemq" % "activemq-all" % "5.16.0" exclude("log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") // ApacheV2
+    "org.apache.activemq" % "activemq-all" % "5.16.7" exclude("log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") // ApacheV2
   )
 }

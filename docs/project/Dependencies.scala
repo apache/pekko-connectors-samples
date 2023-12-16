@@ -58,9 +58,9 @@ object Dependencies {
     }
 
     val ScalaVersion = versions("scalaVer")
-    val AkkaVersion = versions("AkkaVersion")
-    val AkkaHttpVersion = versions("AkkaHttpVersion")
-    val AlpakkaVersion = versions("AlpakkaVersion")
+    val PekkoVersion = versions("PekkoVersion")
+    val PekkoHttpVersion = versions("PekkoHttpVersion")
+    val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
   }
 
   object KafkaToElasticsearch {

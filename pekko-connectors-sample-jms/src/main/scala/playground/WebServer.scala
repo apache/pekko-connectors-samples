@@ -19,14 +19,14 @@ import scala.concurrent.{ ExecutionContext, Future, Promise }
 import scala.util.Success
 
 class WebServer extends HttpApp {
-  implicit val theSystem = ActorSystem(Logging.simpleName(this).replaceAll("\\$", ""))
-  implicit val executionContext = theSystem.dispatcher
+  implicit val theSystem: ActorSystem = ActorSystem(Logging.simpleName(this).replaceAll("\\$", ""))
+  implicit val executionContext: ExecutionContext = theSystem.dispatcher
 
   private val shutdownPromise = Promise[Done]
 
   /**
    * Override to do something more interesting on Web socket messages
-   * http://doc.akka.io/docs/akka-http/current/scala/http/websocket-support.html#routing-support
+   * https://pekko.apache.org/docs/pekko-http/current/scala/http/websocket-support.html#routing-support
    */
   def websocket: Flow[Message, Message, Any] =
     Flow[Message].mapConcat {
@@ -56,8 +56,8 @@ class WebServer extends HttpApp {
   }
 
   /**
-   * @see http://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/overview.html
-   *      http://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html
+   * @see https://pekko.apache.org/docs/pekko-http/current/scala/http/routing-dsl/overview.html
+   *      https://pekko.apache.org/docs/pekko-http/current/scala/http/routing-dsl/directives/alphabetically.html
    */
   override def routes: Route =
     pathSingleSlash {
