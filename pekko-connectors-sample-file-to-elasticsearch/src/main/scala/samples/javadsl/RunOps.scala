@@ -1,9 +1,10 @@
 package samples.javadsl
+
 import java.nio.file.Path
 import java.util.concurrent.CompletionStage
 
-import akka.Done
-import akka.actor.typed.ActorSystem
+import org.apache.pekko.Done
+import org.apache.pekko.actor.typed.ActorSystem
 import samples.scaladsl
 
 import scala.compat.java8.FutureConverters._

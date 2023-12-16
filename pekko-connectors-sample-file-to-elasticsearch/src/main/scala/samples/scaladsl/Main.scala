@@ -5,15 +5,15 @@
 package samples.scaladsl
 
 import java.nio.file._
-import akka.NotUsed
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.stream.alpakka.elasticsearch._
-import akka.stream.alpakka.elasticsearch.scaladsl.{ElasticsearchFlow, ElasticsearchSource}
-import akka.stream.alpakka.file.DirectoryChange
-import akka.stream.alpakka.file.scaladsl.{DirectoryChangesSource, FileTailSource}
-import akka.stream.scaladsl.{Flow, Keep, RunnableGraph, Sink, Source}
-import akka.stream.{KillSwitches, Materializer, UniqueKillSwitch}
+import org.apache.pekko.NotUsed
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.stream.connectors.elasticsearch._
+import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.{ElasticsearchFlow, ElasticsearchSource}
+import org.apache.pekko.stream.connectors.file.DirectoryChange
+import org.apache.pekko.stream.connectors.file.scaladsl.{DirectoryChangesSource, FileTailSource}
+import org.apache.pekko.stream.scaladsl.{Flow, Keep, RunnableGraph, Sink, Source}
+import org.apache.pekko.stream.{KillSwitches, Materializer, UniqueKillSwitch}
 import samples.common.DateTimeExtractor
 import samples.scaladsl.LogFileSummary.LogFileSummaries
 
@@ -96,7 +96,7 @@ object Main extends App {
     Flow[LogLine]
       // create an ES index wrapper message for `LogLine` (11)
       .map(WriteMessage.createIndexMessage[LogLine])
-      // use Alpakka Elasticsearch to create a new `LogLine` record. (12)
+      // use Pekko Connectors Elasticsearch to create a new `LogLine` record. (12)
       // implicitly takes `JsonFormat` for `LogLine` for serialization
       .via(ElasticsearchFlow.create(ElasticsearchParams.V5(indexName, typeName),
         ElasticsearchWriteSettings.create(connectionSettings).withApiVersion(ApiVersion.V5)))
@@ -130,7 +130,7 @@ object Main extends App {
 
   def queryAllRecordsFromElasticsearch(indexName: String): Future[immutable.Seq[LogLine]] = {
     val reading = ElasticsearchSource
-      // use Alpakka Elasticsearch to return all entries from the provided index (14)
+      // use Pekko Connectors Elasticsearch to return all entries from the provided index (14)
       .typed[LogLine](ElasticsearchParams.V5(indexName, typeName), """{"match_all": {}}""",
         ElasticsearchSourceSettings.create(connectionSettings).withApiVersion(ApiVersion.V5))
       .map(_.source)

@@ -4,7 +4,7 @@ import sbt._
 object CommonSettings {
   lazy val commonSettings = Seq(
     organization := "org.apache.pekko",
-    version := "1.0.1",
+    version := "1.0.0",
     scalaVersion := Dependencies.scalaVer,
     scalacOptions ++= CompileOptions.compileOptions,
     Compile / unmanagedSourceDirectories := List((Compile / scalaSource).value, (Compile / javaSource).value),

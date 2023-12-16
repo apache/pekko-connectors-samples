@@ -2,10 +2,10 @@ package samples.scaladsl
 
 import java.nio.file.{Files, Path, Paths, StandardCopyOption}
 import java.time.ZonedDateTime
-import akka.Done
-import akka.actor.typed.ActorSystem
-import akka.stream.alpakka.file.scaladsl.Directory
-import akka.stream.scaladsl.{Keep, Sink}
+import org.apache.pekko.Done
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.stream.connectors.file.scaladsl.Directory
+import org.apache.pekko.stream.scaladsl.{Keep, Sink}
 import org.slf4j.LoggerFactory
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 

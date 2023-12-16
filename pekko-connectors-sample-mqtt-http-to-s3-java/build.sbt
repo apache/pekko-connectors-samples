@@ -3,14 +3,14 @@ name := "pekko-connectors-samples-mqtt-http-to-s3-java"
 
 ThisBuild / scalaVersion := "2.13.12"
 
-val AkkaVersion = "2.6.19"
+val PekkoVersion = "2.6.19"
 val AkkaHttpVersion = "10.1.12"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-slf4j" % AkkaVersion,
-  "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
-  "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
-  "com.typesafe.akka" %% "akka-actor" % AkkaVersion,
+  "com.typesafe.akka" %% "akka-slf4j" % PekkoVersion,
+  "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
+  "com.typesafe.akka" %% "akka-actor-typed" % PekkoVersion,
+  "com.typesafe.akka" %% "akka-actor" % PekkoVersion,
   "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
   "com.lightbend.akka" %% "akka-stream-alpakka-mqtt" % "3.0.4",
   "com.lightbend.akka" %% "akka-stream-alpakka-s3" % "3.0.4",
