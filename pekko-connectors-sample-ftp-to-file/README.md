@@ -1,4 +1,4 @@
-# Alpakka sample
+# Apache Pekko Connectors sample
 
 ## Download all files an FTP server to local files
 

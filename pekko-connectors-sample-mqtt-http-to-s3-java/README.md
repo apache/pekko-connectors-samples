@@ -1,4 +1,4 @@
-# Alpakka sample
+# Apache Pekko Connectors sample
 
 ### Listen to a MQTT topic, download from URL passed in received message, and upload data from that address to AWS S3
 

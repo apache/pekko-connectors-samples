@@ -1,4 +1,4 @@
-# Alpakka sample
+# Apache Pekko Connectors sample
 
 ## Read from an MQTT topic, group messages and publish to Kafka
 

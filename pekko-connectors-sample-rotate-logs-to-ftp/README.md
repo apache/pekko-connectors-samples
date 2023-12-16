@@ -1,4 +1,4 @@
-# Alpakka sample
+# Apache Pekko Connectors sample
 
 ## Rotate data stream over to multiple compressed files on SFTP server
 

@@ -5,9 +5,9 @@
 Dependencies
 : @@snip [snip](/project/Dependencies.scala) { #dependencies }
 
-### All Alpakka samples
+### All Apache Pekko Connectors samples
 
-Show [Alpakka samples listing](../index.html).
+Show [Apache Pekko Connectors samples listing](../index.html).
 
 @@toc
 

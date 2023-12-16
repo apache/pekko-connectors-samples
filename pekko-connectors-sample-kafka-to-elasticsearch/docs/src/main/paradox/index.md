@@ -5,9 +5,9 @@
 Dependencies (sbt notation)
 : @@snip [snip](/project/Dependencies.scala) { #deps }
 
-### All Alpakka samples
+### All Apache Pekko Connectors samples
 
-Show [Alpakka samples listing](../index.html).
+Show [Apache Pekko Connectors samples listing](../index.html).
 
 
 @@toc

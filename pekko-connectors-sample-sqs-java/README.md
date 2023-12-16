@@ -1,4 +1,4 @@
-# Alpakka sample
+# Pekko Connectors sample
 
 ### Listen to an Amazon SQS topic, enrich the message via calling an actor, publish a new message to SQS and acknowledge/delete the original message
 
