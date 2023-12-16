@@ -3,18 +3,18 @@ import sbt._
 object Dependencies {
   val scalaVer = "2.13.12"
   // #deps
-  val pekkoVersion = "1.0.2"
+  val PekkoVersion = "1.0.2"
 
-  val pekkoConnectorVersion = "1.0.1"
+  val PekkoConnectorsVersion = "1.0.1"
 
   // #deps
 
   val dependencies = List(
     // #deps
-    "org.apache.pekko" %% "pekko-stream" % pekkoVersion,
-    "org.apache.pekko" %% "pekko-actor-typed" % pekkoVersion,
-    "org.apache.pekko" %% "pekko-connectors-elasticsearch" % pekkoConnectorVersion,
-    "org.apache.pekko" %% "pekko-connectors-slick" % pekkoConnectorVersion,
+    "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-connectors-elasticsearch" % PekkoConnectorsVersion,
+    "org.apache.pekko" %% "pekko-connectors-slick" % PekkoConnectorsVersion,
     // for JSON in Scala
     "io.spray" %% "spray-json" % "1.3.6",
     // Logging
