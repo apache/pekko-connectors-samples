@@ -1,13 +1,4 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * license agreements; and to You under the Apache License, version 2.0:
- *
- *   https://www.apache.org/licenses/LICENSE-2.0
- *
- * This file is part of the Apache Pekko project, which was derived from Akka.
- */
-
-/*
  * Copyright (C) 2016-2019 Lightbend Inc. <http://www.lightbend.com>
  */
 
@@ -26,6 +17,8 @@ import spray.json.JsonFormat
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, ExecutionContext, Future }
+
+// #imports
 
 object Main extends App with Helper {
   implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "pekko-es-jdbc-sample")
@@ -54,6 +47,7 @@ object Main extends App with Helper {
   }
   // #slick-setup
   Await.result(Helper.populateDataForTable(), 2.seconds)
+
 
   // #data-class
   case class Movie(id: Int, title: String, genre: String, gross: Double)

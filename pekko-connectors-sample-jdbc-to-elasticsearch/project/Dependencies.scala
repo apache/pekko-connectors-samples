@@ -1,17 +1,8 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * license agreements; and to You under the Apache License, version 2.0:
- *
- *   https://www.apache.org/licenses/LICENSE-2.0
- *
- * This file is part of the Apache Pekko project, which was derived from Akka.
- */
-
 import sbt._
 
 object Dependencies {
   val scalaVer = "2.13.8"
-
+  // #deps
   val pekkoVersion = "1.0.1"
 
   val pekkoConnectorVersion = "1.0.1-RC1+6-dcc040bb-SNAPSHOT"
@@ -19,7 +10,7 @@ object Dependencies {
   // #deps
 
   val dependencies = List(
-  // #deps
+    // #deps
     "org.apache.pekko" %% "pekko-stream" % pekkoVersion,
     "org.apache.pekko" %% "pekko-actor-typed" % pekkoVersion,
     "org.apache.pekko" %% "pekko-connectors-elasticsearch" % pekkoConnectorVersion,
