@@ -1,7 +1,7 @@
 ### Read text messages from JMS queue and append to file
 
 - listens to the JMS queue "test" receiving `String`s (1),
-- converts incoming data to `akka.util.ByteString` (3),
+- converts incoming data to `org.apache.pekko.util.ByteString` (3),
 - and appends the data to the file `target/out` (2).
 
 Scala

@@ -1,5 +1,5 @@
-organization := "com.lightbend.akka.samples"
-version := "1.3.0"
+organization := "org.apache.pekko"
+version := "1.0.1"
 scalaVersion := Dependencies.scalaVer
 libraryDependencies ++= Dependencies.dependencies
 // Having JBoss as a first resolver is a workaround for https://github.com/coursier/coursier/issues/200

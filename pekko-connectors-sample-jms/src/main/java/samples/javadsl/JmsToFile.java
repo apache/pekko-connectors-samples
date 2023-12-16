@@ -6,31 +6,32 @@ package samples.javadsl;
 
 // #sample
 
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.japi.Pair;
-import akka.stream.IOResult;
-import akka.stream.alpakka.jms.JmsConsumerSettings;
-import akka.stream.alpakka.jms.JmsProducerSettings;
-import akka.stream.alpakka.jms.javadsl.JmsConsumer;
-import akka.stream.alpakka.jms.javadsl.JmsConsumerControl;
-import akka.stream.alpakka.jms.javadsl.JmsProducer;
-import akka.stream.javadsl.FileIO;
-import akka.stream.javadsl.Keep;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import akka.util.ByteString;
-import scala.concurrent.ExecutionContext;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.japi.Pair;
+import org.apache.pekko.stream.IOResult;
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings;
+import org.apache.pekko.stream.connectors.jms.JmsProducerSettings;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumer;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumerControl;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsProducer;
+import org.apache.pekko.stream.javadsl.FileIO;
+import org.apache.pekko.stream.javadsl.Keep;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
+import org.apache.pekko.util.ByteString;
+import playground.ActiveMqBroker;
 
-import javax.jms.ConnectionFactory;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 
-// #sample
+import javax.jms.ConnectionFactory;
 
-import playground.ActiveMqBroker;
+import scala.concurrent.ExecutionContext;
+
+// #sample
 
 public class JmsToFile {
 
@@ -39,7 +40,7 @@ public class JmsToFile {
     me.run();
   }
 
-  private final ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "JmsToFile");
+  private final ActorSystem<Object> system = ActorSystem.create(Behaviors.empty(), "JmsToFile");
   private final ExecutionContext ec = system.executionContext();
 
   private void enqueue(ConnectionFactory connectionFactory, String... msgs) {

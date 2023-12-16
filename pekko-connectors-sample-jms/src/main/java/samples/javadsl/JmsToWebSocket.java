@@ -6,36 +6,39 @@ package samples.javadsl;
 
 // #sample
 
-import akka.Done;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import static akka.actor.typed.javadsl.Adapter.*;
-import akka.http.javadsl.Http;
-import akka.http.javadsl.model.StatusCodes;
-import akka.http.javadsl.model.ws.Message;
-import akka.http.javadsl.model.ws.TextMessage;
-import akka.http.javadsl.model.ws.WebSocketRequest;
-import akka.http.javadsl.model.ws.WebSocketUpgradeResponse;
-import akka.japi.Pair;
-import akka.stream.alpakka.jms.JmsConsumerSettings;
-import akka.stream.alpakka.jms.JmsProducerSettings;
-import akka.stream.alpakka.jms.javadsl.JmsConsumer;
-import akka.stream.alpakka.jms.javadsl.JmsConsumerControl;
-import akka.stream.alpakka.jms.javadsl.JmsProducer;
-import akka.stream.javadsl.Flow;
-import akka.stream.javadsl.Keep;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
+import static org.apache.pekko.actor.typed.javadsl.Adapter.toClassic;
+
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.http.javadsl.Http;
+import org.apache.pekko.http.javadsl.model.StatusCodes;
+import org.apache.pekko.http.javadsl.model.ws.Message;
+import org.apache.pekko.http.javadsl.model.ws.TextMessage;
+import org.apache.pekko.http.javadsl.model.ws.WebSocketRequest;
+import org.apache.pekko.http.javadsl.model.ws.WebSocketUpgradeResponse;
+import org.apache.pekko.japi.Pair;
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings;
+import org.apache.pekko.stream.connectors.jms.JmsProducerSettings;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumer;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumerControl;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsProducer;
+import org.apache.pekko.stream.javadsl.Flow;
+import org.apache.pekko.stream.javadsl.Keep;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
 import playground.ActiveMqBroker;
 import playground.WebServer;
-import scala.concurrent.ExecutionContext;
 
 import javax.jms.ConnectionFactory;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
+
+import scala.concurrent.ExecutionContext;
 
 // #sample
 
@@ -81,17 +84,17 @@ public class JmsToWebSocket {
     int parallelism = 4;
     Pair<Pair<JmsConsumerControl, CompletionStage<WebSocketUpgradeResponse>>, CompletionStage<Done>>
         pair =
-            jmsSource // : String
-                .map(
-                    s -> {
-                      Message msg = TextMessage.create(s);
-                      return msg;
-                    }) // : Message           (3)
-                .viaMat(webSocketFlow, Keep.both()) // : Message           (4)
-                .mapAsync(parallelism, this::wsMessageToString) // : String            (5)
-                .map(s -> "client received: " + s) // : String            (6)
-                .toMat(Sink.foreach(System.out::println), Keep.both()) //                    (7)
-                .run(system);
+        jmsSource // : String
+            .map(
+                s -> {
+                  Message msg = TextMessage.create(s);
+                  return msg;
+                }) // : Message           (3)
+            .viaMat(webSocketFlow, Keep.both()) // : Message           (4)
+            .mapAsync(parallelism, this::wsMessageToString) // : String            (5)
+            .map(s -> "client received: " + s) // : String            (6)
+            .toMat(Sink.foreach(System.out::println), Keep.both()) //                    (7)
+            .run(system);
     // #sample
     JmsConsumerControl runningSource = pair.first().first();
     CompletionStage<WebSocketUpgradeResponse> wsUpgradeResponse = pair.first().second();
@@ -122,7 +125,9 @@ public class JmsToWebSocket {
 
   // #sample
 
-  /** Convert potentially chunked WebSocket Message to a string. */
+  /**
+   * Convert potentially chunked WebSocket Message to a string.
+   */
   private CompletionStage<String> wsMessageToString(Message msg) {
     if (msg.isText()) {
       TextMessage tMsg = msg.asTextMessage();

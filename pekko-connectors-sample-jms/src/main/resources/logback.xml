@@ -8,7 +8,7 @@
     </appender>
 
     <logger name="org.apache" level="WARN"/>
-    <logger name="akka" level="WARN"/>
+    <logger name="pekko" level="WARN"/>
 
     <root level="debug">
         <appender-ref ref="console"/>

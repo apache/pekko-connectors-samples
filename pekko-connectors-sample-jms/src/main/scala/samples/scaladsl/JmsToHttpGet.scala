@@ -5,20 +5,19 @@
 package samples.scaladsl
 
 // #sample
-import akka.Done
-import akka.actor.typed.scaladsl.adapter._
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.model._
-import akka.stream.alpakka.jms.JmsConsumerSettings
-import akka.stream.alpakka.jms.scaladsl.{JmsConsumer, JmsConsumerControl}
-import akka.stream.scaladsl.{Keep, Sink, Source}
-import akka.util.ByteString
+import org.apache.pekko.Done
+import org.apache.pekko.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.model._
+import org.apache.pekko.stream.connectors.jms.scaladsl.{ JmsConsumer, JmsConsumerControl }
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings
+import org.apache.pekko.stream.scaladsl.{ Keep, Sink, Source }
+import org.apache.pekko.util.ByteString
 
 import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
 
 // #sample
-import playground.{ActiveMqBroker, WebServer}
+import playground.{ ActiveMqBroker, WebServer }
 
 object JmsToHttpGet extends JmsSampleBase with App {
 
