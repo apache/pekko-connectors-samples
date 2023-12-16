@@ -28,27 +28,27 @@ import scala.concurrent.duration._
 import scala.concurrent.{ Await, ExecutionContext, Future }
 
 object Main extends App with Helper {
-  implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "alpakka-sample")
+  implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "pekko-es-jdbc-sample")
   implicit val executionContext: ExecutionContext = actorSystem.executionContext
 
-  def wait(duration: FiniteDuration): Unit = Thread.sleep(duration.toMillis)
+  private def wait(duration: FiniteDuration): Unit = Thread.sleep(duration.toMillis)
 
-  def terminateActorSystem(): Unit = {
+  private def terminateActorSystem(): Unit = {
     actorSystem.terminate()
     Await.result(actorSystem.whenTerminated, 1.seconds)
   }
 
   // #slick-setup
 
-  implicit val session = SlickSession.forConfig("slick-h2-mem") // (1)
+  implicit val session: SlickSession = SlickSession.forConfig("slick-h2-mem") // (1)
   actorSystem.whenTerminated.map(_ => session.close())
 
   import session.profile.api._
-  class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") { // (2)
-    def id = column[Int]("ID")
-    def title = column[String]("TITLE")
-    def genre = column[String]("GENRE")
-    def gross = column[Double]("GROSS")
+  private class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") { // (2)
+    private def id = column[Int]("ID")
+    private def title = column[String]("TITLE")
+    private def genre = column[String]("GENRE")
+    private def gross = column[Double]("GROSS")
 
     override def * = (id, title, genre, gross)
   }
@@ -62,7 +62,7 @@ object Main extends App with Helper {
   // #data-class
 
   // #es-setup
-  val connection = ElasticsearchConnectionSettings(elasticsearchAddress)
+  private val connection = ElasticsearchConnectionSettings(elasticsearchAddress)
   // #es-setup
 
   // #sample
