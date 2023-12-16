@@ -4,29 +4,30 @@
 
 package playground
 
-import akka.actor.{ActorSystem, Terminated}
-import akka.event.Logging
-import akka.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage}
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
-import akka.http.scaladsl.server.{HttpApp, Route}
-import akka.http.scaladsl.settings.ServerSettings
-import akka.stream.scaladsl.{Flow, GraphDSL, Sink, Source}
-import akka.stream.FlowShape
-import akka.{Done, NotUsed}
+import org.apache.pekko.actor.{ ActorSystem, Terminated }
+import org.apache.pekko.event.Logging
+import org.apache.pekko.http.scaladsl.model.ws.{ BinaryMessage, Message, TextMessage }
+import org.apache.pekko.http.scaladsl.model.{ ContentTypes, HttpEntity }
+import org.apache.pekko.http.scaladsl.server.{ HttpApp, Route }
+import org.apache.pekko.http.scaladsl.settings.ServerSettings
+import org.apache.pekko.stream.scaladsl.{ Flow, GraphDSL, Sink, Source }
+import org.apache.pekko.stream.FlowShape
+import org.apache.pekko.{ Done, NotUsed }
 
 import scala.concurrent.duration.DurationInt
-import scala.concurrent.{ExecutionContext, Future, Promise}
+import scala.concurrent.{ ExecutionContext, Future, Promise }
 import scala.util.Success
 
 class WebServer extends HttpApp {
-  implicit val theSystem = ActorSystem(Logging.simpleName(this).replaceAll("\\$", ""))
-  implicit val executionContext = theSystem.dispatcher
+  implicit val theSystem: ActorSystem = ActorSystem(Logging.simpleName(this).replaceAll("\\$", ""))
+  implicit val executionContext: ExecutionContext = theSystem.dispatcher
 
   private val shutdownPromise = Promise[Done]
 
-  /** Override to do something more interesting on Web socket messages
-    * http://doc.akka.io/docs/akka-http/current/scala/http/websocket-support.html#routing-support
-    */
+  /**
+   * Override to do something more interesting on Web socket messages
+   * https://pekko.apache.org/docs/pekko-http/current/scala/http/websocket-support.html#routing-support
+   */
   def websocket: Flow[Message, Message, Any] =
     Flow[Message].mapConcat {
       case tm: TextMessage =>
@@ -35,8 +36,7 @@ class WebServer extends HttpApp {
           Source
             .single("Hello ")
             .concat(tm.textStream)
-            .concat(Source.single("!"))
-        ) :: Nil
+            .concat(Source.single("!"))) :: Nil
       case bm: BinaryMessage =>
         // ignore binary messages but drain content to avoid the stream being clogged
         bm.dataStream.runWith(Sink.ignore)
@@ -44,8 +44,8 @@ class WebServer extends HttpApp {
     }
 
   /**
-    * Sends out messages on the websocket.
-    */
+   * Sends out messages on the websocket.
+   */
   def outgoing: Flow[Message, Message, NotUsed] = {
     val routingGraph: Flow[Message, Message, NotUsed] = Flow.fromGraph(GraphDSL.create() { implicit b =>
       val in = b.add(Sink.ignore)
@@ -56,9 +56,9 @@ class WebServer extends HttpApp {
   }
 
   /**
-    * @see http://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/overview.html
-    *      http://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html
-    */
+   * @see https://pekko.apache.org/docs/pekko-http/current/scala/http/routing-dsl/overview.html
+   *      https://pekko.apache.org/docs/pekko-http/current/scala/http/routing-dsl/directives/alphabetically.html
+   */
   override def routes: Route =
     pathSingleSlash {
       complete {
@@ -66,24 +66,24 @@ class WebServer extends HttpApp {
         HttpEntity(ContentTypes.`text/html(UTF-8)`, "<html><body>Welcome to the playground!</body></html>")
       }
     } ~
-      path("hello") {
-        get { ctx =>
-          ctx.complete {
-            println(s"Web server received ${ctx.request}")
-            HttpEntity(ContentTypes.`application/json`, """{ msg: "Hi!" }""")
-          }
+    path("hello") {
+      get { ctx =>
+        ctx.complete {
+          println(s"Web server received ${ctx.request}")
+          HttpEntity(ContentTypes.`application/json`, """{ msg: "Hi!" }""")
         }
-      } ~
-      pathPrefix("webSocket") {
-        path("ping") {
-          // connect e.g. with Http().webSocketClientFlow(WebSocketRequest("ws://localhost:8080/webSocket/ping"))
-          println("Web server received webSocket/ping connect")
-          handleWebSocketMessages(websocket)
-        } // ~
-        //        path("outgoing") {
-        //          handleWebSocketMessages(outgoing)
-        //        }
       }
+    } ~
+    pathPrefix("webSocket") {
+      path("ping") {
+        // connect e.g. with Http().webSocketClientFlow(WebSocketRequest("ws://localhost:8080/webSocket/ping"))
+        println("Web server received webSocket/ping connect")
+        handleWebSocketMessages(websocket)
+      } // ~
+      //        path("outgoing") {
+      //          handleWebSocketMessages(outgoing)
+      //        }
+    }
 
   override protected def postHttpBindingFailure(cause: Throwable): Unit =
     println(s"The server could not be started due to $cause")

@@ -1,7 +1,7 @@
 ### Read text messages from JMS queue and create one file per message
 
 - listens to the JMS queue "test" receiving `String`s (1),
-- converts incoming data to `akka.util.ByteString` (2),
+- converts incoming data to `org.apache.pekko.util.ByteString` (2),
 - combines the incoming data with a counter (3),
 - creates an intermediary stream writing the incoming data to a file using the counter 
 value to create unique file names (4). 

@@ -6,12 +6,11 @@ package samples.scaladsl
 
 // #sample
 import java.nio.file.Paths
-
-import akka.stream.IOResult
-import akka.stream.alpakka.jms.JmsConsumerSettings
-import akka.stream.alpakka.jms.scaladsl.{JmsConsumer, JmsConsumerControl}
-import akka.stream.scaladsl.{FileIO, Keep, Sink, Source}
-import akka.util.ByteString
+import org.apache.pekko.stream.IOResult
+import org.apache.pekko.stream.connectors.jms.scaladsl.{ JmsConsumer, JmsConsumerControl }
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings
+import org.apache.pekko.stream.scaladsl.{ FileIO, Keep, Sink, Source }
+import org.apache.pekko.util.ByteString
 
 import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt

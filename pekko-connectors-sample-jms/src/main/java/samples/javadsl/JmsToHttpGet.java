@@ -6,27 +6,30 @@ package samples.javadsl;
 
 // #sample
 
-import akka.Done;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import static akka.actor.typed.javadsl.Adapter.*;
-import akka.http.javadsl.Http;
-import akka.http.javadsl.model.HttpRequest;
-import akka.japi.Pair;
-import akka.stream.alpakka.jms.JmsConsumerSettings;
-import akka.stream.alpakka.jms.JmsProducerSettings;
-import akka.stream.alpakka.jms.javadsl.JmsConsumer;
-import akka.stream.alpakka.jms.javadsl.JmsConsumerControl;
-import akka.stream.alpakka.jms.javadsl.JmsProducer;
-import akka.stream.javadsl.Keep;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import akka.util.ByteString;
+import static org.apache.pekko.actor.typed.javadsl.Adapter.*;
+
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.http.javadsl.Http;
+import org.apache.pekko.http.javadsl.model.HttpRequest;
+import org.apache.pekko.japi.Pair;
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings;
+import org.apache.pekko.stream.connectors.jms.JmsProducerSettings;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumer;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumerControl;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsProducer;
+import org.apache.pekko.stream.javadsl.Keep;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
+import org.apache.pekko.util.ByteString;
 import playground.ActiveMqBroker;
 import playground.WebServer;
+
 import scala.concurrent.ExecutionContext;
 
 import javax.jms.ConnectionFactory;
+
 import java.util.Arrays;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;

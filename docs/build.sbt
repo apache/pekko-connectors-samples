@@ -6,7 +6,7 @@ enablePlugins(AkkaParadoxPlugin, ParadoxSitePlugin, PublishRsyncPlugin)
 name := "Pekko Connectors Samples"
 previewFixedPort := Some(8085)
 scmInfo := Some(ScmInfo(url("https://github.com/apache/incubator-pekko-connectors-samples"), "git@github.com:apache/incubator-pekko-connectors-samples.git"))
-homepage := Some(url("https://akka.io/alpakka-samples"))
+homepage := Some(url("https://github.com/apache/incubator-pekko-connectors-samples"))
 description := "Example solutions for Enterprise Integrations using Pekko Connectors and Reactive Streams."
 version := {
   val time = java.time.LocalDateTime.now().withSecond(0).withNano(0)
@@ -26,7 +26,7 @@ FtpToFile / paradoxProperties ++= Map(
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${FtpToFile.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Alpakka
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.Jms.AlpakkaVersion}",
+  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.FtpToFile.AlpakkaVersion}",
   "javadoc.akka.base_url" -> "",
   "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.FtpToFile.AlpakkaVersion}/%s",
   // Akka
@@ -77,10 +77,10 @@ JdbcToElasticsearch / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${JdbcToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}",
+  "scaladoc.pekko.stream.pekko-connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}",
   "javadoc.pekko.base_url" -> "",
   "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}/%s",
-  // Akka
+  // Pekko
   "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
   "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
   "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}/%s",
@@ -98,18 +98,18 @@ Jms / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${Jms.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${Jms.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  // Alpakka
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.Jms.AlpakkaVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.Jms.AlpakkaVersion}/%s",
-  // Akka
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.Jms.AkkaVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.Jms.AkkaVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.Jms.AkkaVersion}/%s",
-  // Akka HTTP
-  "scaladoc.akka.http.base_url" -> s"https://doc.akka.io/api/akka-http/${Dependencies.Jms.AkkaHttpVersion}",
-  "javadoc.akka.http.base_url" -> s"https://doc.akka.io/japi/akka-http/${Dependencies.Jms.AkkaHttpVersion}",
-  "extref.akka-http.base_url" -> s"https://doc.akka.io/docs/akka-http/${Dependencies.Jms.AkkaHttpVersion}/%s",
+  // Pekko Connectors
+  "scaladoc.pekko.stream.pekko-connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.Jms.PekkoConnectorsVersion}",
+  "javadoc.pekko.base_url" -> "",
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.Jms.PekkoConnectorsVersion}/%s",
+  // Pekko
+  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.Jms.PekkoVersion}",
+  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.Jms.PekkoVersion}",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.Jms.PekkoVersion}/%s",
+  // Pekko HTTP
+  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.Jms.PekkoHttpVersion}",
+  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.Jms.PekkoHttpVersion}",
+  "extref.org.apache.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.Jms.PekkoHttpVersion}/%s",
 )
 Jms / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 

@@ -5,18 +5,18 @@
 package samples.scaladsl
 
 // #sample
-import akka.Done
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.model._
-import akka.actor.typed.scaladsl.adapter._
-import akka.http.scaladsl.model.ws.{WebSocketRequest, WebSocketUpgradeResponse}
-import akka.stream.alpakka.jms.JmsConsumerSettings
-import akka.stream.alpakka.jms.scaladsl.{JmsConsumer, JmsConsumerControl}
-import akka.stream.scaladsl.{Flow, Keep, Sink, Source}
+import org.apache.pekko.Done
+import org.apache.pekko.http.scaladsl.Http
+import org.apache.pekko.http.scaladsl.model._
+import org.apache.pekko.actor.typed.scaladsl.adapter._
+import org.apache.pekko.http.scaladsl.model.ws.{ WebSocketRequest, WebSocketUpgradeResponse }
+import org.apache.pekko.stream.connectors.jms.scaladsl.{ JmsConsumer, JmsConsumerControl }
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings
+import org.apache.pekko.stream.scaladsl.{ Flow, Keep, Sink, Source }
 
 import scala.concurrent.Future
 // #sample
-import playground.{ActiveMqBroker, WebServer}
+import playground.{ ActiveMqBroker, WebServer }
 
 import scala.concurrent.duration.DurationInt
 

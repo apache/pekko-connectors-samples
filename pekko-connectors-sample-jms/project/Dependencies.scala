@@ -1,28 +1,28 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.7"
+  val scalaVer = "2.13.12"
   // #deps
-  val AkkaVersion = "2.6.19"
-  val AkkaHttpVersion = "10.1.12"
-  val AlpakkaVersion = "4.0.0"
+  val PekkoVersion = "1.0.2"
+  val PekkoHttpVersion = "1.0.0"
+  val PekkoConnectorsVersion = "1.0.1"
 
   // #deps
 
   val dependencies = List(
     // #deps
-    "com.lightbend.akka" %% "akka-stream-alpakka-jms" % AlpakkaVersion,
-    "com.typesafe.akka" %% "akka-http"   % AkkaHttpVersion,
-    "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
-    "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
-    "com.typesafe.akka" %% "akka-actor" % AkkaVersion,
+    "org.apache.pekko" %% "pekko-connectors-jms" % PekkoConnectorsVersion,
+    "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
+    "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
     // https://github.com/javaee/javax.jms
     "javax.jms" % "jms" % "1.1", // CDDL Version 1.1
     // Logging
-    "com.typesafe.akka" %% "akka-slf4j" % AkkaVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.3",
+    "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
+    "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
     // http://activemq.apache.org/download.html
-    "org.apache.activemq" % "activemq-all" % "5.16.0" exclude("log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") // ApacheV2
+    "org.apache.activemq" % "activemq-all" % "5.16.7" exclude("log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") // ApacheV2
   )
 }

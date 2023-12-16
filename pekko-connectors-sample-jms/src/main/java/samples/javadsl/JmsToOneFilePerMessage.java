@@ -6,29 +6,31 @@ package samples.javadsl;
 
 // #sample
 
-import akka.Done;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.japi.Pair;
-import akka.stream.KillSwitch;
-import akka.stream.alpakka.jms.JmsConsumerSettings;
-import akka.stream.alpakka.jms.JmsProducerSettings;
-import akka.stream.alpakka.jms.javadsl.JmsConsumer;
-import akka.stream.alpakka.jms.javadsl.JmsConsumerControl;
-import akka.stream.alpakka.jms.javadsl.JmsProducer;
-import akka.stream.javadsl.FileIO;
-import akka.stream.javadsl.Keep;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import akka.util.ByteString;
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.japi.Pair;
+import org.apache.pekko.stream.KillSwitch;
+import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings;
+import org.apache.pekko.stream.connectors.jms.JmsProducerSettings;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumer;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsConsumerControl;
+import org.apache.pekko.stream.connectors.jms.javadsl.JmsProducer;
+import org.apache.pekko.stream.javadsl.FileIO;
+import org.apache.pekko.stream.javadsl.Keep;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
+import org.apache.pekko.util.ByteString;
 import playground.ActiveMqBroker;
-import scala.concurrent.ExecutionContext;
 
 import javax.jms.ConnectionFactory;
+
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
+
+import scala.concurrent.ExecutionContext;
 
 // #sample
 
