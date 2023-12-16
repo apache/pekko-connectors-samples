@@ -8,7 +8,7 @@
     </appender>
 
     <logger name="slick" level="INFO"/>
-    <logger name="akka.stream.alpakka.elasticsearch" level="INFO"/>
+    <logger name="org.apache.pekko.stream.connectors.elasticsearch" level="INFO"/>
     <logger name="com.github.dockerjava" level="INFO"/>
     <logger name="org.testcontainers" level="INFO"/>
 
