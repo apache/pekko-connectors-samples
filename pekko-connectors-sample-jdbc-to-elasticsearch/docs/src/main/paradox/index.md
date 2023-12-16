@@ -8,7 +8,7 @@ Dependencies (sbt notation)
 
 ### All Pekko-Connectors samples
 
-Show [Alpakka samples listing](../index.html).
+Show [Pekko Connectors samples listing](../index.html).
 
 @@toc
 

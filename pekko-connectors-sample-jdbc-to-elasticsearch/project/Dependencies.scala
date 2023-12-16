@@ -1,11 +1,11 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.8"
+  val scalaVer = "2.13.12"
   // #deps
-  val pekkoVersion = "1.0.1"
+  val pekkoVersion = "1.0.2"
 
-  val pekkoConnectorVersion = "1.0.1-RC1+6-dcc040bb-SNAPSHOT"
+  val pekkoConnectorVersion = "1.0.1"
 
   // #deps
 
@@ -19,7 +19,7 @@ object Dependencies {
     "io.spray" %% "spray-json" % "1.3.6",
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % pekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.11",
+    "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
     "com.h2database" % "h2" % "2.1.214",
     "org.testcontainers" % "elasticsearch" % "1.17.6",
