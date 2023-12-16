@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
   "com.lightbend.akka" %% "akka-stream-alpakka-s3" % "3.0.4",
   "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.11.4",
   "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.11.4",
-  "ch.qos.logback" % "logback-classic" % "1.2.3"
+  "ch.qos.logback" % "logback-classic" % "1.2.13"
 )
 
 licenses := Seq(("CC0", url("http://creativecommons.org/publicdomain/zero/1.0")))

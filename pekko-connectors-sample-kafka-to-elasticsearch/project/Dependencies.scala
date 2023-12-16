@@ -23,7 +23,7 @@ object Dependencies {
     "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.13.3",
     // Logging
     "com.typesafe.akka" %% "akka-slf4j" % AkkaVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.11",
+    "ch.qos.logback" % "logback-classic" % "1.2.13",
   // #deps
     "org.testcontainers" % "elasticsearch" % "1.17.3",
     "org.testcontainers" % "kafka" % "1.17.3"

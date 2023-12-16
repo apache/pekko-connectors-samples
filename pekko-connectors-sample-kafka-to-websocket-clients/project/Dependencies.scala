@@ -15,7 +15,7 @@ object Dependencies {
 
     // Logging
     "com.typesafe.akka" %% "akka-slf4j" % AkkaVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.3",
+    "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
 
     "org.testcontainers" % "kafka" % "1.14.3",

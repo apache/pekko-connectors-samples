@@ -24,6 +24,6 @@ object Dependencies {
     "com.google.jimfs" % "jimfs" % "1.1", // ApacheV2
     // Logging
     "com.typesafe.akka" %% "akka-slf4j" % AkkaVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.3"
+    "ch.qos.logback" % "logback-classic" % "1.2.13"
   )
 }

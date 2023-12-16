@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
   "com.typesafe.akka" %% "akka-actor" % AkkaVersion,
   "com.lightbend.akka" %% "akka-stream-alpakka-sqs" % AlpakkaVersion,
-  "ch.qos.logback" % "logback-classic" % "1.2.3",
+  "ch.qos.logback" % "logback-classic" % "1.2.13",
 )
 
 licenses := Seq(("CC0", url("http://creativecommons.org/publicdomain/zero/1.0")))
