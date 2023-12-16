@@ -14,7 +14,7 @@ object Dependencies {
 
   val pekkoVersion = "1.0.1"
 
-  val pekkoConnectorVersion = "1.0.1+12-db689989-SNAPSHOT"
+  val pekkoConnectorVersion = "1.0.1-RC1+6-dcc040bb-SNAPSHOT"
 
   // #deps
 

@@ -7,9 +7,14 @@
  * This file is part of the Apache Pekko project, which was derived from Akka.
  */
 
+/*
+ * Copyright (C) 2016-2019 Lightbend Inc. <http://www.lightbend.com>
+ */
+
 package samples.javadsl;
 
 // #imports
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,8 +38,6 @@ import samples.scaladsl.Helper;
 
 import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
-
-// #imports
 
 public class Main {
 
