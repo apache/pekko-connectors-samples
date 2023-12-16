@@ -1,7 +1,7 @@
 
 ThisBuild / scalaVersion := "2.13.12"
 
-enablePlugins(AkkaParadoxPlugin, ParadoxSitePlugin, PublishRsyncPlugin)
+enablePlugins(AkkaParadoxPlugin, ParadoxSitePlugin)
 
 name := "Pekko Connectors Samples"
 previewFixedPort := Some(8085)
@@ -26,13 +26,13 @@ FtpToFile / paradoxProperties ++= Map(
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${FtpToFile.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Pekko Connectors
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.FtpToFile.PekkoConnectorsVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.FtpToFile.PekkoConnectorsVersion}/%s",
+  "scaladoc.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.FtpToFile.PekkoConnectorsVersion}",
+  "javadoc.org.apache.pekko.stream.connectors.base_url" -> "",
+  "extref.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.FtpToFile.PekkoConnectorsVersion}/%s",
   // Pekko
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.FtpToFile.PekkoVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.FtpToFile.PekkoVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.FtpToFile.PekkoVersion}/%s",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.FtpToFile.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.FtpToFile.PekkoVersion}",
+  "extref.org.apache.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.FtpToFile.PekkoVersion}/%s",
 )
 FtpToFile / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
@@ -259,6 +259,3 @@ paradoxProperties ++= Map(
   "extref.pekko.base_url" -> "https://pekko.apache.org/docs/pekko/current/",
   "extref.pekko-connectors.base_url" -> "https://pekko.apache.org/docs/pekko-connectors/current/",
 )
-
-publishRsyncArtifacts += makeSite.value -> "akka.io/alpakka-samples/"
-publishRsyncHost := "akkarepo@gustav.akka.io"

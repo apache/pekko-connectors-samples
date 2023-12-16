@@ -1,4 +1,4 @@
-organization := "com.lightbend.akka.samples"
+organization := "org.apache.pekko"
 name := "pekko-connectors-samples-mqtt-http-to-s3-java"
 
 ThisBuild / scalaVersion := "2.13.12"

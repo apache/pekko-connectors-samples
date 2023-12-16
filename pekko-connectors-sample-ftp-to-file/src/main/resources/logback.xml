@@ -8,7 +8,7 @@
     </appender>
 
     <logger name="slick" level="INFO"/>
-    <logger name="akka.stream.alpakka.ftp" level="INFO"/>
+    <logger name="org.apache.pekko" level="INFO"/>
     <logger name="org.apache.mina" level="INFO"/>
     <logger name="org.apache.ftpserver" level="INFO"/>
     <logger name="org.apache.ftpserver.listener" level="WARN"/>

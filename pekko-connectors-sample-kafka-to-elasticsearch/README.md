@@ -6,4 +6,4 @@ This example uses @extref[Alpakka Kafka](alpakka-kafka:) to subscribe to a Kafka
 
 Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-kafka-to-elasticsearch) { open=new }.
 
-To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `alpakka-sample-kafka-to-elasticsearch` directory.
+To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `pekko-connectors-sample-kafka-to-elasticsearch` directory.

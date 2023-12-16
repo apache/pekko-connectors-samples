@@ -30,7 +30,7 @@ object Main
   extends App
     with DefaultJsonProtocol {
 
-  implicit val actorSystem: ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty, "alpakka-samples")
+  implicit val actorSystem: ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty, "pekko-connectors-samples")
 
   import actorSystem.executionContext
 

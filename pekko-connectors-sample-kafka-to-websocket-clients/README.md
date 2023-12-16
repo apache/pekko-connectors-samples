@@ -6,7 +6,7 @@ Clients may connect via websockets and will receive data read from a Kafka topic
 
 Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-kafka-to-websocket-clients) { open=new }.
 
-To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `alpakka-sample-kafka-to-websocket-clients` directory.
+To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `pekko-connectors-sample-kafka-to-websocket-clients` directory.
 
 ## Running
 
