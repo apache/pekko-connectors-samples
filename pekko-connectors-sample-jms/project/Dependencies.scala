@@ -5,8 +5,7 @@ object Dependencies {
   // #deps
   val pekkoVersion = "1.0.1"
   val pekkoHttpVersion = "1.0.0"
-  // todo: move to "1.0.2" after release in maven
-  val pekkoConnectorVersion = "1.0.1-RC1+6-dcc040bb-SNAPSHOT"
+  val pekkoConnectorVersion = "1.0.1"
 
   // #deps
 
