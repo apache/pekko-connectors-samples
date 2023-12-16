@@ -37,11 +37,11 @@ object Main extends App with Helper {
   actorSystem.whenTerminated.map(_ => session.close())
 
   import session.profile.api._
-  private class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") { // (2)
-    private def id = column[Int]("ID")
-    private def title = column[String]("TITLE")
-    private def genre = column[String]("GENRE")
-    private def gross = column[Double]("GROSS")
+  class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") {   // (2)
+    def id = column[Int]("ID")
+    def title = column[String]("TITLE")
+    def genre = column[String]("GENRE")
+    def gross = column[Double]("GROSS")
 
     override def * = (id, title, genre, gross)
   }
@@ -56,7 +56,7 @@ object Main extends App with Helper {
   // #data-class
 
   // #es-setup
-  private val connection = ElasticsearchConnectionSettings(elasticsearchAddress)
+  val connection = ElasticsearchConnectionSettings(elasticsearchAddress)
   // #es-setup
 
   // #sample

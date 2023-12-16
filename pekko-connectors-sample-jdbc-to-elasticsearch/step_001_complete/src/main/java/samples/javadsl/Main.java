@@ -67,6 +67,7 @@ public class Main {
         ElasticsearchContainer elasticsearchContainer = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2");
         elasticsearchContainer.start();
         String elasticsearchAddress = "http://" + elasticsearchContainer.getHttpHostAddress();
+
         // #sample
         ActorSystem<Object> system = ActorSystem.create(Behaviors.empty(), "pekko-es-jdbc-sample");
         // #sample
@@ -74,6 +75,7 @@ public class Main {
         SlickSession session = SlickSession$.MODULE$.forConfig("slick-h2-mem");
         system.getWhenTerminated().thenAccept(done -> session.close());
         // #slick-setup
+
         Helper.populateDataForTable(session, system);
 
         // #es-setup
