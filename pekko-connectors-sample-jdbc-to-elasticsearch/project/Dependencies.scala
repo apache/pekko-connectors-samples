@@ -18,7 +18,7 @@ object Dependencies {
     // for JSON in Scala
     "io.spray" %% "spray-json" % "1.3.6",
     // Logging
-    "org.apache.pekko" %% "pekko-slf4j" % pekkoVersion,
+    "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
     "com.h2database" % "h2" % "2.1.214",
