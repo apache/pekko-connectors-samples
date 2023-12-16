@@ -6,4 +6,4 @@ This example reads a stream of data and uses @extref[Alpakka File](alpakka:file.
 
 Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-rotate-logs-to-ftp) { open=new }.
 
-To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `alpakka-sample-rotate-logs-to-ftp` directory.
+To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `pekko-connectors-sample-rotate-logs-to-ftp` directory.

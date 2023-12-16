@@ -6,4 +6,4 @@ This example uses @extref[Akka HTTP to send the HTTP request](akka-http:client-s
 
 Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-http-csv-to-kafka) { open=new }.
 
-To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `alpakka-sample-http-csv-to-kafka` directory.
+To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `pekko-connectors-sample-http-csv-to-kafka` directory.
