@@ -1,4 +1,4 @@
-package sample.triggereddownload;
+package samples.triggereddownload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

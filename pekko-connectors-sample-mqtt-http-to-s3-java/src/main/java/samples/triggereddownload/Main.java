@@ -1,5 +1,4 @@
-package sample.triggereddownload;
-
+package samples.triggereddownload;
 
 import static org.apache.pekko.actor.typed.javadsl.Adapter.toClassic;
 
