@@ -56,16 +56,13 @@ HttpCsvToKafka / paradoxProperties ++= Map(
   "javadoc.org.apache.pekko.kafka.base_url" -> "",
   "extref.pekko-connectors-kafka.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors-kafka/${Dependencies.HttpCsvToKafka.PekkoConnectorsKafkaVersion}/%s",
   // Pekko
-  "scaladoc.akka.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}",
   "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}",
-  "javadoc.akka.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}",
   "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}",
-  "extref.akka.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}/%s",
   "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}/%s",
   // Pekko HTTP
-  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}",
-  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}",
-  "extref.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}/%s",
+  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.HttpCsvToKafka.PekkoHttpVersion}",
+  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.HttpCsvToKafka.PekkoHttpVersion}",
+  "extref.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.HttpCsvToKafka.PekkoHttpVersion}/%s",
 )
 HttpCsvToKafka / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
@@ -163,9 +160,9 @@ KafkaToWebsocketClients / paradoxProperties ++= Map(
   "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.KafkaToWebsocketClients.PekkoVersion}",
   "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.KafkaToWebsocketClients.PekkoVersion}/%s",
   // Pekko HTTP
-  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.KafkaToWebsocketClients.AkkaHttpVersion}",
-  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.KafkaToWebsocketClients.AkkaHttpVersion}",
-  "extref.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.KafkaToWebsocketClients.AkkaHttpVersion}/%s",
+  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.KafkaToWebsocketClients.PekkoHttpVersion}",
+  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.KafkaToWebsocketClients.PekkoHttpVersion}",
+  "extref.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.KafkaToWebsocketClients.PekkoHttpVersion}/%s",
 )
 KafkaToWebsocketClients / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 

@@ -6,4 +6,4 @@
 
 @extref:[Pekko-Connectors Kafka](pekko-connectors-kafka:producer.html) producer settings specify the broker address and the data types for Kafka's key and value.
 
-@scaladoc:[Producer.plainSink](akka.kafka.scaladsl.Producer$) sends the `ProducerRecord`s stream elements to the specified Kafka topic.
+@scaladoc:[Producer.plainSink](org.apache.pekko.kafka.scaladsl.Producer$) sends the `ProducerRecord`s stream elements to the specified Kafka topic.
