@@ -3,37 +3,37 @@
  */
 package samples.scaladsl
 
-import java.io.StringWriter
-import java.time.Instant
-
-import akka.Done
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.scaladsl.adapter._
-import akka.event.{Logging, LoggingAdapter}
-import akka.kafka.{ConsumerSettings, ProducerSettings, Subscriptions}
-import akka.kafka.scaladsl.{Consumer, Producer}
-import akka.stream.alpakka.mqtt.{MqttConnectionSettings, MqttMessage, MqttQoS, MqttSubscriptions}
-import akka.stream.alpakka.mqtt.scaladsl.{MqttSink, MqttSource}
-import akka.stream.scaladsl.{Keep, RestartSource, Sink, Source}
-import akka.stream.{KillSwitches, UniqueKillSwitch}
-import akka.util.ByteString
-import com.fasterxml.jackson.annotation.{JsonCreator, JsonProperty}
 import com.fasterxml.jackson.core.JsonFactory
-import com.fasterxml.jackson.databind.{ObjectMapper, ObjectWriter}
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.serialization.{StringDeserializer, StringSerializer}
+import org.apache.kafka.common.serialization.{ StringDeserializer, StringSerializer }
+import org.apache.pekko.Done
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.actor.typed.scaladsl.adapter._
+import org.apache.pekko.event.{ Logging, LoggingAdapter }
+import org.apache.pekko.kafka.{ ConsumerSettings, ProducerSettings, Subscriptions }
+import org.apache.pekko.kafka.scaladsl.{ Consumer, Producer }
+import org.apache.pekko.stream.{ KillSwitches, UniqueKillSwitch }
+import org.apache.pekko.stream.connectors.mqtt.{ MqttConnectionSettings, MqttMessage, MqttQoS, MqttSubscriptions }
+import org.apache.pekko.stream.connectors.mqtt.scaladsl.{ MqttSink, MqttSource }
+import org.apache.pekko.stream.scaladsl.{ Keep, RestartSource, Sink, Source }
+import org.apache.pekko.util.ByteString
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.KafkaContainer
+import org.testcontainers.utility.DockerImageName
 
+import java.io.StringWriter
+import java.time.Instant
+import scala.concurrent.{ ExecutionContext, Future, Promise }
 import scala.concurrent.duration._
-import scala.concurrent.{ExecutionContext, Future, Promise}
 import scala.jdk.CollectionConverters._
 
 object Main extends App {
-  val kafkaContainer = new KafkaContainer("5.4.1")
+
+  val kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.1.2"))
   kafkaContainer.start()
   try {
     val me = new Main
@@ -99,7 +99,8 @@ class Main {
       MqttSource.atMostOnce(connectionSettings.withClientId("coffee-control"), subscriptions, 8))
 
     // Set up Kafka producer sink
-    val producerSettings = ProducerSettings(system.toClassic, new StringSerializer, new StringSerializer).withBootstrapServers(kafkaServer)
+    val producerSettings =
+      ProducerSettings(system.toClassic, new StringSerializer, new StringSerializer).withBootstrapServers(kafkaServer)
     val kafkaProducer = Producer.plainSink(producerSettings)
     val kafkaTopic = "measurements"
 
@@ -128,9 +129,9 @@ class Main {
     // read the messages from the Kafka topic
     val consumerControl = Consumer
       .plainSource(
-        ConsumerSettings(system.toClassic, new StringDeserializer, new StringDeserializer).withBootstrapServers(kafkaServer).withGroupId("sample"),
-        Subscriptions.topics(kafkaTopic)
-      )
+        ConsumerSettings(system.toClassic, new StringDeserializer, new StringDeserializer).withBootstrapServers(
+          kafkaServer).withGroupId("sample"),
+        Subscriptions.topics(kafkaTopic))
       .map(_.value)
       .log("read from Kafka")
       .toMat(Sink.ignore)(Keep.left)
@@ -153,8 +154,7 @@ class Main {
       Measurement(Instant.now, 60),
       Measurement(Instant.now, 80),
       Measurement(Instant.now, 100),
-      Measurement(Instant.now, 120)
-    )
+      Measurement(Instant.now, 120))
 
     val sinkSettings = connectionSettings.withClientId("coffee-supervisor")
     val killSwitch = Source

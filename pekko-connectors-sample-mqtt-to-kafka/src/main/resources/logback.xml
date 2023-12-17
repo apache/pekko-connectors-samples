@@ -10,7 +10,7 @@
     <logger name="samples" level="DEBUG"/>
     <logger name="org.apache" level="WARN"/>
     <logger name="kafka" level="WARN"/>
-    <logger name="akka" level="WARN"/>
+    <logger name="org.apache.pekko" level="WARN"/>
     <logger name="org.I0Itec.zkclient" level="WARN"/>
 
     <logger name="com.github.dockerjava" level="INFO"/>
