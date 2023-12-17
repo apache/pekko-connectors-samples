@@ -5,14 +5,14 @@ object Dependencies {
   // #deps
   val PekkoVersion = "1.0.2"
   val PekkoConnectorsVersion = "1.0.1"
-  val PekkoKafkaVersion = "1.0.0"
+  val PekkoConnectorsKafkaVersion = "1.0.0"
   val JacksonDatabindVersion = "2.14.3"
   // #deps
 
   val dependencies = List(
     // #deps
     "org.apache.pekko" %% "pekko-connectors-mqtt" % PekkoConnectorsVersion,
-    "org.apache.pekko" %% "pekko-connectors-kafka" % PekkoKafkaVersion,
+    "org.apache.pekko" %% "pekko-connectors-kafka" % PekkoConnectorsKafkaVersion,
     "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
     "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
     "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
