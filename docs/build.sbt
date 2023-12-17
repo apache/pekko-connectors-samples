@@ -48,21 +48,21 @@ HttpCsvToKafka / paradoxProperties ++= Map(
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${HttpCsvToKafka.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Pekko Connectors
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.HttpCsvToKafka.PekkoConnectorsVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.HttpCsvToKafka.PekkoConnectorsVersion}/%s",
+  "scaladoc.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.HttpCsvToKafka.PekkoConnectorsVersion}",
+  "javadoc.org.apache.pekko.stream.connectors.base_url" -> "",
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.HttpCsvToKafka.PekkoConnectorsVersion}/%s",
   // Pekko Connectors Kafka
-  "scaladoc.akka.kafka.base_url" -> s"https://doc.akka.io/api/alpakka-kafka/${Dependencies.HttpCsvToKafka.PekkoConnectorsKafkaVersion}",
-  "javadoc.akka.kafka.base_url" -> "",
-  "extref.pekko-connectors-kafka.base_url" -> s"https://doc.akka.io/docs/alpakka-kafka/${Dependencies.HttpCsvToKafka.PekkoConnectorsKafkaVersion}/%s",
+  "scaladoc.org.apache.pekko.kafka.base_url" -> s"https://pekko.apache.org/api/pekko-connectors-kafka/${Dependencies.HttpCsvToKafka.PekkoConnectorsKafkaVersion}",
+  "javadoc.org.apache.pekko.kafka.base_url" -> "",
+  "extref.pekko-connectors-kafka.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors-kafka/${Dependencies.HttpCsvToKafka.PekkoConnectorsKafkaVersion}/%s",
   // Pekko
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.HttpCsvToKafka.PekkoVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.HttpCsvToKafka.PekkoVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.HttpCsvToKafka.PekkoVersion}/%s",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.HttpCsvToKafka.PekkoVersion}/%s",
   // Pekko HTTP
-  "scaladoc.akka.http.base_url" -> s"https://doc.akka.io/api/akka-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}",
-  "javadoc.akka.http.base_url" -> s"https://doc.akka.io/japi/akka-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}",
-  "extref.akka-http.base_url" -> s"https://doc.akka.io/docs/akka-http/${Dependencies.HttpCsvToKafka.AkkaHttpVersion}/%s",
+  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.HttpCsvToKafka.PekkoHttpVersion}",
+  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.HttpCsvToKafka.PekkoHttpVersion}",
+  "extref.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.HttpCsvToKafka.PekkoHttpVersion}/%s",
 )
 HttpCsvToKafka / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
@@ -77,12 +77,12 @@ JdbcToElasticsearch / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${JdbcToElasticsearch.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${JdbcToElasticsearch.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  "scaladoc.pekko.stream.pekko-connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}",
-  "javadoc.pekko.base_url" -> "",
+  "scaladoc.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}",
+  "javadoc.org.apache.pekko.base_url" -> "",
   "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.JdbcToElasticsearch.PekkoConnectorsVersion}/%s",
   // Pekko
-  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
-  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}",
   "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.JdbcToElasticsearch.PekkoVersion}/%s",
 )
 JdbcToElasticsearch / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
@@ -99,12 +99,12 @@ Jms / paradoxProperties ++= Map(
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${Jms.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Pekko Connectors
-  "scaladoc.pekko.stream.pekko-connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.Jms.PekkoConnectorsVersion}",
-  "javadoc.pekko.base_url" -> "",
+  "scaladoc.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.Jms.PekkoConnectorsVersion}",
+  "javadoc.org.apache.pekko.stream.connectors.base_url" -> "",
   "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.Jms.PekkoConnectorsVersion}/%s",
   // Pekko
-  "scaladoc.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.Jms.PekkoVersion}",
-  "javadoc.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.Jms.PekkoVersion}",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.Jms.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.Jms.PekkoVersion}",
   "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.Jms.PekkoVersion}/%s",
   // Pekko HTTP
   "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.Jms.PekkoHttpVersion}",
@@ -130,9 +130,9 @@ KafkaToElasticsearch / paradoxProperties ++= Map(
   "javadoc.org.apache.pekko.stream.connectors.base_url" -> "",
   "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.KafkaToElasticsearch.PekkoConnectorsVersion}/%s",
   // Pekko Connectors Kafka
-  "scaladoc.org.apache.pekko.kafka.base_url" -> s"https://pekko.apache.org/api/alpakka-kafka/${Dependencies.KafkaToElasticsearch.PekkoConnectorsKafkaVersion}",
+  "scaladoc.org.apache.pekko.kafka.base_url" -> s"https://pekko.apache.org/api/pekko-connectors-kafka/${Dependencies.KafkaToElasticsearch.PekkoConnectorsKafkaVersion}",
   "javadoc.org.apache.pekko.kafka.base_url" -> "",
-  "extref.pekko-connectors-kafka.base_url" -> s"https://pekko.apache.org/docs/alpakka-kafka/${Dependencies.KafkaToElasticsearch.PekkoConnectorsKafkaVersion}/%s",
+  "extref.pekko-connectors-kafka.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors-kafka/${Dependencies.KafkaToElasticsearch.PekkoConnectorsKafkaVersion}/%s",
   // Pekko
   "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.KafkaToElasticsearch.PekkoVersion}",
   "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.KafkaToElasticsearch.PekkoVersion}",
@@ -151,22 +151,18 @@ KafkaToWebsocketClients / paradoxProperties ++= Map(
   "canonical.base_url" -> s"${homepage.value.get}/${KafkaToWebsocketClients.name}",
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${KafkaToWebsocketClients.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
-  // Pekko Connectors
-//  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.KafkaToWebsocketClients.PekkoConnectorsVersion}",
-//  "javadoc.akka.base_url" -> "",
-//  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.KafkaToWebsocketClients.PekkoConnectorsVersion}/%s",
   // Pekko Connectors Kafka
-  "scaladoc.akka.kafka.base_url" -> s"https://doc.akka.io/api/alpakka-kafka/${Dependencies.KafkaToWebsocketClients.PekkoConnectorsKafkaVersion}",
-  "javadoc.akka.kafka.base_url" -> "",
-  "extref.pekko-connectors-kafka.base_url" -> s"https://doc.akka.io/docs/alpakka-kafka/${Dependencies.KafkaToWebsocketClients.PekkoConnectorsKafkaVersion}/%s",
+  "javadoc.org.apache.pekko.kafka.base_url" -> s"https://pekko.apache.org/api/pekko-connectors-kafka/${Dependencies.KafkaToWebsocketClients.PekkoConnectorsKafkaVersion}",
+  "javadoc.org.apache.pekko.kafka.base_url" -> "",
+  "extref.pekko-connectors-kafka.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors-kafka/${Dependencies.KafkaToWebsocketClients.PekkoConnectorsKafkaVersion}/%s",
   // Pekko
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.KafkaToWebsocketClients.PekkoVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.KafkaToWebsocketClients.PekkoVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.KafkaToWebsocketClients.PekkoVersion}/%s",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.KafkaToWebsocketClients.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.KafkaToWebsocketClients.PekkoVersion}",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.KafkaToWebsocketClients.PekkoVersion}/%s",
   // Pekko HTTP
-  "scaladoc.akka.http.base_url" -> s"https://doc.akka.io/api/akka-http/${Dependencies.KafkaToWebsocketClients.AkkaHttpVersion}",
-  "javadoc.akka.http.base_url" -> s"https://doc.akka.io/japi/akka-http/${Dependencies.KafkaToWebsocketClients.AkkaHttpVersion}",
-  "extref.akka-http.base_url" -> s"https://doc.akka.io/docs/akka-http/${Dependencies.KafkaToWebsocketClients.AkkaHttpVersion}/%s",
+  "scaladoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/api/pekko-http/${Dependencies.KafkaToWebsocketClients.PekkoHttpVersion}",
+  "javadoc.org.apache.pekko.http.base_url" -> s"https://pekko.apache.org/japi/pekko-http/${Dependencies.KafkaToWebsocketClients.PekkoHttpVersion}",
+  "extref.pekko-http.base_url" -> s"https://pekko.apache.org/docs/pekko-http/${Dependencies.KafkaToWebsocketClients.PekkoHttpVersion}/%s",
 )
 KafkaToWebsocketClients / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
@@ -182,17 +178,17 @@ MqttToKafka / paradoxProperties ++= Map(
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${MqttToKafka.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Pekko Connectors
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.MqttToKafka.PekkoConnectorsVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.MqttToKafka.PekkoConnectorsVersion}/%s",
+  "javadoc.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.MqttToKafka.PekkoConnectorsVersion}",
+  "javadoc.org.apache.pekko.base_url" -> "",
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.MqttToKafka.PekkoConnectorsVersion}/%s",
   // Pekko Connectors Kafka
-  "scaladoc.akka.kafka.base_url" -> s"https://doc.akka.io/api/alpakka-kafka/${Dependencies.MqttToKafka.PekkoConnectorsKafkaVersion}",
-  "javadoc.akka.kafka.base_url" -> "",
-  "extref.pekko-connectors-kafka.base_url" -> s"https://doc.akka.io/docs/alpakka-kafka/${Dependencies.MqttToKafka.PekkoConnectorsKafkaVersion}/%s",
+  "javadoc.org.apache.pekko.kafka.base_url" -> s"https://pekko.apache.org/api/pekko-connectors-kafka/${Dependencies.MqttToKafka.PekkoConnectorsKafkaVersion}",
+  "javadoc.org.apache.pekko.kafka.base_url" -> "",
+  "extref.pekko-connectors-kafka.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors-kafka/${Dependencies.MqttToKafka.PekkoConnectorsKafkaVersion}/%s",
   // Pekko
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.MqttToKafka.PekkoVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.MqttToKafka.PekkoVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.MqttToKafka.PekkoVersion}/%s",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.MqttToKafka.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.MqttToKafka.PekkoVersion}",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.MqttToKafka.PekkoVersion}/%s",
 )
 MqttToKafka / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
@@ -231,22 +227,22 @@ RotateLogsToFtp / paradoxProperties ++= Map(
   "snip.build.base_dir" -> s"${baseDirectory.value}/../pekko-connectors-sample-${RotateLogsToFtp.name}",
   "github.root.base_dir" -> s"${baseDirectory.value}/..",
   // Pekko Connectors
-  "scaladoc.akka.stream.alpakka.base_url" -> s"https://doc.akka.io/api/alpakka/${Dependencies.RotateLogsToFtp.PekkoConnectorsVersion}",
-  "javadoc.akka.base_url" -> "",
-  "extref.alpakka.base_url" -> s"https://doc.akka.io/docs/alpakka/${Dependencies.RotateLogsToFtp.PekkoConnectorsVersion}/%s",
+  "scaladoc.org.apache.pekko.stream.connectors.base_url" -> s"https://pekko.apache.org/api/pekko-connectors/${Dependencies.RotateLogsToFtp.PekkoConnectorsVersion}",
+  "javadoc.org.apache.pekko.stream.connectors.base_url" -> "",
+  "extref.pekko-connectors.base_url" -> s"https://pekko.apache.org/docs/pekko-connectors/${Dependencies.RotateLogsToFtp.PekkoConnectorsVersion}/%s",
   // Pekko
-  "scaladoc.akka.base_url" -> s"https://doc.akka.io/api/akka/${Dependencies.RotateLogsToFtp.PekkoVersion}",
-  "javadoc.akka.base_url" -> s"https://doc.akka.io/japi/akka/${Dependencies.RotateLogsToFtp.PekkoVersion}",
-  "extref.akka.base_url" -> s"https://doc.akka.io/docs/akka/${Dependencies.RotateLogsToFtp.PekkoVersion}/%s",
+  "scaladoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/api/pekko/${Dependencies.RotateLogsToFtp.PekkoVersion}",
+  "javadoc.org.apache.pekko.base_url" -> s"https://pekko.apache.org/japi/pekko/${Dependencies.RotateLogsToFtp.PekkoVersion}",
+  "extref.pekko.base_url" -> s"https://pekko.apache.org/docs/pekko/${Dependencies.RotateLogsToFtp.PekkoVersion}/%s",
 )
 RotateLogsToFtp / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 
 
 Paradox / siteSubdirName := ""
 paradoxProperties ++= Map(
-  "extref.akka.base_url" -> "https://doc.akka.io/docs/akka/current/",
-  "extref.alpakka.base_url" -> "https://doc.akka.io/docs/alpakka/current/",
-  "extref.pekko-connectors-kafka.base_url" -> "https://doc.akka.io/docs/alpakka-kafka/current/",
+  "extref.pekko.base_url" -> "https://pekko.apache.org/docs/pekko/current/",
+  "extref.pekko-connectors.base_url" -> "https://pekko.apache.org/docs/pekko-connectors/current/",
+  "extref.pekko-connectors-kafka.base_url" -> "https://pekko.apache.org/docs/pekko-connectors-kafka/current/",
   "extref.ftp-to-file.base_url" -> s"${(FtpToFile / siteSubdirName).value}/",
   "extref.http-csv-to-kafka.base_url" -> s"${(HttpCsvToKafka / siteSubdirName).value}/",
   "extref.jdbc-to-elasticsearch.base_url" -> s"${(JdbcToElasticsearch / siteSubdirName).value}/",

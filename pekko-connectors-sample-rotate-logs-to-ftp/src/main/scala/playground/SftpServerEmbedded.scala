@@ -6,7 +6,7 @@ package playground
 
 import java.io.File
 import java.nio.charset.Charset
-import java.nio.file.{FileSystem, Files, Path, Paths}
+import java.nio.file.{ FileSystem, Files, Path, Paths }
 import java.security.PublicKey
 import java.util
 
