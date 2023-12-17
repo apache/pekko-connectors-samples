@@ -21,7 +21,7 @@ object Dependencies {
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
-    "com.h2database" % "h2" % "2.1.214",
+    "com.h2database" % "h2" % "2.2.224",
     "org.testcontainers" % "elasticsearch" % "1.17.6",
     "org.testcontainers" % "postgresql" % "1.17.6"
   )
