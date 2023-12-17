@@ -48,6 +48,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.utility.DockerImageName;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -61,7 +62,7 @@ import java.util.concurrent.CompletionStage;
 public class Main {
 
   public static void main(String[] args) throws Exception {
-    KafkaContainer kafkaContainer = new KafkaContainer("5.4.1");
+    KafkaContainer kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.1.2"));
     kafkaContainer.start();
     try {
       Main me = new Main();
