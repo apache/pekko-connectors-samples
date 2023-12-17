@@ -7,7 +7,7 @@
         </encoder>
     </appender>
 
-    <logger name="akka" level="WARN"/>
+    <logger name="pekko" level="WARN"/>
     <logger name="com.github.dockerjava" level="INFO"/>
     <logger name="org.testcontainers" level="INFO"/>
 
