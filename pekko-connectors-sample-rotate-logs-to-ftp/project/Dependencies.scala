@@ -3,18 +3,18 @@ import sbt._
 object Dependencies {
   val scalaVer = "2.13.12"
   // #deps
-  val PekkoVersion = "2.6.19"
-  val PekkoConnectorsVersion = "4.0.0"
+  val PekkoVersion = "1.0.2"
+  val PekkoConnectorsVersion = "1.0.1"
 
   // #deps
 
   val dependencies = List(
-  // #deps
-    "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
-    "com.typesafe.akka" %% "akka-actor-typed" % PekkoVersion,
-    "com.typesafe.akka" %% "akka-actor" % PekkoVersion,
-    "com.lightbend.akka" %% "akka-stream-alpakka-file" % PekkoConnectorsVersion,
-    "com.lightbend.akka" %% "akka-stream-alpakka-ftp" % PekkoConnectorsVersion,
+    // #deps
+    "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-connectors-file" % PekkoConnectorsVersion,
+    "org.apache.pekko" %% "pekko-connectors-ftp" % PekkoConnectorsVersion,
     // #deps
     // Playground file system and FTP server
     // https://mina.apache.org/ftpserver-project/downloads.html
@@ -23,7 +23,6 @@ object Dependencies {
     "org.apache.sshd" % "sshd-sftp" % "2.5.1", // ApacheV2
     "com.google.jimfs" % "jimfs" % "1.1", // ApacheV2
     // Logging
-    "com.typesafe.akka" %% "akka-slf4j" % PekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.13"
-  )
+    "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
+    "ch.qos.logback" % "logback-classic" % "1.2.13")
 }
