@@ -31,7 +31,7 @@ object Dependencies {
     val PekkoVersion = versions("PekkoVersion")
     val AkkaHttpVersion = versions("AkkaHttpVersion")
     val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
-    val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
+    val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
 
   object JdbcToElasticsearch {
@@ -75,7 +75,7 @@ object Dependencies {
     val ScalaVersion = versions("scalaVer")
     val PekkoVersion = versions("PekkoVersion")
     val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
-    val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
+    val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
   
   object KafkaToWebsocketClients {
@@ -90,7 +90,7 @@ object Dependencies {
     val ScalaVersion = versions("scalaVer")
     val PekkoVersion = versions("PekkoVersion")
     val AkkaHttpVersion = versions("AkkaHttpVersion")
-    val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
+    val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
 
   object MqttToKafka {
@@ -105,7 +105,7 @@ object Dependencies {
     val ScalaVersion = versions("scalaVer")
     val PekkoVersion = versions("PekkoVersion")
     val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
-    val AlpakkaKafkaVersion = versions("AlpakkaKafkaVersion")
+    val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
 
   object FileToElasticsearch {

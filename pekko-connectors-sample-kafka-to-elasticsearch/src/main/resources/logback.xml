@@ -9,7 +9,7 @@
 
     <logger name="org.apache" level="WARN"/>
     <logger name="kafka" level="WARN"/>
-    <logger name="akka" level="WARN"/>
+    <logger name="pekko" level="WARN"/>
     <logger name="org.apache.kafka.common.utils.AppInfoParser" level="ERROR"/>
     <logger name="org.apache.kafka.clients.NetworkClient" level="ERROR"/>
     <logger name="org.I0Itec.zkclient" level="WARN"/>

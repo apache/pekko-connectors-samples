@@ -5,7 +5,7 @@ object Dependencies {
   // #deps
   val PekkoVersion = "2.6.19"
   val PekkoConnectorsVersion = "4.0.0"
-  val AlpakkaKafkaVersion = "3.0.1"
+  val PekkoConnectorsKafkaVersion = "3.0.1"
   val JacksonDatabindVersion = "2.11.4"
 
   // #deps
@@ -13,7 +13,7 @@ object Dependencies {
   val dependencies = List(
   // #deps
     "com.lightbend.akka" %% "akka-stream-alpakka-mqtt" % PekkoConnectorsVersion,
-    "com.typesafe.akka" %% "akka-stream-kafka" % AlpakkaKafkaVersion,
+    "com.typesafe.akka" %% "akka-stream-kafka" % PekkoConnectorsKafkaVersion,
     "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
     "com.typesafe.akka" %% "akka-actor-typed" % PekkoVersion,
     "com.typesafe.akka" %% "akka-actor" % PekkoVersion,

@@ -5,23 +5,23 @@
 package samples.scaladsl
 
 // #imports
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.scaladsl.adapter._
-import akka.kafka._
-import akka.kafka.scaladsl.{Committer, Consumer}
-import akka.stream.alpakka.elasticsearch.ElasticsearchParams
-import akka.stream.alpakka.elasticsearch.ElasticsearchWriteSettings
-import akka.stream.alpakka.elasticsearch.WriteMessage
-import akka.stream.alpakka.elasticsearch.scaladsl.ElasticsearchFlow
-import akka.stream.scaladsl.Sink
-import akka.{Done, NotUsed}
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.actor.typed.scaladsl.adapter._
+import org.apache.pekko.kafka._
+import org.apache.pekko.kafka.scaladsl.{ Committer, Consumer }
+import org.apache.pekko.stream.connectors.elasticsearch.ElasticsearchParams
+import org.apache.pekko.stream.connectors.elasticsearch.ElasticsearchWriteSettings
+import org.apache.pekko.stream.connectors.elasticsearch.WriteMessage
+import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.ElasticsearchFlow
+import org.apache.pekko.stream.scaladsl.Sink
+import org.apache.pekko.{ Done, NotUsed }
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization._
 import spray.json._
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{ Await, ExecutionContext, Future }
 // #imports
 
 object Main extends App with Helper {
