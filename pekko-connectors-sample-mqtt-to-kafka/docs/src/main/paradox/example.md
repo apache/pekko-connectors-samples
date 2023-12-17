@@ -13,7 +13,7 @@ docker-compose.yml
 ### Restarting of the source
 
 The MQTT source gets wrapped by a `RestartSource` to mitigate the 
-@extref:[Paho initial connections problem](alpakka:/mqtt.html#settings).
+@extref:[Paho initial connections problem](pekko-connectors:/mqtt.html#settings).
 
 Java
 : @@snip [snip](/src/main/java/samples/javadsl/Main.java) { #restarting }

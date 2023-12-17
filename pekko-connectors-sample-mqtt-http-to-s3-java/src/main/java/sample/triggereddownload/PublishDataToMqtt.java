@@ -49,7 +49,7 @@ public class PublishDataToMqtt {
     Sink<MqttMessage, CompletionStage<Done>> mqttSink =
         MqttSink.create(connectionSettings.withClientId("source-test/sink"), MqttQoS.atLeastOnce());
 
-    DownloadCommand command = new DownloadCommand(Instant.now(), "https://doc.akka.io/docs/connectors/current/s3.html");
+    DownloadCommand command = new DownloadCommand(Instant.now(), "https://pekko.apache.org/docs/pekko-connectors/current/s3.html");
     MqttMessage message = MqttMessage.create("downloads/trigger", ByteString.fromString(downloadCommandWriter.writeValueAsString(command)));
 
     Source.tick(Duration.ofSeconds(5), Duration.ofSeconds(30), message).runWith(mqttSink, system);

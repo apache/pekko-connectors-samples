@@ -14,9 +14,9 @@ libraryDependencies ++= Seq(
   "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
   "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
   "org.apache.pekko" %% "pekko-connectors-s3" % PekkoConnectorsVersion,
-  "org.apache.pekko" %% "pekko-connectors-mqtt" % "1.0.1",
-  "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.14.2",
-  "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.14.2",
+  "org.apache.pekko" %% "pekko-connectors-mqtt" % PekkoConnectorsVersion,
+  "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.14.3",
+  "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.14.3",
   "ch.qos.logback" % "logback-classic" % "1.2.13"
 )
 
