@@ -2,22 +2,21 @@ package samples.scaladsl
 
 // #imports
 
-import java.net.InetAddress
-import java.nio.file.{Files, Path}
-
-import akka.actor.typed.ActorSystem
-import akka.actor.typed.scaladsl.Behaviors
-import akka.stream.alpakka.file.scaladsl.{Directory, LogRotatorSink}
-import akka.stream.alpakka.ftp.scaladsl.Sftp
-import akka.stream.alpakka.ftp.{FtpCredentials, SftpIdentity, SftpSettings}
-import akka.stream.scaladsl.{Compression, Flow, Keep, Source}
-import akka.util.ByteString
 import org.apache.mina.util.AvailablePortFinder
+import org.apache.pekko.actor.typed.ActorSystem
+import org.apache.pekko.actor.typed.scaladsl.Behaviors
+import org.apache.pekko.stream.connectors.file.scaladsl.{ Directory, LogRotatorSink }
+import org.apache.pekko.stream.connectors.ftp.{ FtpCredentials, SftpIdentity, SftpSettings }
+import org.apache.pekko.stream.connectors.ftp.scaladsl.Sftp
+import org.apache.pekko.stream.scaladsl.{ Compression, Flow, Keep, Source }
+import org.apache.pekko.util.ByteString
 import playground.SftpServerEmbedded
 import playground.filesystem.FileSystemMock
 
+import java.net.InetAddress
+import java.nio.file.{ Files, Path }
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext}
+import scala.concurrent.ExecutionContext
 // #imports
 
 object Main extends App {
@@ -25,7 +24,6 @@ object Main extends App {
   implicit val executionContext: ExecutionContext = actorSystem.executionContext
 
   def wait(duration: FiniteDuration): Unit = Thread.sleep(duration.toMillis)
-
 
   private val ftpFileSystem = new FileSystemMock().fileSystem
   private val privateKeyPassphrase = SftpServerEmbedded.clientPrivateKeyPassphrase
