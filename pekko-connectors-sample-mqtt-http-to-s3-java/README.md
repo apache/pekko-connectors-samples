@@ -5,6 +5,6 @@
 Running this requires:
 - MQTT broker running (provided via docker-compose)
 - AWS S3 account configured in ./src/main/resources/credentials.conf as exemplified in credentials.conf-RENAME 
-- AWS bucket "alpakka.samples" created 
+- AWS bucket "pekko.connectors.samples" created 
 
 Messages to MQTT can be published by `PublishDataToMqtt`.
