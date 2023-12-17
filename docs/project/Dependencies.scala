@@ -29,7 +29,7 @@ object Dependencies {
     val ScalaVersion = versions("scalaVer")
     val ScalaTestVersion = versions("ScalaTestVersion")
     val PekkoVersion = versions("PekkoVersion")
-    val AkkaHttpVersion = versions("AkkaHttpVersion")
+    val PekkoHttpVersion = versions("PekkoHttpVersion")
     val PekkoConnectorsVersion = versions("PekkoConnectorsVersion")
     val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
@@ -89,7 +89,7 @@ object Dependencies {
 
     val ScalaVersion = versions("scalaVer")
     val PekkoVersion = versions("PekkoVersion")
-    val AkkaHttpVersion = versions("AkkaHttpVersion")
+    val PekkoHttpVersion = versions("PekkoHttpVersion")
     val PekkoConnectorsKafkaVersion = versions("PekkoConnectorsKafkaVersion")
   }
 

@@ -7,5 +7,5 @@ The Apache Software Foundation (https://www.apache.org/).
 This product contains significant parts that were originally based on software from Lightbend (Akka <https://akka.io/>).
 Copyright (C) 2009-2022 Lightbend Inc. <https://www.lightbend.com>
 
-Apache Pekko Connectors is derived from Alpakka Samples 4.0.x.
+Apache Pekko Connectors Samples is derived from Alpakka Samples.
 

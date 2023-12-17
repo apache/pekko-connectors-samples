@@ -16,7 +16,7 @@ This `websocketHandler` is a `Flow` which will be used when a websocket client c
 Java
 : @@snip [snip](/src/main/java/samples/javadsl/Main.java) { #websocket-handler }
 
-### Akka HTTP routes
+### Pekko HTTP routes
 
 This example code uses two routes
 * `/events` which opens a websocket to subscribe to the messages from the Kafka topic

@@ -3,27 +3,27 @@ import sbt._
 object Dependencies {
   val scalaVer = "2.13.12"
   // #dependencies
-  val ScalaTestVersion = "3.1.4"
-  val PekkoVersion = "2.6.19"
-  val AkkaHttpVersion = "10.1.12"
-  val PekkoConnectorsVersion = "4.0.0"
-  val PekkoConnectorsKafkaVersion = "3.0.1"
+  val ScalaTestVersion = "3.2.17"
+  val PekkoVersion = "1.0.2"
+  val PekkoHttpVersion = "1.0.0"
+  val PekkoConnectorsVersion = "1.0.1"
+  val PekkoConnectorsKafkaVersion = "1.0.0"
 
   val dependencies = List(
-    "com.lightbend.akka" %% "akka-stream-alpakka-csv" % PekkoConnectorsVersion,
-    "com.typesafe.akka" %% "akka-stream-kafka" % PekkoConnectorsKafkaVersion,
-    "com.typesafe.akka" %% "akka-actor-typed" % PekkoVersion,
-    "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
-    "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
+    "org.apache.pekko" %% "pekko-connectors-csv" % PekkoConnectorsVersion,
+    "org.apache.pekko" %% "pekko-connectors-kafka" % PekkoConnectorsKafkaVersion,
+    "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
     // Used from Scala
-    "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion,
+    "org.apache.pekko" %% "pekko-http-spray-json" % PekkoHttpVersion,
     // Used from Java
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.11.4",
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.11.4",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.14.3",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.14.3",
 
-    "org.testcontainers" % "kafka" % "1.14.3",
+    "org.testcontainers" % "kafka" % "1.17.3",
     
-    "com.typesafe.akka" %% "akka-slf4j" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.2.13"
   )
   // #dependencies

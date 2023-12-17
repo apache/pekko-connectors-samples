@@ -1,5 +1,5 @@
 
-lazy val alpakka_sample_master = project
+lazy val pekko_connectors_sample_master = project
   .in(file("."))
   .aggregate(
     common,

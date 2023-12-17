@@ -4,29 +4,29 @@
 
 package samples.javadsl;
 
-import akka.Done;
-import akka.actor.Cancellable;
-import akka.actor.CoordinatedShutdown;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.http.javadsl.Http;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.HttpResponse;
-import akka.http.javadsl.model.MediaRanges;
-import akka.http.javadsl.model.StatusCodes;
-import akka.http.javadsl.model.headers.Accept;
-import akka.japi.Pair;
-import akka.kafka.ConsumerSettings;
-import akka.kafka.ProducerSettings;
-import akka.kafka.Subscriptions;
-import akka.kafka.javadsl.Consumer;
-import akka.kafka.javadsl.Producer;
-import akka.stream.alpakka.csv.javadsl.CsvParsing;
-import akka.stream.alpakka.csv.javadsl.CsvToMap;
-import akka.stream.javadsl.Keep;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import akka.util.ByteString;
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.Cancellable;
+import org.apache.pekko.actor.CoordinatedShutdown;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.http.javadsl.Http;
+import org.apache.pekko.http.javadsl.model.HttpRequest;
+import org.apache.pekko.http.javadsl.model.HttpResponse;
+import org.apache.pekko.http.javadsl.model.MediaRanges;
+import org.apache.pekko.http.javadsl.model.StatusCodes;
+import org.apache.pekko.http.javadsl.model.headers.Accept;
+import org.apache.pekko.japi.Pair;
+import org.apache.pekko.kafka.ConsumerSettings;
+import org.apache.pekko.kafka.ProducerSettings;
+import org.apache.pekko.kafka.Subscriptions;
+import org.apache.pekko.kafka.javadsl.Consumer;
+import org.apache.pekko.kafka.javadsl.Producer;
+import org.apache.pekko.stream.connectors.csv.javadsl.CsvParsing;
+import org.apache.pekko.stream.connectors.csv.javadsl.CsvToMap;
+import org.apache.pekko.stream.javadsl.Keep;
+import org.apache.pekko.stream.javadsl.Sink;
+import org.apache.pekko.stream.javadsl.Source;
+import org.apache.pekko.util.ByteString;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -45,7 +45,7 @@ import java.util.Map;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 
-import static akka.actor.typed.javadsl.Adapter.toClassic;
+import static org.apache.pekko.actor.typed.javadsl.Adapter.toClassic;
 
 public class Main {
 
