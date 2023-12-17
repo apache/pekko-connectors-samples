@@ -25,7 +25,7 @@ This example uses Pekko Connectors File to watch for new files created in a dire
 Read a stream of data and store it zipped in rotating files on an SFTP server.
 
 ### @extref:[Subscribe to MQTT and produce to Kafka](mqtt-to-kafka:index.html)
-Subscribe to an MQTT topic with @extref[Pekko Connectors MQTT](pekko-connectors:/mqtt.html), group a few values and publish the aggregate to a Kafka topic with @extref[Pekko Connectors Kafka](alpakka-kafka:).
+Subscribe to an MQTT topic with @extref[Pekko Connectors MQTT](pekko-connectors:/mqtt.html), group a few values and publish the aggregate to a Kafka topic with @extref[Pekko Connectors Kafka](pekko-connectors-kafka:).
 
 ### @link:[Amazon SQS](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-sqs-java) { open=new }
 Listen to an Amazon SQS topic, enrich the message via calling an actor, publish a new message to SQS and acknowledge/delete the original message. (Java only)
