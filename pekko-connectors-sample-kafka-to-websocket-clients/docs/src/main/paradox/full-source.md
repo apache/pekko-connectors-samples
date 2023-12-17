@@ -8,7 +8,7 @@ Java
 ## Helper
 
 The helper uses [Testcontainers](https://www.testcontainers.org/modules/kafka/) to start a Kafka broker.
-The `writeToKafka()` method populates the Kafka topic using @extref[Alpakka Kafka](alpakka-kafka:producer.html)
+The `writeToKafka()` method populates the Kafka topic using @extref[Pekko-Connectors Kafka](pekko-connectors-kafka:producer.html)
 
 Java
 : @@snip [snip](/src/main/java/samples/javadsl/Helper.java) { filterLabels=true }

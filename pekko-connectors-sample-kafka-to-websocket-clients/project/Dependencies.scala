@@ -5,13 +5,13 @@ object Dependencies {
   // #deps
   val PekkoVersion = "2.6.19"
   val AkkaHttpVersion = "10.1.12"
-  val AlpakkaKafkaVersion = "3.0.1"
+  val PekkoConnectorsKafkaVersion = "3.0.1"
   // #deps
   val dependencies = List(
     // #deps
     "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
     "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
-    "com.typesafe.akka" %% "akka-stream-kafka" % AlpakkaKafkaVersion,
+    "com.typesafe.akka" %% "akka-stream-kafka" % PekkoConnectorsKafkaVersion,
 
     // Logging
     "com.typesafe.akka" %% "akka-slf4j" % PekkoVersion,

@@ -2,7 +2,7 @@
 
 ## Read from a Kafka topic and push the data to connected websocket clients
 
-Clients may connect via websockets and will receive data read from a Kafka topic. The websockets are implemented in @extref[Akka HTTP](akka-http:) and [Alpakka Kafka](alpakka-kafka:) subscribes to the Kafka topic.
+Clients may connect via websockets and will receive data read from a Kafka topic. The websockets are implemented in @extref[Akka HTTP](akka-http:) and [Pekko-Connectors Kafka](pekko-connectors-kafka:) subscribes to the Kafka topic.
 
 Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-kafka-to-websocket-clients) { open=new }.
 
