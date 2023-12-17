@@ -1,22 +1,24 @@
-package alpakka.sample.triggereddownload;
+package sample.triggereddownload;
 
-import akka.Done;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.javadsl.Behaviors;
-import static akka.actor.typed.javadsl.Adapter.*;
-import akka.http.javadsl.Http;
-import akka.http.javadsl.model.ContentTypes;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.Uri;
-import akka.stream.alpakka.mqtt.MqttConnectionSettings;
-import akka.stream.alpakka.mqtt.MqttQoS;
-import akka.stream.alpakka.mqtt.MqttSubscriptions;
-import akka.stream.alpakka.mqtt.javadsl.MqttSource;
-import akka.stream.alpakka.s3.javadsl.S3;
-import akka.stream.javadsl.Source;
+
+import static org.apache.pekko.actor.typed.javadsl.Adapter.toClassic;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.apache.pekko.Done;
+import org.apache.pekko.actor.typed.ActorSystem;
+import org.apache.pekko.actor.typed.javadsl.Behaviors;
+import org.apache.pekko.http.javadsl.Http;
+import org.apache.pekko.http.javadsl.model.ContentTypes;
+import org.apache.pekko.http.javadsl.model.HttpRequest;
+import org.apache.pekko.http.javadsl.model.Uri;
+import org.apache.pekko.stream.connectors.mqtt.MqttConnectionSettings;
+import org.apache.pekko.stream.connectors.mqtt.MqttQoS;
+import org.apache.pekko.stream.connectors.mqtt.MqttSubscriptions;
+import org.apache.pekko.stream.connectors.mqtt.javadsl.MqttSource;
+import org.apache.pekko.stream.connectors.s3.javadsl.S3;
+import org.apache.pekko.stream.javadsl.Source;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.time.LocalDateTime;
@@ -43,10 +45,11 @@ public class Main {
     final String mqttBroker = "tcp://localhost:1883";
     // Remember to set up topic in MQTT server's acl config
     final String topic = "downloads/trigger";
-    final String s3Bucket = "alpakka.samples";
+    final String s3Bucket = "pekko.connectors.samples";
 
     private String createS3BucketKey(DownloadCommand info) {
-        return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + Uri.create(info.url).getPathString().replace("/", "-");
+        return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            + Uri.create(info.url).getPathString().replace("/", "-");
     }
 
     void run() throws Exception {
@@ -58,7 +61,6 @@ public class Main {
                                 new MemoryPersistence()
                         );
 
-        @SuppressWarnings("unchecked")
         MqttSubscriptions mqttSubscriptions =
                 MqttSubscriptions.create(topic, MqttQoS.atLeastOnce());
 
@@ -75,7 +77,7 @@ public class Main {
                                     .runWith(S3.multipartUpload(s3Bucket, s3BucketKey, ContentTypes.TEXT_HTML_UTF8), system);
                         }
                 )
-                .runForeach(res -> System.out.println(res), system)
+                .runForeach(System.out::println, system)
                 .exceptionally(e -> { e.printStackTrace(); return Done.done(); });
     }
 

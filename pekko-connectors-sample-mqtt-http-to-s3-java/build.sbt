@@ -3,19 +3,20 @@ name := "pekko-connectors-samples-mqtt-http-to-s3-java"
 
 ThisBuild / scalaVersion := "2.13.12"
 
-val PekkoVersion = "2.6.19"
-val AkkaHttpVersion = "10.1.12"
+val PekkoVersion = "1.0.2"
+val PekkoHttpVersion = "1.0.0"
+val PekkoConnectorsVersion = "1.0.1"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-slf4j" % PekkoVersion,
-  "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
-  "com.typesafe.akka" %% "akka-actor-typed" % PekkoVersion,
-  "com.typesafe.akka" %% "akka-actor" % PekkoVersion,
-  "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
-  "com.lightbend.akka" %% "akka-stream-alpakka-mqtt" % "3.0.4",
-  "com.lightbend.akka" %% "akka-stream-alpakka-s3" % "3.0.4",
-  "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.11.4",
-  "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.11.4",
+  "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
+  "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+  "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
+  "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
+  "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
+  "org.apache.pekko" %% "pekko-connectors-s3" % PekkoConnectorsVersion,
+  "org.apache.pekko" %% "pekko-connectors-mqtt" % "1.0.1",
+  "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.14.2",
+  "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.14.2",
   "ch.qos.logback" % "logback-classic" % "1.2.13"
 )
 

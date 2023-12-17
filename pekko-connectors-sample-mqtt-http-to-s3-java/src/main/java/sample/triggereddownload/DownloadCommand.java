@@ -1,11 +1,11 @@
-package alpakka.sample.triggereddownload;
+package sample.triggereddownload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Instant;
 
-final class DownloadCommand {
+public final class DownloadCommand {
     public final Instant timestamp;
     public final String url;
 
