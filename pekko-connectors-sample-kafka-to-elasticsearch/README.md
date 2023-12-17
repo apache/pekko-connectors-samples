@@ -2,7 +2,7 @@
 
 ## Read from a Kafka topic and publish to Elasticsearch
 
-This example uses @extref[Alpakka Kafka](alpakka-kafka:) to subscribe to a Kafka topic, parses JSON into a data class and stores the object in Elasticsearch. After storing the Kafka offset is committed back to Kafka. This gives at-least-once semantics.
+This example uses @extref[Pekko-Connectors Kafka](pekko-connectors-kafka:) to subscribe to a Kafka topic, parses JSON into a data class and stores the object in Elasticsearch. After storing the Kafka offset is committed back to Kafka. This gives at-least-once semantics.
 
 Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-kafka-to-elasticsearch) { open=new }.
 
