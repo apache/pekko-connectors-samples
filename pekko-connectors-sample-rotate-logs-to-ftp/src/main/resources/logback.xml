@@ -8,8 +8,6 @@
     </appender>
 
     <logger name="org.apache.pekko" level="INFO"/>
-    <logger name="org.apache.pekko.stream.connectors.file" level="INFO"/>
-    <logger name="org.apache.pekko.stream.connectors.ftp" level="INFO"/>
     <logger name="org.apache.sshd" level="INFO"/>
     <logger name="net.schmizz" level="INFO"/>
 
