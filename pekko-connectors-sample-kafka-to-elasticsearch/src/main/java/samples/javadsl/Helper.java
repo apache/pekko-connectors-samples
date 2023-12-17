@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
+import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
 import java.util.concurrent.CompletionStage;
@@ -40,7 +41,7 @@ public class Helper {
     elasticsearchContainer.start();
     connectionSettings = ElasticsearchConnectionSettings.create("http://" + elasticsearchContainer.getHttpHostAddress());
 
-    kafka = new KafkaContainer("5.4.1"); // contains Kafka 2.4.x
+    kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.4.1")); // contains Kafka 2.4.x
     kafka.start();
     kafkaBootstrapServers = kafka.getBootstrapServers();
   }
