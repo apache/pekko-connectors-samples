@@ -4,7 +4,6 @@ object Dependencies {
   val scalaVer = "2.13.12"
   // #deps
   val PekkoVersion = "1.0.2"
-  val PekkoConnectorsVersion = "1.0.1"
   val PekkoKafkaVersion = "1.0.0"
   val PekkoHttpVersion = "1.0.0"
 
@@ -13,7 +12,7 @@ object Dependencies {
     // #deps
     "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
     "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
-    "org.apache.pekko" % "pekko-connectors-kafka_2.13" % PekkoKafkaVersion,
+    "org.apache.pekko" %% "pekko-connectors-kafka" % PekkoKafkaVersion,
 
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
