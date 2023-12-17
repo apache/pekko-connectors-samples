@@ -73,6 +73,8 @@ public class Main extends AllDirectives {
     Http http = Http.get(actorSystem);
 
     // #websocket-handler
+    Source<String, ?> topicSource = topicSource();
+
     Flow<Message, Message, ?> webSocketHandler =
         Flow.fromSinkAndSource(
             Sink.ignore(),
@@ -83,13 +85,11 @@ public class Main extends AllDirectives {
                 .via(addIndexFlow())
                 .map(TextMessage::create));
     // #websocket-handler
-
     final Flow<HttpRequest, HttpResponse, ?> routeFlow = createRoute(webSocketHandler).flow(actorSystem, materializer);
     final CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
         ConnectHttp.toHost("localhost", 8081), materializer);
 
     binding.toCompletableFuture().get(10, TimeUnit.SECONDS);
-
     System.out.println("Server online at http://localhost:8081/\nPress RETURN to stop...");
     System.in.read(); // let it run until user presses return
   }
