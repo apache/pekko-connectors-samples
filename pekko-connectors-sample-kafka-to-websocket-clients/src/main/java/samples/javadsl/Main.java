@@ -39,6 +39,8 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
+
+import scala.runtime.BoxedUnit;
 // #imports
 
 public class Main extends AllDirectives {
@@ -73,8 +75,6 @@ public class Main extends AllDirectives {
     Http http = Http.get(actorSystem);
 
     // #websocket-handler
-    Source<String, ?> topicSource = topicSource();
-
     Flow<Message, Message, ?> webSocketHandler =
         Flow.fromSinkAndSource(
             Sink.ignore(),
@@ -92,6 +92,7 @@ public class Main extends AllDirectives {
     binding.toCompletableFuture().get(10, TimeUnit.SECONDS);
     System.out.println("Server online at http://localhost:8081/\nPress RETURN to stop...");
     System.in.read(); // let it run until user presses return
+    actorSystem.terminate();
   }
 
   public Flow<String, String, NotUsed> addIndexFlow() {
