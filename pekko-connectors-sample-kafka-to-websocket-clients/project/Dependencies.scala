@@ -22,5 +22,6 @@ object Dependencies {
     "org.testcontainers" % "kafka" % "1.17.6",
     "org.apache.pekko" %% "pekko-stream-testkit" % PekkoVersion,
     "com.google.guava" % "guava" % "28.2-jre" % Test,
-    "junit" % "junit" % "4.13.2" % Test)
+    "junit" % "junit" % "4.13.2" % Test
+  )
 }

@@ -39,8 +39,6 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
-
-import scala.runtime.BoxedUnit;
 // #imports
 
 public class Main extends AllDirectives {
