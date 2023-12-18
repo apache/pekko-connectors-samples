@@ -1,7 +1,9 @@
 
 ThisBuild / scalaVersion := "2.13.12"
 
-enablePlugins(AkkaParadoxPlugin, ParadoxSitePlugin)
+resolvers += Resolver.ApacheMavenSnapshotsRepo
+
+enablePlugins(ParadoxPlugin, PekkoParadoxPlugin, ParadoxSitePlugin)
 
 name := "Pekko Connectors Samples"
 previewFixedPort := Some(8085)
@@ -14,10 +16,15 @@ version := {
 }
 isSnapshot := true
 
+pekkoParadoxGithub := Some("https://github.com/apache/incubator-pekko-site")
+
+// disabled display versioning, in other words: hidden unnecessary version.
+paradoxProperties += ("disabled.versioning.display" -> "true")
+
 val FtpToFile = config("ftp-to-file")
 ParadoxPlugin.paradoxSettings(FtpToFile)
 ParadoxSitePlugin.paradoxSettings(FtpToFile)
-AkkaParadoxPlugin.akkaParadoxSettings(FtpToFile)
+PekkoParadoxPlugin.pekkoParadoxSettings(FtpToFile)
 FtpToFile / siteSubdirName := FtpToFile.name
 FtpToFile / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${FtpToFile.name}" / "docs" / "src" / "main" / "paradox"
 FtpToFile / paradoxProperties ++= Map(
@@ -39,7 +46,7 @@ FtpToFile / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val HttpCsvToKafka = config("http-csv-to-kafka")
 ParadoxPlugin.paradoxSettings(HttpCsvToKafka)
 ParadoxSitePlugin.paradoxSettings(HttpCsvToKafka)
-AkkaParadoxPlugin.akkaParadoxSettings(HttpCsvToKafka)
+PekkoParadoxPlugin.pekkoParadoxSettings(HttpCsvToKafka)
 HttpCsvToKafka / siteSubdirName := HttpCsvToKafka.name
 HttpCsvToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${HttpCsvToKafka.name}" / "docs" / "src" / "main" / "paradox"
 HttpCsvToKafka / paradoxProperties ++= Map(
@@ -69,7 +76,7 @@ HttpCsvToKafka / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val JdbcToElasticsearch = config("jdbc-to-elasticsearch")
 ParadoxPlugin.paradoxSettings(JdbcToElasticsearch)
 ParadoxSitePlugin.paradoxSettings(JdbcToElasticsearch)
-AkkaParadoxPlugin.akkaParadoxSettings(JdbcToElasticsearch)
+PekkoParadoxPlugin.pekkoParadoxSettings(JdbcToElasticsearch)
 JdbcToElasticsearch / siteSubdirName := JdbcToElasticsearch.name
 JdbcToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${JdbcToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
 JdbcToElasticsearch / paradoxProperties ++= Map(
@@ -90,7 +97,7 @@ JdbcToElasticsearch / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val Jms = config("jms")
 ParadoxPlugin.paradoxSettings(Jms)
 ParadoxSitePlugin.paradoxSettings(Jms)
-AkkaParadoxPlugin.akkaParadoxSettings(Jms)
+PekkoParadoxPlugin.pekkoParadoxSettings(Jms)
 Jms / siteSubdirName := Jms.name
 Jms / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${Jms.name}" / "docs" / "src" / "main" / "paradox"
 Jms / paradoxProperties ++= Map(
@@ -117,7 +124,7 @@ Jms / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val KafkaToElasticsearch = config("kafka-to-elasticsearch")
 ParadoxPlugin.paradoxSettings(KafkaToElasticsearch)
 ParadoxSitePlugin.paradoxSettings(KafkaToElasticsearch)
-AkkaParadoxPlugin.akkaParadoxSettings(KafkaToElasticsearch)
+PekkoParadoxPlugin.pekkoParadoxSettings(KafkaToElasticsearch)
 KafkaToElasticsearch / siteSubdirName := KafkaToElasticsearch.name
 KafkaToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${KafkaToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
 KafkaToElasticsearch / paradoxProperties ++= Map(
@@ -143,7 +150,7 @@ KafkaToElasticsearch / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val KafkaToWebsocketClients = config("kafka-to-websocket-clients")
 ParadoxPlugin.paradoxSettings(KafkaToWebsocketClients)
 ParadoxSitePlugin.paradoxSettings(KafkaToWebsocketClients)
-AkkaParadoxPlugin.akkaParadoxSettings(KafkaToWebsocketClients)
+PekkoParadoxPlugin.pekkoParadoxSettings(KafkaToWebsocketClients)
 KafkaToWebsocketClients / siteSubdirName := KafkaToWebsocketClients.name
 KafkaToWebsocketClients / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${KafkaToWebsocketClients.name}" / "docs" / "src" / "main" / "paradox"
 KafkaToWebsocketClients / paradoxProperties ++= Map(
@@ -169,7 +176,7 @@ KafkaToWebsocketClients / paradoxGroups := Map("Language" -> Seq("Java", "Scala"
 val MqttToKafka = config("mqtt-to-kafka")
 ParadoxPlugin.paradoxSettings(MqttToKafka)
 ParadoxSitePlugin.paradoxSettings(MqttToKafka)
-AkkaParadoxPlugin.akkaParadoxSettings(MqttToKafka)
+PekkoParadoxPlugin.pekkoParadoxSettings(MqttToKafka)
 MqttToKafka / siteSubdirName := MqttToKafka.name
 MqttToKafka / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${MqttToKafka.name}" / "docs" / "src" / "main" / "paradox"
 MqttToKafka / paradoxProperties ++= Map(
@@ -196,7 +203,7 @@ MqttToKafka / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val FileToElasticsearch = config("file-to-elasticsearch")
 ParadoxPlugin.paradoxSettings(FileToElasticsearch)
 ParadoxSitePlugin.paradoxSettings(FileToElasticsearch)
-AkkaParadoxPlugin.akkaParadoxSettings(FileToElasticsearch)
+PekkoParadoxPlugin.pekkoParadoxSettings(FileToElasticsearch)
 FileToElasticsearch / siteSubdirName := FileToElasticsearch.name
 FileToElasticsearch / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${FileToElasticsearch.name}" / "docs" / "src" / "main" / "paradox"
 FileToElasticsearch / paradoxProperties ++= Map(
@@ -218,7 +225,7 @@ FileToElasticsearch / paradoxGroups := Map("Language" -> Seq("Java", "Scala"))
 val RotateLogsToFtp = config("rotate-logs-to-ftp")
 ParadoxPlugin.paradoxSettings(RotateLogsToFtp)
 ParadoxSitePlugin.paradoxSettings(RotateLogsToFtp)
-AkkaParadoxPlugin.akkaParadoxSettings(RotateLogsToFtp)
+PekkoParadoxPlugin.pekkoParadoxSettings(RotateLogsToFtp)
 RotateLogsToFtp / siteSubdirName := RotateLogsToFtp.name
 RotateLogsToFtp / paradox / sourceDirectory := baseDirectory.value / ".." / s"pekko-connectors-sample-${RotateLogsToFtp.name}" / "docs" / "src" / "main" / "paradox"
 RotateLogsToFtp / paradoxProperties ++= Map(
