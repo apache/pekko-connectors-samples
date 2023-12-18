@@ -1,7 +1,7 @@
 import sbt.Keys._
 
 name := "pekko-connectors-sample-kafka-to-websocket-clients"
-organization := "com.lightbend.akka"
+organization := "org.apache.pekko"
 version := "1.0.0"
 scalaVersion := Dependencies.scalaVer
 libraryDependencies ++= Dependencies.dependencies

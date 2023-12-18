@@ -3,26 +3,25 @@ import sbt._
 object Dependencies {
   val scalaVer = "2.13.12"
   // #deps
-  val PekkoVersion = "2.6.19"
-  val PekkoHttpVersion = "10.1.12"
-  val PekkoConnectorsKafkaVersion = "3.0.1"
+  val PekkoVersion = "1.0.2"
+  val PekkoConnectorsKafkaVersion = "1.0.0"
+  val PekkoHttpVersion = "1.0.0"
+
   // #deps
   val dependencies = List(
     // #deps
-    "com.typesafe.akka" %% "akka-stream" % PekkoVersion,
-    "com.typesafe.akka" %% "akka-http" % PekkoHttpVersion,
-    "com.typesafe.akka" %% "akka-stream-kafka" % PekkoConnectorsKafkaVersion,
+    "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
+    "org.apache.pekko" %% "pekko-connectors-kafka" % PekkoConnectorsKafkaVersion,
 
     // Logging
-    "com.typesafe.akka" %% "akka-slf4j" % PekkoVersion,
+    "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.2.13",
     // #deps
 
-    "org.testcontainers" % "kafka" % "1.14.3",
-
-    "com.typesafe.akka" %% "akka-stream-testkit" % PekkoVersion % Test,
+    "org.testcontainers" % "kafka" % "1.17.6",
+    "org.apache.pekko" %% "pekko-stream-testkit" % PekkoVersion,
     "com.google.guava" % "guava" % "28.2-jre" % Test,
-    "junit" % "junit" % "4.13" % Test,
-
+    "junit" % "junit" % "4.13.2" % Test
   )
 }
