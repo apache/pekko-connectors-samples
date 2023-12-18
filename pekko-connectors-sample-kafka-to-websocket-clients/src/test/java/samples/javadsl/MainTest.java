@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.junit.Assert.assertEquals;
+
 public class MainTest {
 
   static ActorSystem system;
@@ -54,7 +56,7 @@ public class MainTest {
         .runWith(Sink.seq(), system);
     final List<String> result = future.toCompletableFuture().get(3, TimeUnit.SECONDS);
 
-    assert (result.size() == messages.size());
+    assertEquals(messages.size(), result.size());
 
     final Pattern pattern = Pattern.compile("index: \\d+, message: (.*)");
     Streams.zip(
@@ -66,8 +68,8 @@ public class MainTest {
           String resultMessage = pair.second();
           Matcher matcher = pattern.matcher(resultMessage);
           assertTrue(matcher.find());
-          assert (matcher.groupCount() == 1);
-          assert (matcher.group(1).equals(message));
+          assertEquals(1, matcher.groupCount());
+          assertEquals(message, matcher.group(1));
         });
   }
 }
