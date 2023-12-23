@@ -18,9 +18,6 @@ isSnapshot := true
 
 pekkoParadoxGithub := Some("https://github.com/apache/incubator-pekko-site")
 
-// disabled display versioning, in other words: hidden unnecessary version.
-paradoxProperties += ("disabled.versioning.display" -> "true")
-
 val FtpToFile = config("ftp-to-file")
 ParadoxPlugin.paradoxSettings(FtpToFile)
 ParadoxSitePlugin.paradoxSettings(FtpToFile)
@@ -261,4 +258,6 @@ paradoxProperties ++= Map(
   "extref.rotate-logs-to-ftp.base_url" -> s"${(RotateLogsToFtp / siteSubdirName).value}/",
   "extref.pekko.base_url" -> "https://pekko.apache.org/docs/pekko/current/",
   "extref.pekko-connectors.base_url" -> "https://pekko.apache.org/docs/pekko-connectors/current/",
+  // disabled display versioning, in other words: hidden unnecessary version.
+  "disabled.versioning.display" -> "true"
 )
