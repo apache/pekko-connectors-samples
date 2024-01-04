@@ -16,7 +16,7 @@ version := {
 }
 isSnapshot := true
 
-pekkoParadoxGithub := Some("https://github.com/apache/incubator-pekko-site")
+pekkoParadoxGithub := Some("https://github.com/apache/incubator-pekko-connectors-samples")
 
 val FtpToFile = config("ftp-to-file")
 ParadoxPlugin.paradoxSettings(FtpToFile)
