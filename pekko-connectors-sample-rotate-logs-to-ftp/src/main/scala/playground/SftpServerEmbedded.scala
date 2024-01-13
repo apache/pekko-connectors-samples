@@ -5,7 +5,7 @@
 package playground
 
 import java.io.File
-import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
 import java.nio.file.{ FileSystem, Files, Path, Paths }
 import java.security.PublicKey
 import java.util
@@ -26,7 +26,7 @@ object SftpServerEmbedded {
 
   val resourcePath = "./src/main/resources"
 
-  val clientPrivateKeyPassphrase: Array[Byte] = "secret".getBytes(Charset.forName("UTF-8"))
+  val clientPrivateKeyPassphrase: Array[Byte] = "secret".getBytes(StandardCharsets.UTF_8)
   var clientPrivateKeyFile: String = new File(s"$resourcePath/id_rsa").getAbsolutePath
   val keyPairProviderFile: String = new File(s"$resourcePath/hostkey.pem").getAbsolutePath
 
