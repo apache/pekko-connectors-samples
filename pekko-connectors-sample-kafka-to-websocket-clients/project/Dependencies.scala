@@ -5,7 +5,7 @@ object Dependencies {
   // #deps
   val PekkoVersion = "1.0.2"
   val PekkoConnectorsKafkaVersion = "1.0.0"
-  val PekkoHttpVersion = "1.0.0"
+  val PekkoHttpVersion = "1.0.1"
 
   // #deps
   val dependencies = List(

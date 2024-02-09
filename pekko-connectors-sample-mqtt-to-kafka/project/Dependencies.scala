@@ -4,7 +4,7 @@ object Dependencies {
   val scalaVer = "2.13.12"
   // #deps
   val PekkoVersion = "1.0.2"
-  val PekkoConnectorsVersion = "1.0.1"
+  val PekkoConnectorsVersion = "1.0.2"
   val PekkoConnectorsKafkaVersion = "1.0.0"
   val JacksonDatabindVersion = "2.14.3"
   // #deps
