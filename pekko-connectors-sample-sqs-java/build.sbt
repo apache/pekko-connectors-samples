@@ -4,7 +4,7 @@ name := "pekko-connectors-samples-sqs-java"
 ThisBuild / scalaVersion := "2.13.12"
 
 val PekkoVersion = "1.0.2"
-val PekkoConnectorsVersion = "1.0.1"
+val PekkoConnectorsVersion = "1.0.2"
 val jacksonVersion = "2.14.3"
 
 libraryDependencies ++= Seq(

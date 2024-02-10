@@ -4,8 +4,8 @@ name := "pekko-connectors-samples-mqtt-http-to-s3-java"
 ThisBuild / scalaVersion := "2.13.12"
 
 val PekkoVersion = "1.0.2"
-val PekkoHttpVersion = "1.0.0"
-val PekkoConnectorsVersion = "1.0.1"
+val PekkoHttpVersion = "1.0.1"
+val PekkoConnectorsVersion = "1.0.2"
 
 libraryDependencies ++= Seq(
   "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
