@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.12"
+  val scalaVer = "2.13.13"
   // #dependencies
   val ScalaTestVersion = "3.2.18"
   val PekkoVersion = "1.0.2"

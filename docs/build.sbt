@@ -1,7 +1,5 @@
 
-ThisBuild / scalaVersion := "2.13.12"
-
-resolvers += Resolver.ApacheMavenSnapshotsRepo
+ThisBuild / scalaVersion := "2.13.13"
 
 enablePlugins(ParadoxPlugin, PekkoParadoxPlugin, ParadoxSitePlugin)
 
