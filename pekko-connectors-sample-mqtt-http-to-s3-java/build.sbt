@@ -1,7 +1,7 @@
 organization := "org.apache.pekko"
 name := "pekko-connectors-samples-mqtt-http-to-s3-java"
 
-ThisBuild / scalaVersion := "2.13.12"
+ThisBuild / scalaVersion := "2.13.13"
 
 val PekkoVersion = "1.0.2"
 val PekkoHttpVersion = "1.0.1"
