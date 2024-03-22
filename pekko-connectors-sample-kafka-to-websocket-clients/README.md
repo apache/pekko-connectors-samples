@@ -4,9 +4,9 @@
 
 Clients may connect via websockets and will receive data read from a Kafka topic. The websockets are implemented in @extref[Pekko HTTP](pekko-http:) and [Pekko-Connectors Kafka](pekko-connectors-kafka:) subscribes to the Kafka topic.
 
-Browse the sources at @link:[Github](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-kafka-to-websocket-clients) { open=new }.
+Browse the sources at @link:[Github](https://github.com/apache/pekko-connectors-samples/tree/main/pekko-connectors-sample-kafka-to-websocket-clients) { open=new }.
 
-To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/incubator-pekko-connectors-samples) { open=new } and find it in the `pekko-connectors-sample-kafka-to-websocket-clients` directory.
+To try out this project clone @link:[the Pekko-Connectors Samples repository](https://github.com/apache/pekko-connectors-samples) { open=new } and find it in the `pekko-connectors-sample-kafka-to-websocket-clients` directory.
 
 ## Running
 
