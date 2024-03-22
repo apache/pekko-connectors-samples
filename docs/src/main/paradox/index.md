@@ -27,9 +27,9 @@ Read a stream of data and store it zipped in rotating files on an SFTP server.
 ### @extref:[Subscribe to MQTT and produce to Kafka](mqtt-to-kafka:index.html)
 Subscribe to an MQTT topic with @extref[Pekko Connectors MQTT](pekko-connectors:/mqtt.html), group a few values and publish the aggregate to a Kafka topic with @extref[Pekko Connectors Kafka](pekko-connectors-kafka:).
 
-### @link:[Amazon SQS](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-sqs-java) { open=new }
+### @link:[Amazon SQS](https://github.com/apache/pekko-connectors-samples/tree/main/pekko-connectors-sample-sqs-java) { open=new }
 Listen to an Amazon SQS topic, enrich the message via calling an actor, publish a new message to SQS and acknowledge/delete the original message. (Java only)
 
-### @link:[MQTT topic triggers file download which is uploaded to AWS S3](https://github.com/apache/incubator-pekko-connectors-samples/tree/main/pekko-connectors-sample-mqtt-http-to-s3-java) { open=new }
+### @link:[MQTT topic triggers file download which is uploaded to AWS S3](https://github.com/apache/pekko-connectors-samples/tree/main/pekko-connectors-sample-mqtt-http-to-s3-java) { open=new }
 
 Listen to a MQTT topic, download from the URL passed in the received message, and upload the data from that address to AWS S3. (Java only)

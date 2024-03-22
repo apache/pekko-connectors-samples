@@ -5,8 +5,8 @@ enablePlugins(ParadoxPlugin, PekkoParadoxPlugin, ParadoxSitePlugin)
 
 name := "Pekko Connectors Samples"
 previewFixedPort := Some(8085)
-scmInfo := Some(ScmInfo(url("https://github.com/apache/incubator-pekko-connectors-samples"), "git@github.com:apache/incubator-pekko-connectors-samples.git"))
-homepage := Some(url("https://github.com/apache/incubator-pekko-connectors-samples"))
+scmInfo := Some(ScmInfo(url("https://github.com/apache/pekko-connectors-samples"), "git@github.com:apache/pekko-connectors-samples.git"))
+homepage := Some(url("https://github.com/apache/pekko-connectors-samples"))
 description := "Example solutions for Enterprise Integrations using Pekko Connectors and Reactive Streams."
 version := {
   val time = java.time.LocalDateTime.now().withSecond(0).withNano(0)
@@ -14,7 +14,7 @@ version := {
 }
 isSnapshot := true
 
-pekkoParadoxGithub := Some("https://github.com/apache/incubator-pekko-connectors-samples")
+pekkoParadoxGithub := Some("https://github.com/apache/pekko-connectors-samples")
 
 val FtpToFile = config("ftp-to-file")
 ParadoxPlugin.paradoxSettings(FtpToFile)
