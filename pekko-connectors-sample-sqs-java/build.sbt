@@ -1,9 +1,9 @@
 organization := "org.apache.pekko"
 name := "pekko-connectors-samples-sqs-java"
 
-ThisBuild / scalaVersion := "2.13.13"
+ThisBuild / scalaVersion := "2.13.14"
 
-val PekkoVersion = "1.0.2"
+val PekkoVersion = "1.0.3"
 val PekkoConnectorsVersion = "1.0.2"
 val jacksonVersion = "2.14.3"
 
