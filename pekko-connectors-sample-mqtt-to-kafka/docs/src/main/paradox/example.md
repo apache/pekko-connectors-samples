@@ -4,7 +4,7 @@ This example uses an MQTT broker which may be started via Docker compose and a K
 
 Starting the MQTT broker
 ```$bash
-> docker-compose up -d
+> docker compose up -d
 ```
 
 docker-compose.yml
