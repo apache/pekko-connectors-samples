@@ -3,6 +3,8 @@ ThisBuild / scalaVersion := "2.13.14"
 
 enablePlugins(ParadoxPlugin, PekkoParadoxPlugin, ParadoxSitePlugin)
 
+Global / pekkoParadoxIncubatorNotice := None
+
 name := "Pekko Connectors Samples"
 previewFixedPort := Some(8085)
 scmInfo := Some(ScmInfo(url("https://github.com/apache/pekko-connectors-samples"), "git@github.com:apache/pekko-connectors-samples.git"))
