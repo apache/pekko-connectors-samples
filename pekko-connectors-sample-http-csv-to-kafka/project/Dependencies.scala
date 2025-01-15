@@ -7,7 +7,7 @@ object Dependencies {
   val PekkoVersion = "1.1.3"
   val PekkoHttpVersion = "1.1.0"
   val PekkoConnectorsVersion = "1.1.0"
-  val PekkoConnectorsKafkaVersion = "1.0.0"
+  val PekkoConnectorsKafkaVersion = "1.1.0"
 
   val dependencies = List(
     "org.apache.pekko" %% "pekko-connectors-csv" % PekkoConnectorsVersion,
