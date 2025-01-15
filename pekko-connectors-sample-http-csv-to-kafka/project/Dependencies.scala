@@ -5,7 +5,7 @@ object Dependencies {
   // #dependencies
   val ScalaTestVersion = "3.2.19"
   val PekkoVersion = "1.1.3"
-  val PekkoHttpVersion = "1.0.1"
+  val PekkoHttpVersion = "1.1.0"
   val PekkoConnectorsVersion = "1.1.0"
   val PekkoConnectorsKafkaVersion = "1.0.0"
 
