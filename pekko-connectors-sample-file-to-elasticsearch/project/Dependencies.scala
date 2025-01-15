@@ -14,7 +14,7 @@ object Dependencies {
     "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
     "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,
     "org.apache.pekko" %% "pekko-actor" % PekkoVersion,
-    "org.scala-lang.modules" %% "scala-java8-compat" % "1.1.0",
+    "org.scala-lang.modules" %% "scala-java8-compat" % "1.0.2",
     // for JSON in Scala
     "io.spray" %% "spray-json" % "1.3.6",
     // for JSON in Java
