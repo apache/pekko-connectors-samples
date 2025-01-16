@@ -1,10 +1,10 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.14"
+  val scalaVer = "2.13.16"
   // #deps
-  val PekkoVersion = "1.0.3"
-  val PekkoConnectorsVersion = "1.0.2"
+  val PekkoVersion = "1.1.3"
+  val PekkoConnectorsVersion = "1.1.0"
 
   // #deps
 
@@ -21,6 +21,6 @@ object Dependencies {
     "com.google.jimfs" % "jimfs" % "1.1", // ApacheV2
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.13"
+    "ch.qos.logback" % "logback-classic" % "1.3.15"
   )
 }

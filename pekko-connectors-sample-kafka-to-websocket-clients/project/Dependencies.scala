@@ -1,11 +1,11 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.14"
+  val scalaVer = "2.13.16"
   // #deps
-  val PekkoVersion = "1.0.3"
-  val PekkoConnectorsKafkaVersion = "1.0.0"
-  val PekkoHttpVersion = "1.0.1"
+  val PekkoVersion = "1.1.3"
+  val PekkoConnectorsKafkaVersion = "1.1.0"
+  val PekkoHttpVersion = "1.1.0"
 
   // #deps
   val dependencies = List(
@@ -16,7 +16,7 @@ object Dependencies {
 
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.13",
+    "ch.qos.logback" % "logback-classic" % "1.3.15",
     // #deps
 
     "org.testcontainers" % "kafka" % "1.17.6",

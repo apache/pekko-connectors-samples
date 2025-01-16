@@ -1,12 +1,12 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.14"
+  val scalaVer = "2.13.16"
   // #deps
-  val PekkoVersion = "1.0.3"
-  val PekkoConnectorsVersion = "1.0.2"
-  val PekkoConnectorsKafkaVersion = "1.0.0"
-  val JacksonDatabindVersion = "2.14.3"
+  val PekkoVersion = "1.1.3"
+  val PekkoConnectorsVersion = "1.1.0"
+  val PekkoConnectorsKafkaVersion = "1.1.0"
+  val JacksonDatabindVersion = "2.17.3"
   // #deps
 
   val dependencies = List(
@@ -23,7 +23,7 @@ object Dependencies {
     "com.fasterxml.jackson.module" %% "jackson-module-scala" % JacksonDatabindVersion,
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
-    "ch.qos.logback" % "logback-classic" % "1.2.13",
+    "ch.qos.logback" % "logback-classic" % "1.3.15",
     "org.testcontainers" % "kafka" % "1.17.6"
     // #deps
   )

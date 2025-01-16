@@ -1,5 +1,5 @@
 
-ThisBuild / scalaVersion := "2.13.14"
+ThisBuild / scalaVersion := "2.13.16"
 
 enablePlugins(ParadoxPlugin, PekkoParadoxPlugin, ParadoxSitePlugin)
 
