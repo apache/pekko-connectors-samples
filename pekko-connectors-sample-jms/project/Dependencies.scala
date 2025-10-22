@@ -1,11 +1,11 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.16"
+  val scalaVer = "2.13.17"
   // #deps
-  val PekkoVersion = "1.1.3"
-  val PekkoHttpVersion = "1.1.0"
-  val PekkoConnectorsVersion = "1.1.0"
+  val PekkoVersion = "1.2.1"
+  val PekkoHttpVersion = "1.2.0"
+  val PekkoConnectorsVersion = "1.2.0"
 
   // #deps
 

@@ -1,12 +1,12 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.16"
+  val scalaVer = "2.13.17"
   // #dependencies
   val ScalaTestVersion = "3.2.19"
-  val PekkoVersion = "1.1.3"
-  val PekkoHttpVersion = "1.1.0"
-  val PekkoConnectorsVersion = "1.1.0"
+  val PekkoVersion = "1.2.1"
+  val PekkoHttpVersion = "1.2.0"
+  val PekkoConnectorsVersion = "1.2.0"
   val PekkoConnectorsKafkaVersion = "1.1.0"
 
   val dependencies = List(
@@ -18,8 +18,8 @@ object Dependencies {
     // Used from Scala
     "org.apache.pekko" %% "pekko-http-spray-json" % PekkoHttpVersion,
     // Used from Java
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.17.3",
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.17.3",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.20.0",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.20.0",
 
     "org.testcontainers" % "kafka" % "1.17.3",
     

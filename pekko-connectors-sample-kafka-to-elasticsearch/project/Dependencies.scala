@@ -1,10 +1,10 @@
 import sbt._
 
 object Dependencies {
-  val scalaVer = "2.13.16"
+  val scalaVer = "2.13.17"
   // #deps
-  val PekkoVersion = "1.1.3"
-  val PekkoConnectorsVersion = "1.1.0"
+  val PekkoVersion = "1.2.1"
+  val PekkoConnectorsVersion = "1.2.0"
   val PekkoConnectorsKafkaVersion = "1.1.0"
 
   // #deps
@@ -19,8 +19,8 @@ object Dependencies {
     // for JSON in Scala
     "io.spray" %% "spray-json" % "1.3.6",
     // for JSON in Java
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.17.3",
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.17.3",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % "2.20.0",
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.20.0",
     // Logging
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.3.15",
