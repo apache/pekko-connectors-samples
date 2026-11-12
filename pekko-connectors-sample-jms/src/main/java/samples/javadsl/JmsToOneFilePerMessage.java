@@ -41,7 +41,8 @@ public class JmsToOneFilePerMessage {
     me.run();
   }
 
-  private final ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "JmsToOneFilePerMessage");
+  private final ActorSystem<Void> system =
+      ActorSystem.create(Behaviors.empty(), "JmsToOneFilePerMessage");
   private final ExecutionContext ec = system.executionContext();
 
   private void enqueue(ConnectionFactory connectionFactory, String... msgs) {
@@ -75,8 +76,7 @@ public class JmsToOneFilePerMessage {
                   Long number = in.second();
                   return Source // (4)
                       .single(byteString)
-                      .runWith(
-                          FileIO.toPath(Paths.get("target/out-" + number + ".txt")), system);
+                      .runWith(FileIO.toPath(Paths.get("target/out-" + number + ".txt")), system);
                 }) // : IoResult
             .toMat(Sink.ignore(), Keep.both())
             .run(system);
@@ -90,6 +90,10 @@ public class JmsToOneFilePerMessage {
 
     runningSource.shutdown();
     streamCompletion.thenAccept(res -> system.terminate());
-    system.getWhenTerminated().thenCompose(t -> activeMqBroker.stopCs(ec)).toCompletableFuture().get(5, TimeUnit.SECONDS);
+    system
+        .getWhenTerminated()
+        .thenCompose(t -> activeMqBroker.stopCs(ec))
+        .toCompletableFuture()
+        .get(5, TimeUnit.SECONDS);
   }
 }

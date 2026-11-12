@@ -1,4 +1,3 @@
-
 object CompileOptions {
   val compileOptions = Seq(
     "-unchecked",

@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
+
 // #imports
 
 public class Main {
@@ -93,7 +94,9 @@ public class Main {
                           });
                   return NotUsed.notUsed();
                 })
-            .toMat(Committer.sinkWithOffsetContext(CommitterSettings.create(toClassic(actorSystem))), Keep.both()) // (9)
+            .toMat(
+                Committer.sinkWithOffsetContext(CommitterSettings.create(toClassic(actorSystem))),
+                Keep.both()) // (9)
             .mapMaterializedValue(Consumer::createDrainingControl) // (10)
             .run(actorSystem);
     // #flow
@@ -109,7 +112,8 @@ public class Main {
 
     Consumer.DrainingControl<Done> control = readFromKafkaToEleasticsearch();
     TimeUnit.SECONDS.sleep(5);
-    CompletionStage<Done> copyingFinished = control.drainAndShutdown(actorSystem.executionContext());
+    CompletionStage<Done> copyingFinished =
+        control.drainAndShutdown(actorSystem.executionContext());
     copyingFinished.toCompletableFuture().get(10, TimeUnit.SECONDS);
     CompletionStage<List<Movie>> reading = helper.readFromElasticsearch(indexName, actorSystem);
 
@@ -126,8 +130,9 @@ public class Main {
     helper.startContainers();
     Main main = new Main(helper);
     CompletionStage<Done> run = main.run();
-    run.thenAccept(res -> {
-      helper.stopContainers();
-    });
+    run.thenAccept(
+        res -> {
+          helper.stopContainers();
+        });
   }
 }

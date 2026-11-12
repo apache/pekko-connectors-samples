@@ -80,6 +80,10 @@ public class JmsToFile {
 
     runningSource.shutdown();
     streamCompletion.thenAccept(res -> system.terminate());
-    system.getWhenTerminated().thenCompose(t -> activeMqBroker.stopCs(ec)).toCompletableFuture().get(5, TimeUnit.SECONDS);
+    system
+        .getWhenTerminated()
+        .thenCompose(t -> activeMqBroker.stopCs(ec))
+        .toCompletableFuture()
+        .get(5, TimeUnit.SECONDS);
   }
 }

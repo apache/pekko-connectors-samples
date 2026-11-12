@@ -1,4 +1,3 @@
-
 lazy val pekko_connectors_sample_master = project
   .in(file("."))
   .aggregate(
@@ -11,7 +10,7 @@ lazy val pekko_connectors_sample_master = project
     step_006_coordinated_shutdown,
     step_007_produce_to_kafka,
     step_008_scheduled_download
- ).settings(CommonSettings.commonSettings: _*)
+  ).settings(CommonSettings.commonSettings: _*)
 
 lazy val common = project.settings(CommonSettings.commonSettings: _*)
 
@@ -46,3 +45,9 @@ lazy val step_007_produce_to_kafka = project
 lazy val step_008_scheduled_download = project
   .settings(CommonSettings.commonSettings: _*)
   .dependsOn(common % "test->test;compile->compile")
+
+ThisBuild / javafmtFormatterCompatibleJavaVersion := 17
+ThisBuild / javafmtSortImports := false
+
+addCommandAlias("applyCodeStyle", "scalafmtAll; scalafmtSbt; javafmtAll")
+addCommandAlias("checkCodeStyle", "scalafmtCheckAll; scalafmtSbtCheck; javafmtCheckAll")

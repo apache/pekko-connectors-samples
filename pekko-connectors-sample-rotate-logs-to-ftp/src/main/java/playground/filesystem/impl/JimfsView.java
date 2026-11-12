@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * File system view based on the in-memory jimfs file system. The root in this class is the user virtual root (/).
+ * File system view based on the in-memory jimfs file system. The root in this class is the user
+ * virtual root (/).
  */
 public class JimfsView implements FileSystemView {
 
@@ -41,8 +42,7 @@ public class JimfsView implements FileSystemView {
 
   private boolean caseInsensitive = false;
 
-  public JimfsView(FileSystem fileSystem, User user, boolean caseInsensitive)
-      throws FtpException {
+  public JimfsView(FileSystem fileSystem, User user, boolean caseInsensitive) throws FtpException {
     if (fileSystem == null) {
       throw new IllegalArgumentException("filesystem can not be null");
     }
@@ -64,26 +64,22 @@ public class JimfsView implements FileSystemView {
       rootDir += '/';
     }
 
-    LOG.debug("Jimfs filesystem view created by user \"{}\" with root \"{}\"", user.getName(), rootDir);
+    LOG.debug(
+        "Jimfs filesystem view created by user \"{}\" with root \"{}\"", user.getName(), rootDir);
 
     this.rootDir = rootDir;
 
     this.user = user;
 
     currDir = "/";
-
   }
 
-  /**
-   * Get the user home directory. It would be the file system root for the specific user.
-   */
+  /** Get the user home directory. It would be the file system root for the specific user. */
   public FtpFile getHomeDirectory() throws FtpException {
     return new JimfsFtpFile("/", fileSystem.getPath(rootDir), user);
   }
 
-  /**
-   * Get the current directory.
-   */
+  /** Get the current directory. */
   public FtpFile getWorkingDirectory() throws FtpException {
     FtpFile fileObj;
     if (currDir.equals("/")) {
@@ -95,9 +91,7 @@ public class JimfsView implements FileSystemView {
     return fileObj;
   }
 
-  /**
-   * Get the file object.
-   */
+  /** Get the file object. */
   public FtpFile getFile(String file) {
     String physicalName = getPhysicalName(file);
     Path filePath = fileSystem.getPath(physicalName);
@@ -107,9 +101,7 @@ public class JimfsView implements FileSystemView {
     return new JimfsFtpFile(userFileName, filePath, user);
   }
 
-  /**
-   * Change directory.
-   */
+  /** Change directory. */
   public boolean changeWorkingDirectory(String dir) throws FtpException {
 
     // not a directory - return false
@@ -129,16 +121,12 @@ public class JimfsView implements FileSystemView {
     return true;
   }
 
-  /**
-   * Is the file content random accessible?
-   */
+  /** Is the file content random accessible? */
   public boolean isRandomAccessible() {
     return true;
   }
 
-  /**
-   * Dispose the file system.
-   */
+  /** Dispose the file system. */
   public void dispose() {
     // Nothing to do
   }
@@ -239,8 +227,7 @@ public class JimfsView implements FileSystemView {
     }
 
     // final check
-    if (!resArg.regionMatches(0, normalizedRootDir, 0, normalizedRootDir
-        .length())) {
+    if (!resArg.regionMatches(0, normalizedRootDir, 0, normalizedRootDir.length())) {
       resArg = normalizedRootDir;
     }
 

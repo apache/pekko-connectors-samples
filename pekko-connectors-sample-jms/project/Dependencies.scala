@@ -23,6 +23,6 @@ object Dependencies {
     "ch.qos.logback" % "logback-classic" % "1.3.15",
     // #deps
     // http://activemq.apache.org/download.html
-    "org.apache.activemq" % "activemq-all" % "5.16.7" exclude("log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12") // ApacheV2
+    ("org.apache.activemq" % "activemq-all" % "5.16.7").exclude("log4j", "log4j").exclude("org.slf4j", "slf4j-log4j12") // ApacheV2
   )
 }

@@ -24,23 +24,24 @@ object Main extends App {
 
   import actorSystem.executionContext
 
-  val httpRequest = HttpRequest(uri = "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
-    .withHeaders(Accept(MediaRanges.`text/*`))
+  val httpRequest =
+    HttpRequest(uri = "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
+      .withHeaders(Accept(MediaRanges.`text/*`))
 
   def extractEntityData(response: HttpResponse): Source[ByteString, _] =
     response match {
       case HttpResponse(OK, _, entity, _) => entity.dataBytes
-      case notOkResponse =>
+      case notOkResponse                  =>
         Source.failed(new RuntimeException(s"illegal response $notOkResponse"))
     }
 
   val future: Future[Done] =
     Source
-      .single(httpRequest) //: HttpRequest
-      .mapAsync(1)(Http()(actorSystem.toClassic).singleRequest(_)) //: HttpResponse
-      .flatMapConcat(extractEntityData) //: ByteString
-      .via(CsvParsing.lineScanner()) //: List[ByteString]
-      .via(CsvToMap.toMapAsStrings()) //: Map[String, ByteString]
+      .single(httpRequest) // : HttpRequest
+      .mapAsync(1)(Http()(actorSystem.toClassic).singleRequest(_)) // : HttpResponse
+      .flatMapConcat(extractEntityData) // : ByteString
+      .via(CsvParsing.lineScanner()) // : List[ByteString]
+      .via(CsvToMap.toMapAsStrings()) // : Map[String, ByteString]
       .runWith(Sink.foreach(println))
 
   future.onComplete { _ =>

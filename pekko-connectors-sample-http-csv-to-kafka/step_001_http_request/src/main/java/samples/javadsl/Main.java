@@ -18,30 +18,29 @@ import java.util.concurrent.CompletionStage;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        Main me = new Main();
-        me.run();
-    }
+  public static void main(String[] args) throws Exception {
+    Main me = new Main();
+    me.run();
+  }
 
-    final HttpRequest httpRequest =
-            HttpRequest.create(
-                    "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
-                    .withHeaders(Collections.singletonList(Accept.create(MediaRanges.ALL_TEXT)));
+  final HttpRequest httpRequest =
+      HttpRequest.create(
+              "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
+          .withHeaders(Collections.singletonList(Accept.create(MediaRanges.ALL_TEXT)));
 
-    private void run() throws Exception {
-        ActorSystem system = ActorSystem.create();
-        Http http = Http.get(system);
+  private void run() throws Exception {
+    ActorSystem system = ActorSystem.create();
+    Http http = Http.get(system);
 
-        CompletionStage<Done> completion =
-                Source.single(httpRequest) // : HttpRequest
-                        .mapAsync(1, http::singleRequest) // : HttpResponse
-                        .runWith(Sink.foreach(response -> System.out.println(response)), system);
+    CompletionStage<Done> completion =
+        Source.single(httpRequest) // : HttpRequest
+            .mapAsync(1, http::singleRequest) // : HttpResponse
+            .runWith(Sink.foreach(response -> System.out.println(response)), system);
 
-        completion
-                .thenAccept(
-                        done -> {
-                            System.out.println("Done!");
-                            system.terminate();
-                        });
-    }
+    completion.thenAccept(
+        done -> {
+          System.out.println("Done!");
+          system.terminate();
+        });
+  }
 }

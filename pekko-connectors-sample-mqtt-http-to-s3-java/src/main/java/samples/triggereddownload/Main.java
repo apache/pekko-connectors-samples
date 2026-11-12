@@ -53,34 +53,30 @@ public class Main {
 
   void run() throws Exception {
     final MqttConnectionSettings mqttConnectionSettings =
-        MqttConnectionSettings
-            .create(
-                mqttBroker,
-                "upload-control",
-                new MemoryPersistence()
-            );
+        MqttConnectionSettings.create(mqttBroker, "upload-control", new MemoryPersistence());
 
-    MqttSubscriptions mqttSubscriptions =
-        MqttSubscriptions.create(topic, MqttQoS.atLeastOnce());
+    MqttSubscriptions mqttSubscriptions = MqttSubscriptions.create(topic, MqttQoS.atLeastOnce());
 
-    MqttSource
-        .atMostOnce(mqttConnectionSettings, mqttSubscriptions, 8)
+    MqttSource.atMostOnce(mqttConnectionSettings, mqttSubscriptions, 8)
         .map(m -> m.payload().utf8String())
         .<DownloadCommand>map(downloadCommandReader::readValue)
-        .mapAsync(4, info -> {
+        .mapAsync(
+            4,
+            info -> {
               String s3BucketKey = createS3BucketKey(info);
               return Source.single(info.url)
                   .map(HttpRequest::GET)
                   .mapAsync(1, http::singleRequest)
                   .flatMapConcat(httpResponse -> httpResponse.entity().getDataBytes())
-                  .runWith(S3.multipartUpload(s3Bucket, s3BucketKey, ContentTypes.TEXT_HTML_UTF8), system);
-            }
-        )
+                  .runWith(
+                      S3.multipartUpload(s3Bucket, s3BucketKey, ContentTypes.TEXT_HTML_UTF8),
+                      system);
+            })
         .runForeach(System.out::println, system)
-        .exceptionally(e -> {
-          e.printStackTrace();
-          return Done.done();
-        });
+        .exceptionally(
+            e -> {
+              e.printStackTrace();
+              return Done.done();
+            });
   }
-
 }

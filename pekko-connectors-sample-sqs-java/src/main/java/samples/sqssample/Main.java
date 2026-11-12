@@ -2,7 +2,6 @@ package samples.sqssample;
 
 import org.apache.pekko.Done;
 import org.apache.pekko.NotUsed;
-import org.apache.pekko.actor.typed.ActorRef;
 import org.apache.pekko.actor.typed.ActorSystem;
 import org.apache.pekko.actor.typed.javadsl.AskPattern;
 import org.apache.pekko.stream.connectors.awsspi.PekkoHttpClient;
@@ -24,91 +23,100 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 import software.amazon.awssdk.services.sqs.model.Message;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
-import software.amazon.awssdk.services.sqs.model.SendMessageResponse;
 
 import java.io.IOException;
 import java.net.URI;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 
-import static org.apache.pekko.pattern.Patterns.ask;
 
 public class Main {
 
-    final static ObjectMapper mapper = new ObjectMapper();
-    final static ObjectReader fromSqsReader = mapper.readerFor(MessageFromSqs.class);
-    final static ObjectWriter enrichedMessageWriter = mapper.writerFor(EnrichedMessage.class);
-    final static String sourceQueueUrl = "http://localhost:9324/queue/reading-from-this";
-    final static String publishUrl = "http://localhost:9324/queue/publishing-to-this";
+  static final ObjectMapper mapper = new ObjectMapper();
+  static final ObjectReader fromSqsReader = mapper.readerFor(MessageFromSqs.class);
+  static final ObjectWriter enrichedMessageWriter = mapper.writerFor(EnrichedMessage.class);
+  static final String sourceQueueUrl = "http://localhost:9324/queue/reading-from-this";
+  static final String publishUrl = "http://localhost:9324/queue/publishing-to-this";
 
-    final Logger log = LoggerFactory.getLogger(Main.class);
-    final ActorSystem<EnrichActor.Enrich> system;
+  final Logger log = LoggerFactory.getLogger(Main.class);
+  final ActorSystem<EnrichActor.Enrich> system;
 
-    public static void main(String[] args) throws Exception {
-        Main me = new Main();
-        me.run();
-    }
+  public static void main(String[] args) throws Exception {
+    Main me = new Main();
+    me.run();
+  }
 
-    public Main() {
-        system = ActorSystem.create(EnrichActor.create(), "SqsSample");
-    }
+  public Main() {
+    system = ActorSystem.create(EnrichActor.create(), "SqsSample");
+  }
 
-    void run() throws Exception {
-        // create SQS client
-        String sqsEndpoint = "http://localhost:9324";
-        SqsAsyncClient sqsClient =
-                SqsAsyncClient.builder()
-                        .credentialsProvider(
-                                StaticCredentialsProvider.create(AwsBasicCredentials.create("x", "x")))
-                        .endpointOverride(URI.create(sqsEndpoint))
-                        .region(Region.EU_CENTRAL_1)
-                        .httpClient(PekkoHttpClient.builder().withActorSystem(system.classicSystem()).build())
-                        .build();
-        system.getWhenTerminated().thenAccept(notUsed -> sqsClient.close());
+  void run() throws Exception {
+    // create SQS client
+    String sqsEndpoint = "http://localhost:9324";
+    SqsAsyncClient sqsClient =
+        SqsAsyncClient.builder()
+            .credentialsProvider(
+                StaticCredentialsProvider.create(AwsBasicCredentials.create("x", "x")))
+            .endpointOverride(URI.create(sqsEndpoint))
+            .region(Region.EU_CENTRAL_1)
+            .httpClient(PekkoHttpClient.builder().withActorSystem(system.classicSystem()).build())
+            .build();
+    system.getWhenTerminated().thenAccept(notUsed -> sqsClient.close());
 
-        // configure SQS
-        SqsSourceSettings settings = SqsSourceSettings.create().withCloseOnEmptyReceive(true);
-        SqsAckSettings ackSettings = SqsAckSettings.create();
+    // configure SQS
+    SqsSourceSettings settings = SqsSourceSettings.create().withCloseOnEmptyReceive(true);
+    SqsAckSettings ackSettings = SqsAckSettings.create();
 
-        // create running stream
-        CompletionStage<Done> streamCompletion = SqsSource.create(sourceQueueUrl, settings, sqsClient)
-                .log("read from SQS")
-                .mapAsync(8, (Message msg) -> {
-                    return enrichAndPublish(sqsClient, msg)
-                            // upon completion ignore the result and pass on the original message
-                            .thenApply(result -> msg);
+    // create running stream
+    CompletionStage<Done> streamCompletion =
+        SqsSource.create(sourceQueueUrl, settings, sqsClient)
+            .log("read from SQS")
+            .mapAsync(
+                8,
+                (Message msg) -> {
+                  return enrichAndPublish(sqsClient, msg)
+                      // upon completion ignore the result and pass on the original message
+                      .thenApply(result -> msg);
                 })
-                .map(msg -> MessageAction.delete(msg))
-                .runWith(
-                        SqsAckSink.create(sourceQueueUrl, ackSettings, sqsClient),
-                        system
-                );
+            .map(msg -> MessageAction.delete(msg))
+            .runWith(SqsAckSink.create(sourceQueueUrl, ackSettings, sqsClient), system);
 
-        // terminate the actor system when the stream completes (see withCloseOnEmptyReceive)
-        streamCompletion.thenAccept(done -> system.terminate());
-    }
+    // terminate the actor system when the stream completes (see withCloseOnEmptyReceive)
+    streamCompletion.thenAccept(done -> system.terminate());
+  }
 
-    CompletionStage<SqsPublishResult> enrichAndPublish(SqsAsyncClient sqsClient, Message sqsMsg) {
-        SqsPublishSettings publishSettings = SqsPublishSettings.create();
-        final Flow<SendMessageRequest, SqsPublishResult, NotUsed> publishFlow = SqsPublishFlow.create(publishUrl, publishSettings, sqsClient);
-        return Source.<Message>single(sqsMsg)
-                .map(Main::transform)
-                .mapAsync(1, (MessageFromSqs msg) -> {
-                    CompletionStage<EnrichActor.Enriched> response =
-                        AskPattern.ask(system, ref -> new EnrichActor.Enrich(msg.id, ref), Duration.ofSeconds(2), system.scheduler());
-                    return response.thenApply(res -> {
-                                log.debug("ask received '{}'", res);
-                                return new EnrichedMessage(msg.id, msg.name, msg.url, res.data);
-                            });
-                })
-                .map(amsg -> SendMessageRequest.builder().messageBody(enrichedMessageWriter.writeValueAsString(amsg)).build())
-                .log("sending to publish queue")
-                .via(publishFlow)
-                .runWith(Sink.head(), system);
-    }
+  CompletionStage<SqsPublishResult> enrichAndPublish(SqsAsyncClient sqsClient, Message sqsMsg) {
+    SqsPublishSettings publishSettings = SqsPublishSettings.create();
+    final Flow<SendMessageRequest, SqsPublishResult, NotUsed> publishFlow =
+        SqsPublishFlow.create(publishUrl, publishSettings, sqsClient);
+    return Source.<Message>single(sqsMsg)
+        .map(Main::transform)
+        .mapAsync(
+            1,
+            (MessageFromSqs msg) -> {
+              CompletionStage<EnrichActor.Enriched> response =
+                  AskPattern.ask(
+                      system,
+                      ref -> new EnrichActor.Enrich(msg.id, ref),
+                      Duration.ofSeconds(2),
+                      system.scheduler());
+              return response.thenApply(
+                  res -> {
+                    log.debug("ask received '{}'", res);
+                    return new EnrichedMessage(msg.id, msg.name, msg.url, res.data);
+                  });
+            })
+        .map(
+            amsg ->
+                SendMessageRequest.builder()
+                    .messageBody(enrichedMessageWriter.writeValueAsString(amsg))
+                    .build())
+        .log("sending to publish queue")
+        .via(publishFlow)
+        .runWith(Sink.head(), system);
+  }
 
-    private static MessageFromSqs transform(Message message) throws IOException {
-        return fromSqsReader.readValue(message.body());
-    }
-
+  private static MessageFromSqs transform(Message message) throws IOException {
+    return fromSqsReader.readValue(message.body());
+  }
 }

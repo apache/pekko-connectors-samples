@@ -12,6 +12,7 @@ final class EnrichActor extends AbstractBehavior<EnrichActor.Enrich> {
   public static class Enrich {
     final int value;
     final ActorRef<Enriched> replyTo;
+
     public Enrich(int value, ActorRef<Enriched> replyTo) {
       this.value = value;
       this.replyTo = replyTo;
@@ -20,6 +21,7 @@ final class EnrichActor extends AbstractBehavior<EnrichActor.Enrich> {
 
   public static class Enriched {
     final String data;
+
     Enriched(String data) {
       this.data = data;
     }
@@ -41,11 +43,13 @@ final class EnrichActor extends AbstractBehavior<EnrichActor.Enrich> {
   @Override
   public Receive<Enrich> createReceive() {
     return newReceiveBuilder()
-        .onMessage(Enrich.class, message -> {
-          getContext().getLog().debug("actor received '{}'", message);
-          message.replyTo.tell(new Enriched(message.toString()));
-          return this;
-        }).build();
+        .onMessage(
+            Enrich.class,
+            message -> {
+              getContext().getLog().debug("actor received '{}'", message);
+              message.replyTo.tell(new Enriched(message.toString()));
+              return this;
+            })
+        .build();
   }
-
 }

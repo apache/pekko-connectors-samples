@@ -25,3 +25,9 @@ licenses := Seq(("CC0", url("http://creativecommons.org/publicdomain/zero/1.0"))
 javacOptions ++= Seq(
   "-Xlint:deprecation"
 )
+
+ThisBuild / javafmtFormatterCompatibleJavaVersion := 17
+ThisBuild / javafmtSortImports := false
+
+addCommandAlias("applyCodeStyle", "scalafmtAll; scalafmtSbt; javafmtAll")
+addCommandAlias("checkCodeStyle", "scalafmtCheckAll; scalafmtSbtCheck; javafmtCheckAll")

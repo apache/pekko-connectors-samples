@@ -1,11 +1,11 @@
 package samples.scaladsl
 
-import java.nio.file.{Files, Path, Paths, StandardCopyOption}
+import java.nio.file.{ Files, Path, Paths, StandardCopyOption }
 import java.time.ZonedDateTime
 import org.apache.pekko.Done
 import org.apache.pekko.actor.typed.ActorSystem
 import org.apache.pekko.stream.connectors.file.scaladsl.Directory
-import org.apache.pekko.stream.scaladsl.{Keep, Sink}
+import org.apache.pekko.stream.scaladsl.{ Keep, Sink }
 import org.slf4j.LoggerFactory
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 
@@ -15,7 +15,8 @@ object RunOps {
   final val log = LoggerFactory.getLogger(getClass)
 
   // Testcontainers: start Elasticsearch in Docker
-  private val elasticsearchContainer = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2")
+  private val elasticsearchContainer =
+    new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2")
   elasticsearchContainer.start()
   private[samples] val elasticsearchAddress: String = "http://" + elasticsearchContainer.getHttpHostAddress
 
@@ -32,7 +33,7 @@ object RunOps {
     implicit val ec = system.executionContext
     for {
       sourceFiles <- listFiles(source)
-    } yield sourceFiles foreach { sourceFile =>
+    } yield sourceFiles.foreach { sourceFile =>
       val destFile = Paths.get(destination, sourceFile.getFileName.toString)
       log.info(s"Copying file $sourceFile to $destFile")
       Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING)
@@ -43,7 +44,7 @@ object RunOps {
     implicit val ec = system.executionContext
     for {
       files <- listFiles(path)
-    } yield files filterNot (_.getFileName.toString == ".gitignore") foreach { file =>
+    } yield files.filterNot(_.getFileName.toString == ".gitignore").foreach { file =>
       log.info(s"Deleting file: $file")
       Files.delete(file)
     }

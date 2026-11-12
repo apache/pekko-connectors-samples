@@ -21,4 +21,5 @@ object LogFileSummary {
   type LogFileSummaries = Map[(String, String), LogFileSummary]
 }
 
-final case class LogFileSummary(directory: String, filename: String, firstSeen: Long, lastUpdated: Long, numberOfLines: Long)
+final case class LogFileSummary(directory: String, filename: String, firstSeen: Long, lastUpdated: Long,
+    numberOfLines: Long)

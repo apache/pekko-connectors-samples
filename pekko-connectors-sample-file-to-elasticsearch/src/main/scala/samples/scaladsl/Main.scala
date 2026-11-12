@@ -9,17 +9,17 @@ import org.apache.pekko.NotUsed
 import org.apache.pekko.actor.typed.ActorSystem
 import org.apache.pekko.actor.typed.scaladsl.Behaviors
 import org.apache.pekko.stream.connectors.elasticsearch._
-import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.{ElasticsearchFlow, ElasticsearchSource}
+import org.apache.pekko.stream.connectors.elasticsearch.scaladsl.{ ElasticsearchFlow, ElasticsearchSource }
 import org.apache.pekko.stream.connectors.file.DirectoryChange
-import org.apache.pekko.stream.connectors.file.scaladsl.{DirectoryChangesSource, FileTailSource}
-import org.apache.pekko.stream.scaladsl.{Flow, Keep, RunnableGraph, Sink, Source}
-import org.apache.pekko.stream.{KillSwitches, Materializer, UniqueKillSwitch}
+import org.apache.pekko.stream.connectors.file.scaladsl.{ DirectoryChangesSource, FileTailSource }
+import org.apache.pekko.stream.scaladsl.{ Flow, Keep, RunnableGraph, Sink, Source }
+import org.apache.pekko.stream.{ KillSwitches, Materializer, UniqueKillSwitch }
 import samples.common.DateTimeExtractor
 import samples.scaladsl.LogFileSummary.LogFileSummaries
 
 import scala.collection.immutable
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{ Await, ExecutionContext, Future }
 
 object Main extends App {
 
@@ -142,8 +142,8 @@ object Main extends App {
   // #query-elasticsearch
 
   def runStreamForAwhileAndShutdown(waitInterval: FiniteDuration,
-                                    control: UniqueKillSwitch,
-                                    stream: Future[LogFileSummaries])(implicit mat: Materializer): Future[LogFileSummaries] = {
+      control: UniqueKillSwitch,
+      stream: Future[LogFileSummaries])(implicit mat: Materializer): Future[LogFileSummaries] = {
     log.info("Running index stream for {}", waitInterval)
     Thread.sleep(waitInterval.toMillis)
     log.info("Shutting down index stream")
@@ -188,16 +188,16 @@ object Main extends App {
   // #running-the-app
 
   val run = for {
-    _ <-                deleteAllFilesFrom(inputLogsPath)
+    _ <- deleteAllFilesFrom(inputLogsPath)
     // run the graph and capture the materialized values (16)
     (control, stream) = graph.run()
-    _ <-                copyTestDataTo(testDataPath, inputLogsPath)
-    summaries <-        runStreamForAwhileAndShutdown(streamRuntime, control, stream)
+    _ <- copyTestDataTo(testDataPath, inputLogsPath)
+    summaries <- runStreamForAwhileAndShutdown(streamRuntime, control, stream)
     // run a new graph to query all records from Elasticsearch and get the results (17)
-    results <-          queryAllRecordsFromElasticsearch(indexName)
-    _ =                 printResults(results, summaries)
-    _ <-                deleteAllFilesFrom(inputLogsPath)
-    _ <-                shutdown(actorSystem)
+    results <- queryAllRecordsFromElasticsearch(indexName)
+    _ = printResults(results, summaries)
+    _ <- deleteAllFilesFrom(inputLogsPath)
+    _ <- shutdown(actorSystem)
   } yield ()
 
   Await.result(run, streamRuntime + 20.seconds)

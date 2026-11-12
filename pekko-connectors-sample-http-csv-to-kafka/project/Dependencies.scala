@@ -22,7 +22,7 @@ object Dependencies {
     "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.20.0",
 
     "org.testcontainers" % "kafka" % "1.17.3",
-    
+
     "org.apache.pekko" %% "pekko-slf4j" % PekkoVersion,
     "ch.qos.logback" % "logback-classic" % "1.3.15"
   )

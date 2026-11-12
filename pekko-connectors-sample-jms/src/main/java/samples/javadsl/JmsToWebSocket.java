@@ -84,17 +84,17 @@ public class JmsToWebSocket {
     int parallelism = 4;
     Pair<Pair<JmsConsumerControl, CompletionStage<WebSocketUpgradeResponse>>, CompletionStage<Done>>
         pair =
-        jmsSource // : String
-            .map(
-                s -> {
-                  Message msg = TextMessage.create(s);
-                  return msg;
-                }) // : Message           (3)
-            .viaMat(webSocketFlow, Keep.both()) // : Message           (4)
-            .mapAsync(parallelism, this::wsMessageToString) // : String            (5)
-            .map(s -> "client received: " + s) // : String            (6)
-            .toMat(Sink.foreach(System.out::println), Keep.both()) //                    (7)
-            .run(system);
+            jmsSource // : String
+                .map(
+                    s -> {
+                      Message msg = TextMessage.create(s);
+                      return msg;
+                    }) // : Message           (3)
+                .viaMat(webSocketFlow, Keep.both()) // : Message           (4)
+                .mapAsync(parallelism, this::wsMessageToString) // : String            (5)
+                .map(s -> "client received: " + s) // : String            (6)
+                .toMat(Sink.foreach(System.out::println), Keep.both()) //                    (7)
+                .run(system);
     // #sample
     JmsConsumerControl runningSource = pair.first().first();
     CompletionStage<WebSocketUpgradeResponse> wsUpgradeResponse = pair.first().second();
@@ -120,22 +120,21 @@ public class JmsToWebSocket {
             t -> {
               webserver.stop();
               return activeMqBroker.stopCs(ec);
-            }).toCompletableFuture().get(5, TimeUnit.SECONDS);
+            })
+        .toCompletableFuture()
+        .get(5, TimeUnit.SECONDS);
   }
 
   // #sample
 
-  /**
-   * Convert potentially chunked WebSocket Message to a string.
-   */
+  /** Convert potentially chunked WebSocket Message to a string. */
   private CompletionStage<String> wsMessageToString(Message msg) {
     if (msg.isText()) {
       TextMessage tMsg = msg.asTextMessage();
       if (tMsg.isStrict()) {
         return CompletableFuture.completedFuture(tMsg.getStrictText());
       } else {
-        CompletionStage<List<String>> strings =
-            tMsg.getStreamedText().runWith(Sink.seq(), system);
+        CompletionStage<List<String>> strings = tMsg.getStreamedText().runWith(Sink.seq(), system);
         return strings.thenApply(list -> String.join("", list));
       }
     } else {
