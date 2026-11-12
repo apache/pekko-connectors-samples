@@ -46,3 +46,7 @@ lazy val step_007_produce_to_kafka = project
 lazy val step_008_scheduled_download = project
   .settings(CommonSettings.commonSettings: _*)
   .dependsOn(common % "test->test;compile->compile")
+
+addCommandAlias(
+  "sortImports",
+  """;scalafixEnable;scalafixAll OrganizeImports""")

@@ -4,6 +4,9 @@
 
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 // #imports
 
 import org.apache.pekko.Done
@@ -19,6 +22,7 @@ import scala.concurrent.duration._
 import scala.concurrent.{ Await, ExecutionContext, Future }
 
 // #imports
+// scalafix:on OrganizeImports
 
 object Main extends App with Helper {
   implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "pekko-es-jdbc-sample")

@@ -4,6 +4,9 @@
 
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 // #sample
 import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings
 import org.apache.pekko.stream.connectors.jms.scaladsl.{JmsConsumer, JmsConsumerControl}
@@ -14,6 +17,7 @@ import java.nio.file.Paths
 import scala.concurrent.duration.DurationInt
 // #sample
 import playground.ActiveMqBroker
+// scalafix:on OrganizeImports
 
 object JmsToOneFilePerMessage extends JmsSampleBase with App {
 

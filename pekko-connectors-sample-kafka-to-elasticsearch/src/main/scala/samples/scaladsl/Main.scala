@@ -4,6 +4,9 @@
 
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 // #imports
 import org.apache.pekko.actor.typed.ActorSystem
 import org.apache.pekko.actor.typed.scaladsl.Behaviors
@@ -23,6 +26,7 @@ import spray.json._
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, ExecutionContext, Future }
 // #imports
+// scalafix:on OrganizeImports
 
 object Main extends App with Helper {
 

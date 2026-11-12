@@ -1,5 +1,8 @@
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 // #imports
 
 import org.apache.mina.util.AvailablePortFinder
@@ -18,6 +21,7 @@ import java.nio.file.{ Files, Path }
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext
 // #imports
+// scalafix:on OrganizeImports
 
 object Main extends App {
   implicit val actorSystem: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "RotateLogsToFtp")
