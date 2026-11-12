@@ -7,9 +7,9 @@ package playground
 import java.io.File
 import java.nio.file.FileSystem
 
-import org.apache.ftpserver.{ConnectionConfigFactory, FtpServer, FtpServerFactory}
 import org.apache.ftpserver.listener.ListenerFactory
 import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory
+import org.apache.ftpserver.{ConnectionConfigFactory, FtpServer, FtpServerFactory}
 import playground.filesystem.JimfsFactory
 
 object FtpServerEmbedded {

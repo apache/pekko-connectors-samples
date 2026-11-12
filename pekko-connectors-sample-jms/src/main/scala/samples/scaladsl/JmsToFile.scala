@@ -4,6 +4,9 @@
 
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 // #sample
 import java.nio.file.Paths
 import org.apache.pekko.stream.IOResult
@@ -16,6 +19,7 @@ import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
 // #sample
 import playground.ActiveMqBroker
+// scalafix:on OrganizeImports
 
 object JmsToFile extends JmsSampleBase with App {
 

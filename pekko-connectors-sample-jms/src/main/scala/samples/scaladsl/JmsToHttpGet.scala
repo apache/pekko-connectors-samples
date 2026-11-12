@@ -4,6 +4,9 @@
 
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 // #sample
 import org.apache.pekko.Done
 import org.apache.pekko.http.scaladsl.Http
@@ -18,6 +21,7 @@ import scala.concurrent.duration.DurationInt
 
 // #sample
 import playground.{ ActiveMqBroker, WebServer }
+// scalafix:on OrganizeImports
 
 object JmsToHttpGet extends JmsSampleBase with App {
 

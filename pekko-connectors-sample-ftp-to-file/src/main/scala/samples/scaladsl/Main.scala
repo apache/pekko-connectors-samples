@@ -1,5 +1,8 @@
 package samples.scaladsl
 
+// Preserve documentation snippet boundaries.
+// scalafix:off OrganizeImports
+
 import java.net.InetAddress
 import java.nio.file.Paths
 
@@ -19,6 +22,7 @@ import scala.collection.immutable
 import scala.concurrent.duration.{DurationInt, FiniteDuration}
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.util.{Failure, Success}
+// scalafix:on OrganizeImports
 
 object Main extends App {
   implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "FtpToFile")

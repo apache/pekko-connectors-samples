@@ -11,3 +11,7 @@ lazy val common = project.settings(CommonSettings.commonSettings: _*)
 lazy val step_001_complete = project
   .settings(CommonSettings.commonSettings: _*)
   .dependsOn(common % "test->test;compile->compile")
+
+addCommandAlias(
+  "sortImports",
+  """;scalafixEnable;scalafixAll OrganizeImports""")
