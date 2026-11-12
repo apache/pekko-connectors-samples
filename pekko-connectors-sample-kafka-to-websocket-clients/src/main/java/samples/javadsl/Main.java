@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
+
 // #imports
 
 public class Main extends AllDirectives {
@@ -77,15 +78,17 @@ public class Main extends AllDirectives {
         Flow.fromSinkAndSource(
             Sink.ignore(),
             topicSource()
-                // decouple clients from each other: if a client is too slow and more than 1000 elements to be sent to
+                // decouple clients from each other: if a client is too slow and more than 1000
+                // elements to be sent to
                 // the client queue up here, we fail this client
                 .buffer(1000, OverflowStrategy.fail())
                 .via(addIndexFlow())
                 .map(TextMessage::create));
     // #websocket-handler
-    final Flow<HttpRequest, HttpResponse, ?> routeFlow = createRoute(webSocketHandler).flow(actorSystem, materializer);
-    final CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
-        ConnectHttp.toHost("localhost", 8081), materializer);
+    final Flow<HttpRequest, HttpResponse, ?> routeFlow =
+        createRoute(webSocketHandler).flow(actorSystem, materializer);
+    final CompletionStage<ServerBinding> binding =
+        http.bindAndHandle(routeFlow, ConnectHttp.toHost("localhost", 8081), materializer);
 
     binding.toCompletableFuture().get(10, TimeUnit.SECONDS);
     System.out.println("Server online at http://localhost:8081/\nPress RETURN to stop...");
@@ -96,10 +99,13 @@ public class Main extends AllDirectives {
   public Flow<String, String, NotUsed> addIndexFlow() {
     final Pair<Integer, String> seed = Pair.create(0, "start");
     return Flow.of(String.class)
-        .scan(seed, (acc, message) -> {
-          Integer index = acc.first();
-          return Pair.create(index + 1, String.format("index: %s, message: %s", index, message));
-        })
+        .scan(
+            seed,
+            (acc, message) -> {
+              Integer index = acc.first();
+              return Pair.create(
+                  index + 1, String.format("index: %s, message: %s", index, message));
+            })
         .filterNot(p -> p == seed)
         .map(Pair::second);
   }
@@ -108,12 +114,17 @@ public class Main extends AllDirectives {
   private Route createRoute(Flow<Message, Message, ?> webSocketHandler) {
     return concat(
         path("events", () -> handleWebSocketMessages(webSocketHandler)),
-        path("push", () -> parameter("value", v -> {
-          CompletionStage<Done> written = helper.writeToKafka(topic, v, actorSystem);
-          return onSuccess(written, done -> complete("Ok"));
-        }))
-    );
+        path(
+            "push",
+            () ->
+                parameter(
+                    "value",
+                    v -> {
+                      CompletionStage<Done> written = helper.writeToKafka(topic, v, actorSystem);
+                      return onSuccess(written, done -> complete("Ok"));
+                    })));
   }
+
   // #routes
 
   // #kafka-to-broadcast
@@ -125,12 +136,11 @@ public class Main extends AllDirectives {
             .withProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
             .withStopTimeout(Duration.ofSeconds(5));
 
-    return
-        Consumer.plainSource(kafkaConsumerSettings, Subscriptions.topics(topic))
-            .map(ConsumerRecord::value)
-            // using a broadcast hub here, ensures that all websocket clients will use the same
-            // consumer
-            .runWith(BroadcastHub.of(String.class), materializer);
+    return Consumer.plainSource(kafkaConsumerSettings, Subscriptions.topics(topic))
+        .map(ConsumerRecord::value)
+        // using a broadcast hub here, ensures that all websocket clients will use the same
+        // consumer
+        .runWith(BroadcastHub.of(String.class), materializer);
   }
   // #kafka-to-broadcast
 }

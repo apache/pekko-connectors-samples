@@ -6,8 +6,8 @@ package samples.scaladsl
 
 // #sample
 import org.apache.pekko.stream.connectors.jms.JmsConsumerSettings
-import org.apache.pekko.stream.connectors.jms.scaladsl.{JmsConsumer, JmsConsumerControl}
-import org.apache.pekko.stream.scaladsl.{FileIO, Keep, Sink, Source}
+import org.apache.pekko.stream.connectors.jms.scaladsl.{ JmsConsumer, JmsConsumerControl }
+import org.apache.pekko.stream.scaladsl.{ FileIO, Keep, Sink, Source }
 import org.apache.pekko.util.ByteString
 
 import java.nio.file.Paths

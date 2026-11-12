@@ -37,7 +37,7 @@ object Main extends App with Helper {
   actorSystem.whenTerminated.map(_ => session.close())
 
   import session.profile.api._
-  class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") {   // (2)
+  class Movies(tag: Tag) extends Table[(Int, String, String, Double)](tag, "MOVIE") { // (2)
     def id = column[Int]("ID")
     def title = column[String]("TITLE")
     def genre = column[String]("GENRE")
@@ -47,7 +47,6 @@ object Main extends App with Helper {
   }
   // #slick-setup
   Await.result(Helper.populateDataForTable(), 2.seconds)
-
 
   // #data-class
   case class Movie(id: Int, title: String, genre: String, gross: Double)

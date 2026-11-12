@@ -11,7 +11,8 @@ public final class DownloadCommand {
   public final String url;
 
   @JsonCreator
-  public DownloadCommand(@JsonProperty("timestamp") Instant timestamp, @JsonProperty("url") String url) {
+  public DownloadCommand(
+      @JsonProperty("timestamp") Instant timestamp, @JsonProperty("url") String url) {
     this.timestamp = timestamp;
     this.url = url;
   }

@@ -24,39 +24,38 @@ import static org.apache.pekko.actor.typed.javadsl.Adapter.toClassic;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        Main me = new Main();
-        me.run();
+  public static void main(String[] args) throws Exception {
+    Main me = new Main();
+    me.run();
+  }
+
+  final HttpRequest httpRequest =
+      HttpRequest.create(
+              "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
+          .withHeaders(Collections.singletonList(Accept.create(MediaRanges.ALL_TEXT)));
+
+  private Source<ByteString, ?> extractEntityData(HttpResponse httpResponse) {
+    if (httpResponse.status() == StatusCodes.OK) {
+      return httpResponse.entity().getDataBytes();
+    } else {
+      return Source.failed(new RuntimeException("illegal response " + httpResponse));
     }
+  }
 
-    final HttpRequest httpRequest =
-            HttpRequest.create(
-                    "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
-                    .withHeaders(Collections.singletonList(Accept.create(MediaRanges.ALL_TEXT)));
+  private void run() throws Exception {
+    ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "pekko-connectors-samples");
+    Http http = Http.get(toClassic(system));
 
-    private Source<ByteString, ?> extractEntityData(HttpResponse httpResponse) {
-        if (httpResponse.status() == StatusCodes.OK) {
-            return httpResponse.entity().getDataBytes();
-        } else {
-            return Source.failed(new RuntimeException("illegal response " + httpResponse));
-        }
-    }
+    CompletionStage<Done> completion =
+        Source.single(httpRequest) // : HttpRequest
+            .mapAsync(1, http::singleRequest) // : HttpResponse
+            .flatMapConcat(this::extractEntityData) // : ByteString
+            .runWith(Sink.foreach(bs -> System.out.println(bs.utf8String())), system);
 
-    private void run() throws Exception {
-        ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "pekko-connectors-samples");
-        Http http = Http.get(toClassic(system));
-
-        CompletionStage<Done> completion =
-                Source.single(httpRequest) // : HttpRequest
-                        .mapAsync(1, http::singleRequest) // : HttpResponse
-                        .flatMapConcat(this::extractEntityData) // : ByteString
-                        .runWith(Sink.foreach(bs -> System.out.println(bs.utf8String())), system);
-
-        completion
-                .thenAccept(
-                        done -> {
-                            System.out.println("Done!");
-                            system.terminate();
-                        });
-    }
+    completion.thenAccept(
+        done -> {
+          System.out.println("Done!");
+          system.terminate();
+        });
+  }
 }

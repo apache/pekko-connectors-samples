@@ -22,12 +22,13 @@ public class Helper {
   private KafkaContainer kafka;
   public String kafkaBootstrapServers;
 
-  public Helper() {
-  }
+  public Helper() {}
 
   public void startContainers() {
 
-    kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.1.2")); // contains Kafka 2.1.x
+    kafka =
+        new KafkaContainer(
+            DockerImageName.parse("confluentinc/cp-kafka:5.1.2")); // contains Kafka 2.1.x
     kafka.start();
     kafkaBootstrapServers = kafka.getBootstrapServers();
   }
@@ -47,5 +48,4 @@ public class Helper {
     producing.thenAccept(s -> log.info("Producing finished"));
     return producing;
   }
-
 }

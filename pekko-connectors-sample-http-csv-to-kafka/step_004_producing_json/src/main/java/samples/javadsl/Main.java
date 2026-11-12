@@ -32,61 +32,60 @@ import static org.apache.pekko.actor.typed.javadsl.Adapter.toClassic;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        Main me = new Main();
-        me.run();
+  public static void main(String[] args) throws Exception {
+    Main me = new Main();
+    me.run();
+  }
+
+  final HttpRequest httpRequest =
+      HttpRequest.create(
+              "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
+          .withHeaders(Collections.singletonList(Accept.create(MediaRanges.ALL_TEXT)));
+
+  private Source<ByteString, ?> extractEntityData(HttpResponse httpResponse) {
+    if (httpResponse.status() == StatusCodes.OK) {
+      return httpResponse.entity().getDataBytes();
+    } else {
+      return Source.failed(new RuntimeException("illegal response " + httpResponse));
     }
+  }
 
-    final HttpRequest httpRequest =
-            HttpRequest.create(
-                    "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
-                    .withHeaders(Collections.singletonList(Accept.create(MediaRanges.ALL_TEXT)));
+  private final JsonFactory jsonFactory = new JsonFactory();
 
-    private Source<ByteString, ?> extractEntityData(HttpResponse httpResponse) {
-        if (httpResponse.status() == StatusCodes.OK) {
-            return httpResponse.entity().getDataBytes();
-        } else {
-            return Source.failed(new RuntimeException("illegal response " + httpResponse));
-        }
-    }
+  private String toJson(Map<String, String> map) throws Exception {
+    StringWriter sw = new StringWriter();
+    JsonGenerator generator = jsonFactory.createGenerator(sw);
+    generator.writeStartObject();
+    map.forEach(
+        (key, value) -> {
+          try {
+            generator.writeStringField(key, value);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    generator.writeEndObject();
+    generator.close();
+    return sw.toString();
+  }
 
-    private final JsonFactory jsonFactory = new JsonFactory();
+  private void run() throws Exception {
+    ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "pekko-connectors-samples");
+    Http http = Http.get(toClassic(system));
 
-    private String toJson(Map<String, String> map) throws Exception {
-        StringWriter sw = new StringWriter();
-        JsonGenerator generator = jsonFactory.createGenerator(sw);
-        generator.writeStartObject();
-        map.forEach(
-                (key, value) -> {
-                    try {
-                        generator.writeStringField(key, value);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-        generator.writeEndObject();
-        generator.close();
-        return sw.toString();
-    }
+    CompletionStage<Done> completion =
+        Source.single(httpRequest) // : HttpRequest
+            .mapAsync(1, http::singleRequest) // : HttpResponse
+            .flatMapConcat(this::extractEntityData) // : ByteString
+            .via(CsvParsing.lineScanner()) // : List<ByteString>
+            .via(CsvToMap.toMapAsStrings(StandardCharsets.UTF_8)) // : Map<String, String>
+            .map(this::toJson) // : String
+            .runWith(Sink.foreach(System.out::println), system);
 
-    private void run() throws Exception {
-        ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "pekko-connectors-samples");
-        Http http = Http.get(toClassic(system));
-
-        CompletionStage<Done> completion =
-                Source.single(httpRequest) // : HttpRequest
-                        .mapAsync(1, http::singleRequest) // : HttpResponse
-                        .flatMapConcat(this::extractEntityData) // : ByteString
-                        .via(CsvParsing.lineScanner()) // : List<ByteString>
-                        .via(CsvToMap.toMapAsStrings(StandardCharsets.UTF_8)) // : Map<String, String>
-                        .map(this::toJson) // : String
-                        .runWith(Sink.foreach(System.out::println), system);
-
-        completion
-                .thenAccept(
-                        done -> {
-                            System.out.println("Done!");
-                            system.terminate();
-                        });
-    }
+    completion.thenAccept(
+        done -> {
+          System.out.println("Done!");
+          system.terminate();
+        });
+  }
 }

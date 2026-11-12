@@ -62,7 +62,8 @@ import java.util.concurrent.CompletionStage;
 public class Main {
 
   public static void main(String[] args) throws Exception {
-    KafkaContainer kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.1.2"));
+    KafkaContainer kafkaContainer =
+        new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.1.2"));
     kafkaContainer.start();
     try {
       Main me = new Main();
@@ -77,9 +78,7 @@ public class Main {
 
   // #json-mechanics
 
-  /**
-   * Data elements sent via MQTT broker.
-   */
+  /** Data elements sent via MQTT broker. */
   public static final class Measurement {
 
     public final Instant timestamp;
@@ -108,13 +107,12 @@ public class Main {
     generator.close();
     return sw.toString();
   }
+
   // #json-mechanics
 
   // #restarting
 
-  /**
-   * Wrap a source with restart logic and exposes an equivalent materialized value.
-   */
+  /** Wrap a source with restart logic and exposes an equivalent materialized value. */
   <M> Source<M, CompletionStage<Done>> wrapWithAsRestartSource(
       Creator<Source<M, CompletionStage<Done>>> source) {
     // makes use of the fact that these sources materialize a CompletionStage<Done>
@@ -140,10 +138,12 @@ public class Main {
                                 })))
         .mapMaterializedValue(ignore -> fut.toCompletableFuture());
   }
+
   // #restarting
 
   void run(String kafkaServer) throws Exception {
-    final LoggingAdapter logAdapter = Logging.getLogger(system.classicSystem(), getClass().getName());
+    final LoggingAdapter logAdapter =
+        Logging.getLogger(system.classicSystem(), getClass().getName());
     // #flow
     final MqttConnectionSettings connectionSettings =
         MqttConnectionSettings.create(
@@ -163,8 +163,7 @@ public class Main {
 
     // Set up Kafka producer sink
     ProducerSettings<String, String> producerSettings =
-        ProducerSettings
-            .create(toClassic(system), new StringSerializer(), new StringSerializer())
+        ProducerSettings.create(toClassic(system), new StringSerializer(), new StringSerializer())
             .withBootstrapServers(kafkaServer);
     Sink<ProducerRecord<String, String>, CompletionStage<Done>> kafkaProducer =
         Producer.plainSink(producerSettings);
@@ -206,12 +205,12 @@ public class Main {
 
     // read the messages from the Kafka topic
     Consumer.Control consumerControl =
-        Consumer
-            .plainSource(
-                ConsumerSettings.create(toClassic(system), new StringDeserializer(), new StringDeserializer())
-                    .withBootstrapServers(kafkaServer).withGroupId("sample"),
-                Subscriptions.topics(kafkaTopic)
-            )
+        Consumer.plainSource(
+                ConsumerSettings.create(
+                        toClassic(system), new StringDeserializer(), new StringDeserializer())
+                    .withBootstrapServers(kafkaServer)
+                    .withGroupId("sample"),
+                Subscriptions.topics(kafkaTopic))
             .map(ConsumerRecord::value)
             .log("read from Kafka", logAdapter)
             .toMat(Sink.ignore(), Keep.left())
@@ -225,9 +224,7 @@ public class Main {
     listener.shutdown();
   }
 
-  /**
-   * Simulate messages from MQTT by writing to topic registered in MQTT broker.
-   */
+  /** Simulate messages from MQTT by writing to topic registered in MQTT broker. */
   private UniqueKillSwitch produceMessages(
       ObjectWriter measurementWriter, MqttConnectionSettings connectionSettings, String topic) {
     List<Measurement> input =

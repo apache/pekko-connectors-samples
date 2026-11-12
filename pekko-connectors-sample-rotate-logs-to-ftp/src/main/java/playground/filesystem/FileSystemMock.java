@@ -16,16 +16,16 @@ public class FileSystemMock {
   public final FileSystem fileSystem;
 
   private String loremIpsum =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent auctor imperdiet " +
-          "velit, eu dapibus nisl dapibus vitae. Sed quam lacus, fringilla posuere ligula at, " +
-          "aliquet laoreet nulla. Aliquam id fermentum justo. Aliquam et massa consequat, " +
-          "pellentesque dolor nec, gravida libero. Phasellus elit eros, finibus eget " +
-          "sollicitudin ac, consectetur sed ante. Etiam ornare lacus blandit nisi gravida " +
-          "accumsan. Sed in lorem arcu. Vivamus et eleifend ligula. Maecenas ut commodo ante. " +
-          "Suspendisse sit amet placerat arcu, porttitor sagittis velit. Quisque gravida mi a " +
-          "porttitor ornare. Cras lorem nisl, sollicitudin vitae odio at, vehicula maximus " +
-          "mauris. Sed ac purus ac turpis pellentesque cursus ac eget est. Pellentesque " +
-          "habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.";
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent auctor imperdiet "
+          + "velit, eu dapibus nisl dapibus vitae. Sed quam lacus, fringilla posuere ligula at, "
+          + "aliquet laoreet nulla. Aliquam id fermentum justo. Aliquam et massa consequat, "
+          + "pellentesque dolor nec, gravida libero. Phasellus elit eros, finibus eget "
+          + "sollicitudin ac, consectetur sed ante. Etiam ornare lacus blandit nisi gravida "
+          + "accumsan. Sed in lorem arcu. Vivamus et eleifend ligula. Maecenas ut commodo ante. "
+          + "Suspendisse sit amet placerat arcu, porttitor sagittis velit. Quisque gravida mi a "
+          + "porttitor ornare. Cras lorem nisl, sollicitudin vitae odio at, vehicula maximus "
+          + "mauris. Sed ac purus ac turpis pellentesque cursus ac eget est. Pellentesque "
+          + "habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.";
 
   public FileSystemMock(FileSystem fs) {
     fileSystem = fs;
@@ -38,13 +38,16 @@ public class FileSystemMock {
   public void cleanFiles() {
     for (Path rootDir : getFileSystem().getRootDirectories()) {
       try {
-        Files.walkFileTree(rootDir, new SimpleFileVisitor<Path>() {
-          @Override
-          public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            Files.deleteIfExists(file);
-            return FileVisitResult.CONTINUE;
-          }
-        });
+        Files.walkFileTree(
+            rootDir,
+            new SimpleFileVisitor<Path>() {
+              @Override
+              public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+                  throws IOException {
+                Files.deleteIfExists(file);
+                return FileVisitResult.CONTINUE;
+              }
+            });
       } catch (Throwable t) {
         t.printStackTrace();
       }
@@ -93,5 +96,4 @@ public class FileSystemMock {
   public String getLoremIpsum() {
     return loremIpsum;
   }
-
 }

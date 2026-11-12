@@ -34,87 +34,89 @@ import scala.concurrent.duration.Duration;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Main me = new Main();
-        me.run();
+  public static void main(String[] args) {
+    Main me = new Main();
+    me.run();
+  }
+
+  // #data-class
+  public static class Movie {
+
+    public final int id;
+    public final String title;
+    public final String genre;
+    public final double gross;
+
+    @JsonCreator
+    public Movie(
+        @JsonProperty("id") int id,
+        @JsonProperty("title") String title,
+        @JsonProperty("genre") String genre,
+        @JsonProperty("gross") double gross) {
+      this.id = id;
+      this.title = title;
+      this.genre = genre;
+      this.gross = gross;
     }
+  }
+
+  // #data-class
+
+  void run() {
+    // TestContainers: start Elasticsearch in Docker
+    ElasticsearchContainer elasticsearchContainer =
+        new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2");
+    elasticsearchContainer.start();
+    String elasticsearchAddress = "http://" + elasticsearchContainer.getHttpHostAddress();
+
+    // #sample
+    ActorSystem<Object> system = ActorSystem.create(Behaviors.empty(), "pekko-es-jdbc-sample");
+    // #sample
+    // #slick-setup
+    SlickSession session = SlickSession$.MODULE$.forConfig("slick-h2-mem");
+    system.getWhenTerminated().thenAccept(done -> session.close());
+    // #slick-setup
+
+    Helper.populateDataForTable(session, system);
+
+    // #es-setup
+    ElasticsearchConnectionSettings connectionSettings =
+        ElasticsearchConnectionSettings.create(elasticsearchAddress);
+    // #es-setup
 
     // #data-class
-    public static class Movie {
-
-        public final int id;
-        public final String title;
-        public final String genre;
-        public final double gross;
-
-        @JsonCreator
-        public Movie(
-            @JsonProperty("id") int id,
-            @JsonProperty("title") String title,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("gross") double gross) {
-            this.id = id;
-            this.title = title;
-            this.genre = genre;
-            this.gross = gross;
-        }
-    }
-
+    final ObjectMapper objectToJsonMapper = new ObjectMapper();
     // #data-class
 
-    void run() {
-        // TestContainers: start Elasticsearch in Docker
-        ElasticsearchContainer elasticsearchContainer = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2");
-        elasticsearchContainer.start();
-        String elasticsearchAddress = "http://" + elasticsearchContainer.getHttpHostAddress();
-
-        // #sample
-        ActorSystem<Object> system = ActorSystem.create(Behaviors.empty(), "pekko-es-jdbc-sample");
-        // #sample
-        // #slick-setup
-        SlickSession session = SlickSession$.MODULE$.forConfig("slick-h2-mem");
-        system.getWhenTerminated().thenAccept(done -> session.close());
-        // #slick-setup
-
-        Helper.populateDataForTable(session, system);
-
-        // #es-setup
-        ElasticsearchConnectionSettings connectionSettings = ElasticsearchConnectionSettings.create(elasticsearchAddress);
-        // #es-setup
-
-        // #data-class
-        final ObjectMapper objectToJsonMapper = new ObjectMapper();
-        // #data-class
-
-        // #sample
-        final CompletionStage<Done> done =
-            Slick.source(
-                    session,
-                    "SELECT * FROM MOVIE",
-                    (SlickRow row) ->
-                        new Movie(row.nextInt(), row.nextString(), row.nextString(), row.nextDouble()))
-                .map(movie -> WriteMessage.createIndexMessage(String.valueOf(movie.id), movie))
-                .runWith(
-                    ElasticsearchSink.create(
-                        ElasticsearchParams.V7("movie"),
-                        ElasticsearchWriteSettings.create(connectionSettings),
-                        objectToJsonMapper),
-                    system);
-        // #sample
-        system.getWhenTerminated().thenAccept(consumer -> elasticsearchContainer.stop());
-        done.thenRunAsync(
-            () -> {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    // ignored
-                }
-                system.terminate();
-                try {
-                    Await.result(system.whenTerminated(), Duration.create("10s"));
-                } catch (Exception e) {
-                    // ignored
-                }
-            });
-    }
+    // #sample
+    final CompletionStage<Done> done =
+        Slick.source(
+                session,
+                "SELECT * FROM MOVIE",
+                (SlickRow row) ->
+                    new Movie(row.nextInt(), row.nextString(), row.nextString(), row.nextDouble()))
+            .map(movie -> WriteMessage.createIndexMessage(String.valueOf(movie.id), movie))
+            .runWith(
+                ElasticsearchSink.create(
+                    ElasticsearchParams.V7("movie"),
+                    ElasticsearchWriteSettings.create(connectionSettings),
+                    objectToJsonMapper),
+                system);
+    // #sample
+    system.getWhenTerminated().thenAccept(consumer -> elasticsearchContainer.stop());
+    done.thenRunAsync(
+        () -> {
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+            // ignored
+          }
+          system.terminate();
+          try {
+            Await.result(system.whenTerminated(), Duration.create("10s"));
+          } catch (Exception e) {
+            // ignored
+          }
+        });
+  }
 }

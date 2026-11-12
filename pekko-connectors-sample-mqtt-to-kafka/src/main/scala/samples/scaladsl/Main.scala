@@ -95,8 +95,9 @@ class Main {
 
     val subscriptions = MqttSubscriptions.create(topic, MqttQoS.atLeastOnce) // (2)
 
-    val restartingMqttSource = wrapWithAsRestartSource( // (3)
-      MqttSource.atMostOnce(connectionSettings.withClientId("coffee-control"), subscriptions, 8))
+    val restartingMqttSource =
+      wrapWithAsRestartSource( // (3)
+        MqttSource.atMostOnce(connectionSettings.withClientId("coffee-control"), subscriptions, 8))
 
     // Set up Kafka producer sink
     val producerSettings =

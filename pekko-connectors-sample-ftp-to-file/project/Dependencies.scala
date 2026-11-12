@@ -9,7 +9,7 @@ object Dependencies {
   // #deps
 
   val dependencies = List(
-  // #deps
+    // #deps
     "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
     "org.apache.pekko" %% "pekko-connectors-ftp" % PekkoConnectorsVersion,
     "org.apache.pekko" %% "pekko-actor-typed" % PekkoVersion,

@@ -20,4 +20,3 @@ public class Movie {
     return "Movie(" + id + ", title=" + title + ")";
   }
 }
-

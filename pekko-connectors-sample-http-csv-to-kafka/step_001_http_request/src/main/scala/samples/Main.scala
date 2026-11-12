@@ -22,13 +22,14 @@ object Main extends App {
 
   import actorSystem.dispatcher
 
-  val httpRequest = HttpRequest(uri = "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
-    .withHeaders(Accept(MediaRanges.`text/*`))
+  val httpRequest =
+    HttpRequest(uri = "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
+      .withHeaders(Accept(MediaRanges.`text/*`))
 
   val future: Future[Done] =
     Source
-      .single(httpRequest) //: HttpRequest
-      .mapAsync(1)(Http().singleRequest(_)) //: HttpResponse
+      .single(httpRequest) // : HttpRequest
+      .mapAsync(1)(Http().singleRequest(_)) // : HttpResponse
       .runWith(Sink.foreach(println))
 
   future.map { _ =>

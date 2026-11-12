@@ -21,42 +21,42 @@ import java.util.concurrent.CompletionStage;
 
 public class PublishToSqs {
 
-    final static Logger log = LoggerFactory.getLogger(PublishToSqs.class);
-    final static String sourceQueueUrl = Main.sourceQueueUrl;
+  static final Logger log = LoggerFactory.getLogger(PublishToSqs.class);
+  static final String sourceQueueUrl = Main.sourceQueueUrl;
 
-    final ActorSystem<Void> system;
+  final ActorSystem<Void> system;
 
-    public static void main(String[] args) throws Exception {
-        PublishToSqs me = new PublishToSqs();
-        me.run();
-    }
+  public static void main(String[] args) throws Exception {
+    PublishToSqs me = new PublishToSqs();
+    me.run();
+  }
 
-    public PublishToSqs() {
-        system = ActorSystem.create(Behaviors.empty(), "PublishToSqs");
-    }
+  public PublishToSqs() {
+    system = ActorSystem.create(Behaviors.empty(), "PublishToSqs");
+  }
 
-    void run() throws Exception {
-        // create SQS client
-        String sqsEndpoint = "http://localhost:9324";
-        SqsAsyncClient sqsClient =
-                SqsAsyncClient.builder()
-                        .credentialsProvider(
-                                StaticCredentialsProvider.create(AwsBasicCredentials.create("x", "x")))
-                        .endpointOverride(URI.create(sqsEndpoint))
-                        .region(Region.EU_CENTRAL_1)
-                        .httpClient(PekkoHttpClient.builder().withActorSystem(system.classicSystem()).build())
-                        .build();
-        system.getWhenTerminated().thenAccept((notUsed) -> sqsClient.close());
+  void run() throws Exception {
+    // create SQS client
+    String sqsEndpoint = "http://localhost:9324";
+    SqsAsyncClient sqsClient =
+        SqsAsyncClient.builder()
+            .credentialsProvider(
+                StaticCredentialsProvider.create(AwsBasicCredentials.create("x", "x")))
+            .endpointOverride(URI.create(sqsEndpoint))
+            .region(Region.EU_CENTRAL_1)
+            .httpClient(PekkoHttpClient.builder().withActorSystem(system.classicSystem()).build())
+            .build();
+    system.getWhenTerminated().thenAccept((notUsed) -> sqsClient.close());
 
-        publishMessageToSourceTopic(sqsClient, "{\"id\":423,\"name\":\"Pekko-Connectors\"}")
-                .thenAccept(done -> system.terminate());
-    }
+    publishMessageToSourceTopic(sqsClient, "{\"id\":423,\"name\":\"Pekko-Connectors\"}")
+        .thenAccept(done -> system.terminate());
+  }
 
-    private CompletionStage<Done> publishMessageToSourceTopic(SqsAsyncClient sqsClient, String msgJson) {
-        return Source.single(msgJson)
-                .map(s -> SendMessageRequest.builder().messageBody(s).build())
-                .via(SqsPublishFlow.create(sourceQueueUrl, SqsPublishSettings.create(), sqsClient))
-                .runWith(Sink.foreach(System.out::println), system);
-    }
-
+  private CompletionStage<Done> publishMessageToSourceTopic(
+      SqsAsyncClient sqsClient, String msgJson) {
+    return Source.single(msgJson)
+        .map(s -> SendMessageRequest.builder().messageBody(s).build())
+        .via(SqsPublishFlow.create(sourceQueueUrl, SqsPublishSettings.create(), sqsClient))
+        .runWith(Sink.foreach(System.out::println), system);
+  }
 }

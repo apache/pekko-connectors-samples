@@ -27,20 +27,21 @@ import spray.json.{ DefaultJsonProtocol, JsValue, JsonWriter }
 import scala.concurrent.Future
 
 object Main
-  extends App
+    extends App
     with DefaultJsonProtocol {
 
   implicit val actorSystem: ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty, "pekko-connectors-samples")
 
   import actorSystem.executionContext
 
-  val httpRequest = HttpRequest(uri = "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
-    .withHeaders(Accept(MediaRanges.`text/*`))
+  val httpRequest =
+    HttpRequest(uri = "https://www.nasdaq.com/screening/companies-by-name.aspx?exchange=NASDAQ&render=download")
+      .withHeaders(Accept(MediaRanges.`text/*`))
 
   def extractEntityData(response: HttpResponse): Source[ByteString, _] =
     response match {
       case HttpResponse(OK, _, entity, _) => entity.dataBytes
-      case notOkResponse =>
+      case notOkResponse                  =>
         Source.failed(new RuntimeException(s"illegal response $notOkResponse"))
     }
 
@@ -52,7 +53,7 @@ object Main
       .toMap
 
   def toJson(map: Map[String, String])(
-    implicit jsWriter: JsonWriter[Map[String, String]]): JsValue = jsWriter.write(map)
+      implicit jsWriter: JsonWriter[Map[String, String]]): JsValue = jsWriter.write(map)
 
   val kafkaBroker: KafkaContainer = new KafkaContainer()
   kafkaBroker.start()
@@ -64,21 +65,21 @@ object Main
 
   val future: Future[Done] =
     Source
-      .single(httpRequest) //: HttpRequest
-      .mapAsync(1)(Http()(actorSystem.toClassic).singleRequest(_)) //: HttpResponse
-      .flatMapConcat(extractEntityData) //: ByteString
-      .via(CsvParsing.lineScanner()) //: List[ByteString]
-      .via(CsvToMap.toMap()) //: Map[String, ByteString]
-      .map(cleanseCsvData) //: Map[String, String]
-      .map(toJson) //: JsValue
-      .map(_.compactPrint) //: String (JSON formatted)
+      .single(httpRequest) // : HttpRequest
+      .mapAsync(1)(Http()(actorSystem.toClassic).singleRequest(_)) // : HttpResponse
+      .flatMapConcat(extractEntityData) // : ByteString
+      .via(CsvParsing.lineScanner()) // : List[ByteString]
+      .via(CsvToMap.toMap()) // : Map[String, ByteString]
+      .map(cleanseCsvData) // : Map[String, String]
+      .map(toJson) // : JsValue
+      .map(_.compactPrint) // : String (JSON formatted)
       .map { elem =>
-        new ProducerRecord[String, String]("topic1", elem) //: Kafka ProducerRecord
+        new ProducerRecord[String, String]("topic1", elem) // : Kafka ProducerRecord
       }
       .runWith(Producer.plainSink(kafkaProducerSettings))
 
   val cs: CoordinatedShutdown = CoordinatedShutdown(actorSystem)
-  cs.addTask(CoordinatedShutdown.PhaseServiceStop, "shut-down-client-http-pool")( () =>
+  cs.addTask(CoordinatedShutdown.PhaseServiceStop, "shut-down-client-http-pool")(() =>
     Http()(actorSystem.toClassic).shutdownAllConnectionPools().map(_ => Done)
   )
 

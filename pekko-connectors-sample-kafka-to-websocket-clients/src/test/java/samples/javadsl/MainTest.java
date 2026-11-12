@@ -41,34 +41,31 @@ public class MainTest {
   public void addIndexFlow_Test() throws Exception {
     final Main example = new Main(new Helper());
 
-    List<String> messages = Arrays.asList(
-        "I say high, you say low",
-        "You say why and I say I don't know",
-        "Oh, no",
-        "You say goodbye and I say hello"
-    );
+    List<String> messages =
+        Arrays.asList(
+            "I say high, you say low",
+            "You say why and I say I don't know",
+            "Oh, no",
+            "You say goodbye and I say hello");
 
     final Flow<String, String, NotUsed> addIndexFlow = example.addIndexFlow();
 
-    final CompletionStage<List<String>> future = Source.from(messages)
-        .via(addIndexFlow)
-        .runWith(Sink.seq(), system);
+    final CompletionStage<List<String>> future =
+        Source.from(messages).via(addIndexFlow).runWith(Sink.seq(), system);
     final List<String> result = future.toCompletableFuture().get(3, TimeUnit.SECONDS);
 
     assertEquals(messages.size(), result.size());
 
     final Pattern pattern = Pattern.compile("index: \\d+, message: (.*)");
-    Streams.zip(
-            messages.stream(),
-            result.stream(),
-            Pair::create)
-        .forEachOrdered(pair -> {
-          String message = pair.first();
-          String resultMessage = pair.second();
-          Matcher matcher = pattern.matcher(resultMessage);
-          assertTrue(matcher.find());
-          assertEquals(1, matcher.groupCount());
-          assertEquals(message, matcher.group(1));
-        });
+    Streams.zip(messages.stream(), result.stream(), Pair::create)
+        .forEachOrdered(
+            pair -> {
+              String message = pair.first();
+              String resultMessage = pair.second();
+              Matcher matcher = pattern.matcher(resultMessage);
+              assertTrue(matcher.find());
+              assertEquals(1, matcher.groupCount());
+              assertEquals(message, matcher.group(1));
+            });
   }
 }

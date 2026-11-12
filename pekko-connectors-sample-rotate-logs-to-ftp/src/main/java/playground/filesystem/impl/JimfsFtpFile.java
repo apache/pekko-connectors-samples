@@ -33,8 +33,7 @@ public class JimfsFtpFile implements FtpFile {
 
   private User user;
 
-  protected JimfsFtpFile(final String fileName, final Path path,
-      final User user) {
+  protected JimfsFtpFile(final String fileName, final Path path, final User user) {
     if (fileName == null) {
       throw new IllegalArgumentException("fileName can not be null");
     }
@@ -44,8 +43,7 @@ public class JimfsFtpFile implements FtpFile {
     if (fileName.length() == 0) {
       throw new IllegalArgumentException("fileName can not be empty");
     } else if (fileName.charAt(0) != '/') {
-      throw new IllegalArgumentException(
-          "fileName must be an absolute path");
+      throw new IllegalArgumentException("fileName must be an absolute path");
     }
 
     this.fileName = fileName;
@@ -182,7 +180,8 @@ public class JimfsFtpFile implements FtpFile {
       return false;
     }
 
-    // In order to maintain consistency, when possible we delete the last '/' character in the String
+    // In order to maintain consistency, when possible we delete the last '/' character in the
+    // String
     int indexOfSlash = fullName.lastIndexOf('/');
     String parentFullName;
     if (indexOfSlash == 0) {
@@ -191,8 +190,7 @@ public class JimfsFtpFile implements FtpFile {
       parentFullName = fullName.substring(0, indexOfSlash);
     }
 
-    JimfsFtpFile parentObject = new JimfsFtpFile(parentFullName,
-        path.getParent(), user);
+    JimfsFtpFile parentObject = new JimfsFtpFile(parentFullName, path.getParent(), user);
     return parentObject.isWritable();
   }
 
@@ -273,16 +271,19 @@ public class JimfsFtpFile implements FtpFile {
     }
 
     // make sure the files are returned in order
-    Collections.sort(files, new Comparator<Path>() {
-      public int compare(Path o1, Path o2) {
-        return o1.getFileName().compareTo(o2.getFileName());
-      }
-    });
+    Collections.sort(
+        files,
+        new Comparator<Path>() {
+          public int compare(Path o1, Path o2) {
+            return o1.getFileName().compareTo(o2.getFileName());
+          }
+        });
 
     // get the virtual name of the base directory
     final String virtualFileStr =
         getAbsolutePath().charAt(getAbsolutePath().length() - 1) != '/'
-            ? getAbsolutePath() + '/' : getAbsolutePath();
+            ? getAbsolutePath() + '/'
+            : getAbsolutePath();
 
     // now return all the files under the directory
     List<FtpFile> virtualFiles = new ArrayList<>(files.size());
@@ -293,8 +294,7 @@ public class JimfsFtpFile implements FtpFile {
     return virtualFiles;
   }
 
-  public OutputStream createOutputStream(long offset)
-      throws IOException {
+  public OutputStream createOutputStream(long offset) throws IOException {
 
     // permission check
     if (!isWritable()) {
@@ -317,8 +317,7 @@ public class JimfsFtpFile implements FtpFile {
     };
   }
 
-  public InputStream createInputStream(long offset)
-      throws IOException {
+  public InputStream createInputStream(long offset) throws IOException {
 
     // permission check
     if (!isReadable()) {

@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
+
 // #imports
 
 public class Main {
@@ -96,7 +97,8 @@ public class Main {
 
     Function<String, Sink<ByteString, CompletionStage<IOResult>>> sink =
         path -> {
-          Sink<ByteString, CompletionStage<IOResult>> ftpSink = Sftp.toPath("tmp/" + path, settings);
+          Sink<ByteString, CompletionStage<IOResult>> ftpSink =
+              Sftp.toPath("tmp/" + path, settings);
           return Flow.<ByteString>create()
               .via(Compression.gzip()) // (4)
               .toMat(ftpSink, Keep.right());
@@ -110,8 +112,7 @@ public class Main {
     completion
         .thenApply(
             (i) ->
-                Directory.ls(home)
-                    .runForeach((f) -> System.out.println(f.toString()), actorSystem))
+                Directory.ls(home).runForeach((f) -> System.out.println(f.toString()), actorSystem))
         .whenComplete(
             (res, ex) -> {
               if (ex != null) {

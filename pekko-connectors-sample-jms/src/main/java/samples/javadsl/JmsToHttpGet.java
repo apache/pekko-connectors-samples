@@ -94,6 +94,8 @@ public class JmsToHttpGet {
             t -> {
               webserver.stop();
               return activeMqBroker.stopCs(ec);
-            }).toCompletableFuture().get(5, TimeUnit.SECONDS);
+            })
+        .toCompletableFuture()
+        .get(5, TimeUnit.SECONDS);
   }
 }

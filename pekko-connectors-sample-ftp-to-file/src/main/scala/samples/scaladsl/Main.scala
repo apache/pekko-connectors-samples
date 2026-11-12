@@ -8,7 +8,7 @@ import org.apache.pekko.actor.typed.scaladsl.Behaviors
 // #imports
 import org.apache.pekko.stream.connectors.ftp.FtpSettings
 import org.apache.pekko.stream.connectors.ftp.scaladsl.Ftp
-import org.apache.pekko.stream.scaladsl.{FileIO, Sink}
+import org.apache.pekko.stream.scaladsl.{ FileIO, Sink }
 import org.apache.pekko.stream.IOResult
 // #imports
 import org.apache.mina.util.AvailablePortFinder
@@ -16,9 +16,9 @@ import playground.FtpServerEmbedded
 import playground.filesystem.FileSystemMock
 
 import scala.collection.immutable
-import scala.concurrent.duration.{DurationInt, FiniteDuration}
-import scala.concurrent.{Await, ExecutionContext, Future}
-import scala.util.{Failure, Success}
+import scala.concurrent.duration.{ DurationInt, FiniteDuration }
+import scala.concurrent.{ Await, ExecutionContext, Future }
+import scala.util.{ Failure, Success }
 
 object Main extends App {
   implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "FtpToFile")
