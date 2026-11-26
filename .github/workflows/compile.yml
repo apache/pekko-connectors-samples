@@ -24,10 +24,10 @@ jobs:
           java-version: 11
 
       - name: Install sbt
-        uses: sbt/setup-sbt@v1
+        uses: sbt/setup-sbt@7e114eae4f32ec3f93c851c2793376a77f384409 # v1.5.15
 
       - name: Cache Coursier cache
-        uses: coursier/cache-action@v6
+        uses: coursier/cache-action@ee0650f98295f27a505e4bfd284c9bfaa913a465 # v9.0.1
 
       - name: "Create site with Paradox"
         run: cd docs && sbt makeSite
@@ -35,7 +35,74 @@ jobs:
 #      - name: Run Link Validator
 #        run: cs launch net.runne::site-link-validator:0.2.2 -- scripts/link-validator.conf
 
+  classify-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      readme_only: ${{ steps.pr_scope.outputs.readme_only }}
+    steps:
+      - name: Checkout
+        id: classifier_checkout
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Identify a README-only pull request
+        id: pr_scope
+        if: steps.classifier_checkout.outcome == 'success'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if python3 -I - <<'PYTHON'
+          import os
+          import re
+          import subprocess
+
+          def git(*args):
+              return subprocess.check_output(["git", *args])
+
+          try:
+              base = os.environ.get("BASE_SHA", "")
+              head = os.environ.get("HEAD_SHA", "")
+              merge = os.environ.get("GITHUB_SHA", "")
+              if not all(re.fullmatch(r"[0-9a-f]{40}", oid) for oid in (base, head, merge)):
+                  raise SystemExit(1)
+              if git("rev-list", "--parents", "-n", "1", "HEAD").split() != [
+                  oid.encode() for oid in (merge, base, head)
+              ]:
+                  raise SystemExit(1)
+              if git("rev-parse", "--is-shallow-repository").strip() != b"false":
+                  raise SystemExit(1)
+              ancestors = git("merge-base", "--all", base, head).decode("ascii").split()
+              if len(ancestors) != 1 or not re.fullmatch(r"[0-9a-f]{40}", ancestors[0]):
+                  raise SystemExit(1)
+
+              def modifies_only_readme(before, after):
+                  diff = git("diff", "--raw", "-z", "--no-abbrev", "--no-renames",
+                             "--no-ext-diff", "--no-textconv", "--ignore-submodules=none", before, after)
+                  return re.fullmatch(
+                      rb":100644 100644 [0-9a-f]{40} [0-9a-f]{40} M\x00README\.md\x00", diff
+                  ) is not None
+
+              # Require README-only changes in both the authored PR and actual merge tree.
+              if not modifies_only_readme(ancestors[0], head) or not modifies_only_readme(base, merge):
+                  raise SystemExit(1)
+          except (OSError, subprocess.SubprocessError):
+              raise SystemExit(1)
+          PYTHON
+          then
+            echo "readme_only=true" >> "$GITHUB_OUTPUT"
+            echo "Root README only; sample compilation was skipped." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
   samples:
+    needs: classify-pr
+    if: >-
+      always() && !cancelled() &&
+      (needs.classify-pr.result != 'success' || needs.classify-pr.outputs.readme_only != 'true')
     runs-on: ubuntu-latest
 
     strategy:
@@ -68,10 +135,10 @@ jobs:
           java-version: 11
 
       - name: Install sbt
-        uses: sbt/setup-sbt@v1
+        uses: sbt/setup-sbt@7e114eae4f32ec3f93c851c2793376a77f384409 # v1.5.15
 
       - name: Cache Coursier cache
-        uses: coursier/cache-action@v6
+        uses: coursier/cache-action@ee0650f98295f27a505e4bfd284c9bfaa913a465 # v9.0.1
 
       - name: ${{ matrix.directory }}
         env:
